@@ -1,18 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF8"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="fr">
 
 <head>
 
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Page d'accueil de l'élève">
     <meta name="author" content="Phoenix + Griffon">
 
     <title>JobISEP - Accueil élève</title>
-	<jsp:include page="../Commun/IncludeCSS.html"/>
+    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>
+	
+	<jsp:include page="/WEB-INF/Commun/IncludeJS.jsp"/>
 
 </head>
 
@@ -21,7 +22,7 @@
     <div id="wrapper">
 
         <!-- Barre de navigation -->
-        <jsp:include page="BarreNavigationEleve.html"/>
+        <jsp:include page="/WEB-INF/Eleves/BarreNavigationEleve.jsp"/>
 
         <!-- Page Content -->
         <div id="page-wrapper">
@@ -137,10 +138,11 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
-    </div>
+		
+		<!-- jQuery -->
+    	<jsp:include page="/WEB-INF/Commun/IncludeJS.jsp"/>
+    
     <!-- /#wrapper -->
-	<jsp:include page="../Commun/IncludeJS.html"/>
 
 </body>
 
