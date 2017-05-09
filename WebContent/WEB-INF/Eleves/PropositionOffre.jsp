@@ -34,7 +34,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
                   
-                <jsp:include page="/WEB-INF/Forms/FormStage.jsp"/>
+                <jsp:include page="/WEB-INF/Forms/FormOffre.jsp"/>
                  
             </div>
             <!-- /.container-fluid -->

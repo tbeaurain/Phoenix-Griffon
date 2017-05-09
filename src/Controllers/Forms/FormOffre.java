@@ -13,11 +13,11 @@ import Controllers.Forms.FormsCheckers.FormStageChecker;
 /**
  * Servlet implementation class FormStage
  */
-@WebServlet(name="/FormStage", urlPatterns={"/FormStage"})
-public class FormStage extends HttpServlet {
+@WebServlet(name="/FormOffre", urlPatterns={"/FormOffre"})
+public class FormOffre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String ATT_STAGE = "stage";
+	public static final String ATT_OFFRE = "offre";
     public static final String ATT_FORM   = "form";
 	
 	public static final String VUE_SUCCES = "/WEB-INF/Eleve/PropositionOffre.jsp";
@@ -26,7 +26,7 @@ public class FormStage extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormStage() {
+    public FormOffre() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,7 +50,7 @@ public class FormStage extends HttpServlet {
         Offre offre = form.creerOffre( request );
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
-        request.setAttribute( ATT_STAGE, offre );
+        request.setAttribute( ATT_OFFRE, offre );
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
