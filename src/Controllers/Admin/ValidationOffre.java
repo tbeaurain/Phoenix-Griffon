@@ -22,6 +22,8 @@ public class ValidationOffre extends HttpServlet {
     public ValidationOffre() {
         super();
         // TODO Auto-generated constructor stub
+        
+        
     }
 
 	/**
