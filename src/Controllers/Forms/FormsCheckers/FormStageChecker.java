@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
-import Beans.Stage;
+import org.phoenixgriffon.JobIsep.Offre;
 
 /**
  * Servlet implementation class FormStageChecker
@@ -34,49 +34,49 @@ public class FormStageChecker{
         return resultat;
     }
 
-    public Stage creerStage( HttpServletRequest request ) {
+    public Offre creerOffre( HttpServletRequest request ) {
         String titre = getValeurChamp( request, CHAMP_TITRE );
         String description = getValeurChamp( request, CHAMP_DESCRIPTION );
         String lieu = getValeurChamp( request, CHAMP_LIEU );
         String dates = getValeurChamp( request, CHAMP_DATES );
         String contact = getValeurChamp( request, CHAMP_CONTACT );
 
-        Stage stage = new Stage();
+        Offre offre = new Offre();
 
         try {
             validationTitre( titre );
         } catch ( Exception e ) {
             setErreur( CHAMP_TITRE, e.getMessage() );
         }
-        stage.setTitre( titre );
+        offre.setTitre( titre );
 
         try {
             validationDescription( description );
         } catch ( Exception e ) {
             setErreur( CHAMP_DESCRIPTION, e.getMessage() );
         }
-        stage.setDescription( description );
+        offre.setDescription( description );
 
         try {
             validationLieu( lieu );
         } catch ( Exception e ) {
             setErreur( CHAMP_LIEU, e.getMessage() );
         }
-        stage.setLieu( lieu );
+        offre.setLieu( lieu );
 
         try {
             validationDates( dates );
         } catch ( Exception e ) {
             setErreur( CHAMP_DATES, e.getMessage() );
         }
-        stage.setDates( dates );
+        offre.setDates( dates );
 
         try {
             validationContact( contact );
         } catch ( Exception e ) {
             setErreur( CHAMP_CONTACT, e.getMessage() );
         }
-        stage.setContact( contact );
+        offre.setContact( contact );
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de la création du client.";
@@ -84,7 +84,7 @@ public class FormStageChecker{
             resultat = "Échec de la création du client.";
         }
 
-        return stage;
+        return offre;
     }
 
     private void validationTitre( String titre ) throws Exception {

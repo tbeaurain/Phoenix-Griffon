@@ -1,51 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="fr">
-
-<head>
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Proposition de stage - Eleve</title>
-
-    <!-- Bootstrap Core CSS -->
-    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-		<jsp:include page="/WEB-INF/Eleves/BarreNavigationEleve.jsp"/>    
-	        
-        <!-- Page Content -->
-        <div id="page-wrapper">
-        		
             <div class="row">
-            	<!-- Colonne vide pour centrer le titre sur les grands Ã©crans -->
-            	<div class="col-md-1">
-        		</div>
-        		<!-- /.col-lg-6 -->
-                <div class="col-md-8">
-                    <h1 class="page-header">Proposez une offre de stage :</h1>
-                </div>
-                <!-- /.col-lg-6 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-            	<!-- Colonne vide pour centrer le formulaire sur les grands Ã©crans -->
+            	<!-- Colonne vide pour centrer le formulaire sur les grands écrans -->
             	<div class="col-md-1">
         		</div>
         		<!-- /.col-lg-6 -->
                 <div class="col-md-8">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>Informations relatives Ã  l'offre proposÃ©e :</h4>
+                            <h4>Informations relatives à l'offre proposée :</h4>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -53,7 +15,7 @@
                                     <form role="form" action="FormStage" method="POST">
                                     		<div class="alert alert-info alert-dismissable">
                                 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                				<i>Les champs marquÃ©s d'un astÃ©risque sont obligatoires.</i>
+                                				<i>Les champs marqués d'un astérisque sont obligatoires.</i>
                             				</div>
 	                                        <div class="form-group<c:if test="${form.erreurs['titre']!=null}" var="maVariable" scope="session"> has-error</c:if>">
 	                                            <label>Titre*</label>
@@ -94,16 +56,3 @@
                 </div>
                 <!-- /.col-lg-6 -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <jsp:include page="/WEB-INF/Commun/IncludeJS.jsp"/>
-
-</body>
-
-</html>

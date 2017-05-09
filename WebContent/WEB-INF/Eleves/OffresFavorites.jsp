@@ -13,7 +13,7 @@
     <title>JobISEP - Offres Favorites</title>
 
     <!-- Bootstrap Core CSS -->
-    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>IncludeCSS.html"/>
+    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>
 
 </head>
 
