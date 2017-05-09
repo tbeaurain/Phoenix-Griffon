@@ -46,11 +46,11 @@ public class ProposerOffre extends HttpServlet {
 		Utilisateur utilisateur = new Utilisateur();
 		String titre = null;
 		String description = null;
-		Date miseEnLigne =  Calendar.getInstance().getTime();
-		Date dates ;
+		Date dates = null;
 		String contact = null;
 		
-		Offre offre = new Offre(utilisateur, titre, description,  miseEnLigne,  contact);
+		Offre offre = new Offre(utilisateur, titre, description,  dates,  contact);
+		ConnectionBDD.addOffre(offre);
 		
 	}
 
