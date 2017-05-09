@@ -11,9 +11,7 @@
 		</button>
 		<a class="navbar-brand" href="AccueilAdmin">KAZI-AOUL Zakia</a>
 	</div>
-	<div>
-		<img src="<c:url value="/Images/LogoJobIsep2.png"/>" style="width: 100px; height: 40px; float:left;">
-    </div>
+	<img src="<c:url value="/Images/LogoJobIsep2.png"/>" class="nav navbar-top-links navbar-right" style="width: 5em; height: 3em; padding-top:1em;margin-right:1em">	
         <div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">

@@ -8,8 +8,10 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="AccueilEleve">JobISEP</a>
+		<a class="navbar-brand" href="AccueilEleve">François Robard</a>
 	</div>
+	<img src="<c:url value="/Images/LogoJobIsep2.png"/>" class="nav navbar-top-links navbar-right" style="width: 5em; height: 3em; padding-top:1em;margin-right:1em">	
+    
 
 	<!-- /.navbar-header -->
 
