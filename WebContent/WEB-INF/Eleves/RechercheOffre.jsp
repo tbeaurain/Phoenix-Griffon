@@ -13,7 +13,7 @@
     <title>JobISEP - Recherche d'offre de stage</title>
 
     <!-- Bootstrap Core CSS -->
-    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>S.html"/>
+    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>
     
 </head>
 

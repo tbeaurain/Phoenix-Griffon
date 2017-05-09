@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Beans.Stage;
+import org.phoenixgriffon.JobIsep.Offre;
 import Controllers.Forms.FormsCheckers.FormStageChecker;
 
 /**
@@ -20,8 +20,8 @@ public class FormStage extends HttpServlet {
 	public static final String ATT_STAGE = "stage";
     public static final String ATT_FORM   = "form";
 	
-	public static final String VUE_SUCCES = "/WEB-INF/Forms/FormStage.jsp";
-	public static final String VUE_FORM   = "/WEB-INF/Forms/FormStage.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/Eleve/PropositionOffre.jsp";
+	public static final String VUE_FORM   = "/WEB-INF/Eleve/PropositionOffre.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,10 +47,10 @@ public class FormStage extends HttpServlet {
         FormStageChecker form = new FormStageChecker();
 
         /* Traitement de la requête et récupération du bean en résultant */
-        Stage stage = form.creerStage( request );
+        Offre offre = form.creerOffre( request );
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
-        request.setAttribute( ATT_STAGE, stage );
+        request.setAttribute( ATT_STAGE, offre );
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
