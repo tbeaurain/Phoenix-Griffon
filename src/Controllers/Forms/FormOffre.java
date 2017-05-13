@@ -20,7 +20,7 @@ public class FormOffre extends HttpServlet {
 	public static final String ATT_OFFRE = "offre";
     public static final String ATT_FORM   = "form";
 	
-	public static final String VUE_SUCCES = "/WEB-INF/Eleves/PropositionOffre.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/Eleves/OffresProposees.jsp";
 	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionOffre.jsp";
        
     /**

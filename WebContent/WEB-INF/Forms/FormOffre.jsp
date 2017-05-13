@@ -12,6 +12,12 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
+                                	<c:if test="${form.resultat!=null}" var="maVariable" scope="session">
+	                                	<div class="alert alert-warning alert-dismissable">
+	                                		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                                		${form.resultat}
+	                            		</div>
+                            		</c:if>
                                     <form role="form" action="FormOffre" method="POST">
                                     		<div class="alert alert-info alert-dismissable">
                                 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -24,7 +30,7 @@
 	                                        </div>
 	                                        <div class="form-group<c:if test="${form.erreurs['description']!=null}" var="maVariable" scope="session"> has-error</c:if>">
 	                                            <label>Description*</label>
-	                                            <textarea id="description" name="description" class="form-control" rows="10" value="<c:out value="${offre.description}"/>"></textarea>
+	                                            <textarea id="description" name="description" class="form-control" rows="10"><c:out value="${offre.description}"/></textarea>
 	                                        	<p class="help-block">${form.erreurs['descritption']}</p>
 	                                        </div>
 	                                        <div class="form-group<c:if test="${form.erreurs['lieu']!=null}" var="maVariable" scope="session"> has-error</c:if>">
@@ -42,8 +48,8 @@
 	                                            <input id="contact" name="contact" class="form-control" value="<c:out value="${offre.contact}"/>">
 	                                            <p class="help-block">${form.erreurs['contact']}</p>
 	                                        </div>
-	                                    <button type="submit" class="btn btn-primary">Submit Button</button>
-	                                    <button type="reset" class="btn btn-default">Reset Button</button>
+	                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+	                                    <button type="reset" class="btn btn-default">Remettre à zéro</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 -->

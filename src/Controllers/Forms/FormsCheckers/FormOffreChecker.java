@@ -92,9 +92,9 @@ public class FormOffreChecker{
         
 
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de la création du client.";
+            resultat = "Succès de la création de l'offre de stage. Elle sera visible par les autres utilisateurs lorsqu'un administrateur l'aura validée.";
         } else {
-            resultat = "Échec de la création du client.";
+            resultat = "Échec de la création de l'offre. Veuillez Compléter correctement les champs et réssayer.";
         }
 
         return offre;

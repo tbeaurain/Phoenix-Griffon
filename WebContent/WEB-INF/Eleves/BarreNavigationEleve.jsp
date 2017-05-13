@@ -45,6 +45,8 @@
 								class="fa fa-search"></i> Rechercher une offre</a></li>
 						<li><a href="OffresFavorites"><i
 								class="fa fa-heart fa-fw"></i> Mes offres favorites</a></li>
+						<li><a href="OffresProposees"><i
+								class="fa fa-list-ul fa-fw"></i> Mes offres Proposées</a></li>
 						<li><a href="PropositionOffre"><i
 								class="fa fa-plus-circle fa-fw"></i> Proposer une offre</a></li>
 					</ul> <!-- /.nav-second-level -->
