@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.phoenixgriffon.JobIsep.Offre;
-import Controllers.Forms.FormsCheckers.FormStageChecker;
+import Controllers.Forms.FormsCheckers.FormOffreChecker;
 
 /**
  * Servlet implementation class FormStage
@@ -20,8 +20,8 @@ public class FormOffre extends HttpServlet {
 	public static final String ATT_OFFRE = "offre";
     public static final String ATT_FORM   = "form";
 	
-	public static final String VUE_SUCCES = "/WEB-INF/Eleve/PropositionOffre.jsp";
-	public static final String VUE_FORM   = "/WEB-INF/Eleve/PropositionOffre.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/Eleves/PropositionOffre.jsp";
+	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionOffre.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,7 +44,7 @@ public class FormOffre extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
-        FormStageChecker form = new FormStageChecker();
+        FormOffreChecker form = new FormOffreChecker();
 
         /* Traitement de la requête et récupération du bean en résultant */
         Offre offre = form.creerOffre( request );

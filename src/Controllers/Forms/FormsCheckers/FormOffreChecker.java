@@ -11,16 +11,17 @@ import org.phoenixgriffon.JobIsep.Offre;
 /**
  * Servlet implementation class FormStageChecker
  */
-@WebServlet("/FormStageChecker")
-public class FormStageChecker{
+@WebServlet("/FormOffreChecker")
+public class FormOffreChecker{
 	private static final long serialVersionUID = 1L;
 	
+	private static final String CHAMP_UTILISATEUR    = "utilisateur"; // mettre l'utilisatieur qui créé l'action quand on aura des sessions
 	private static final String CHAMP_TITRE          = "titre";
     private static final String CHAMP_DESCRIPTION    = "description";
-    private static final String CHAMP_LIEU           = "lieu";
-    private static final String CHAMP_MISE_EN_LIGNE  = "mise_en_ligne";
+    private static final String CHAMP_MISE_EN_LIGNE  = "mise_en_ligne"; // A récupérer par la date actuelle
     private static final String CHAMP_DATES          = "dates";
     private static final String CHAMP_CONTACT        = "contact";
+    private static final String CHAMP_LIEU           = "lieu";
        
 
     private String              resultat;
@@ -35,14 +36,19 @@ public class FormStageChecker{
     }
 
     public Offre creerOffre( HttpServletRequest request ) {
+    	/*Récupération du contenu du formulaire*/
         String titre = getValeurChamp( request, CHAMP_TITRE );
         String description = getValeurChamp( request, CHAMP_DESCRIPTION );
         String lieu = getValeurChamp( request, CHAMP_LIEU );
         String dates = getValeurChamp( request, CHAMP_DATES );
         String contact = getValeurChamp( request, CHAMP_CONTACT );
-
+        
+        /*Création de bean Offre*/
         Offre offre = new Offre();
-
+        
+        /*Appel des fonctions de validation des données et ajout des données au bean
+         *	>Si une erreur est détectée lors de la vaidation, ajout du message d'erreur dans la variable "erreurs"
+         */
         try {
             validationTitre( titre );
         } catch ( Exception e ) {
@@ -77,6 +83,13 @@ public class FormStageChecker{
             setErreur( CHAMP_CONTACT, e.getMessage() );
         }
         offre.setContact( contact );
+        
+        /* Appel des fonctions rejoutants les valeurs indépendantes du formulaire, ici : 
+         * 		>date de création de l'offre
+         * 		>utilisateur ayant créé l'offre
+         */
+        //offre.setUtilisateur( getUtilisateur() );
+        
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de la création du client.";
@@ -152,4 +165,12 @@ public class FormStageChecker{
             return valeur;
         }
     }
+    
+    /*
+     * Ajout de la fonction de récupération de l'utilisateur atuel
+     */
+    /*private Date getUtilisateur(){
+    	
+    }*/
+     
 }

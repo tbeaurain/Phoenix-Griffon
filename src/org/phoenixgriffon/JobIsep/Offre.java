@@ -15,26 +15,20 @@ public class Offre implements java.io.Serializable {
 	private Date miseEnLigne;
 	private String dates;
 	private String contact;
+	private String lieu;
 
 	public Offre() {
 	}
 
-	public Offre(Utilisateur utilisateur, String titre, String description, Date miseEnLigne, String contact) {
-		this.utilisateur = utilisateur;
-		this.titre = titre;
-		this.description = description;
-		this.miseEnLigne = miseEnLigne;
-		this.contact = contact;
-	}
-
 	public Offre(Utilisateur utilisateur, String titre, String description, Date miseEnLigne, String dates,
-			String contact) {
+			String contact, String lieu) {
 		this.utilisateur = utilisateur;
 		this.titre = titre;
 		this.description = description;
 		this.miseEnLigne = miseEnLigne;
 		this.dates = dates;
 		this.contact = contact;
+		this.lieu = lieu;
 	}
 
 	public Integer getId() {
@@ -91,6 +85,14 @@ public class Offre implements java.io.Serializable {
 
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+	
+	public String getLieu() {
+		return this.lieu;
+	}
+
+	public void setLieu(String lieu) {
+		this.lieu = lieu;
 	}
 
 }
