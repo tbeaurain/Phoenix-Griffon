@@ -13,7 +13,7 @@
     <title>JobISEP - Proposition d'une offre de stage</title>
 
     <!-- Bootstrap Core CSS -->
-    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>CSS.html"/>
+    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>
 
 </head>
 
@@ -32,7 +32,10 @@
                         <h1 class="page-header">Proposition d'offre de stage</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                </div>   
+                </div>
+                  
+                <jsp:include page="/WEB-INF/Forms/FormOffre.jsp"/>
+                 
             </div>
             <!-- /.container-fluid -->
         </div>

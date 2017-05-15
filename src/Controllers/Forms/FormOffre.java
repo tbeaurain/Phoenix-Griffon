@@ -7,26 +7,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Beans.Stage;
-import Controllers.Forms.FormsCheckers.FormStageChecker;
+
+import java.sql.*;
+import org.phoenixgriffon.JobIsep.*;
+
+import Controllers.Admin.ConnectionBDD;
+import Controllers.Forms.FormsCheckers.FormOffreChecker;
 
 /**
  * Servlet implementation class FormStage
  */
-@WebServlet(name="/FormStage", urlPatterns={"/FormStage"})
-public class FormStage extends HttpServlet {
+@WebServlet(name="/FormOffre", urlPatterns={"/FormOffre"})
+public class FormOffre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String ATT_STAGE = "stage";
+	public static final String ATT_OFFRE = "offre";
     public static final String ATT_FORM   = "form";
 	
-	public static final String VUE_SUCCES = "/WEB-INF/Forms/FormStage.jsp";
-	public static final String VUE_FORM   = "/WEB-INF/Forms/FormStage.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/Eleves/OffresProposees.jsp";
+	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionOffre.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormStage() {
+    public FormOffre() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,13 +48,26 @@ public class FormStage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
-        FormStageChecker form = new FormStageChecker();
+        FormOffreChecker form = new FormOffreChecker();
 
         /* Traitement de la requête et récupération du bean en résultant */
-        Stage stage = form.creerStage( request );
+        Offre offre = form.creerOffre( request );
+        
+        
+        
+        Utilisateur utilisateur = new Utilisateur ();
+        utilisateur.setId(1);
+        
+        offre.setUtilisateur(utilisateur);
+        
+        ConnectionBDD bdd = new ConnectionBDD();
+        
+        bdd.addOffre(offre);
+        
+        
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
-        request.setAttribute( ATT_STAGE, stage );
+        request.setAttribute( ATT_OFFRE, offre );
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
