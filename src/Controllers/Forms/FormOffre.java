@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.phoenixgriffon.JobIsep.Offre;
+
+import java.sql.*;
+import org.phoenixgriffon.JobIsep.*;
+
+import Controllers.Admin.ConnectionBDD;
 import Controllers.Forms.FormsCheckers.FormOffreChecker;
 
 /**
@@ -48,6 +52,18 @@ public class FormOffre extends HttpServlet {
 
         /* Traitement de la requête et récupération du bean en résultant */
         Offre offre = form.creerOffre( request );
+        
+        
+        
+        Utilisateur utilisateur = new Utilisateur ();
+        utilisateur.setId(1);
+        
+        offre.setUtilisateur(utilisateur);
+        
+        ConnectionBDD bdd = new ConnectionBDD();
+        
+        bdd.addOffre(offre);
+        
         
 
         /* Ajout du bean et de l'objet métier à l'objet requête */

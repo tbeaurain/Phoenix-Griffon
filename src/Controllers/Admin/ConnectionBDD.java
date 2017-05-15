@@ -264,8 +264,9 @@ public class ConnectionBDD {
 		Date dateDeNaissance = new Date (years, month, jour);;
 		java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
 
-		util = bdd.utilisateur("toto", "toto");
-
+		Offre offre = new Offre(util, "titre", "description", null, "dates", "contact", "lieu");
+		
+		bdd.addOffre(offre);
 
 		System.out.println("fini");
 	}
