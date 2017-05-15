@@ -104,6 +104,7 @@ public class ConnectionBDD {
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
+
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.executeUpdate();
@@ -167,7 +168,7 @@ public class ConnectionBDD {
 				villeSiege, codePostalSiege, telephoneSiege);
 		return entreprise;
 	}
-	
+
 	public Offre offre(int idOffre, Utilisateur  utilisateur){
 		String titre = null;
 		String description = null;
@@ -194,11 +195,57 @@ public class ConnectionBDD {
 			System.out.println(e.getMessage());
 		}
 
-		
+
 		Offre offre= new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
 
+	public Utilisateur utilisateur(String identifiant, String mdp){
+		int idStatutUtilisateur = 0 ;
+		String prenom = null;
+		String nom = null;
+		Date dateNaissance = null;
+		String sql = "SELECT * FROM utilisateur WHERE "
+				+ "identifiant = '" + identifiant +"' AND motdepasse = '" + mdp + "';";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+
+			while (rs.next()) {
+				prenom = rs.getString("prenom");
+				nom = rs.getString("nom");
+				dateNaissance = rs.getDate("date_naissance");
+				idStatutUtilisateur = rs.getInt("id_statut");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		StatutUtilisateur statutUtilisateur = statutUtilisateur(idStatutUtilisateur);
+
+		Utilisateur utilisateur = new Utilisateur(statutUtilisateur,  prenom,  nom,  dateNaissance,
+				identifiant,  mdp);
+		return utilisateur;
+	}
+
+	public StatutUtilisateur statutUtilisateur(int id){
+		String libelle = " ";
+		String sql = "SELECT * FROM statut_utilisateur where id = '" + id +"';";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+
+			while (rs.next()) {
+				libelle = rs.getString("libelle");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+
+		StatutUtilisateur statutUtilisateur= new StatutUtilisateur (libelle);
+		return statutUtilisateur;
+	}
 
 	public static void main(String[] args){
 
@@ -206,10 +253,10 @@ public class ConnectionBDD {
 
 		StatutUtilisateur statutUtilisateur = new StatutUtilisateur("prof");
 
-		
+
 		Utilisateur util = new Utilisateur();
 		util.setId(1);
-		
+
 		int years = 1995 + 1900; 
 		int month = 10;
 		int jour = 15;
@@ -217,8 +264,8 @@ public class ConnectionBDD {
 		Date dateDeNaissance = new Date (years, month, jour);;
 		java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
 
-		Offre offre = new Offre(util, "titre", "description", date_sql, "date", "contact", "lieu");
-		bdd.addOffre(offre);
+		util = bdd.utilisateur("toto", "toto");
+
 
 		System.out.println("fini");
 	}

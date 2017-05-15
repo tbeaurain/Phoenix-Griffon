@@ -48,6 +48,7 @@ public class FormOffre extends HttpServlet {
 
         /* Traitement de la requête et récupération du bean en résultant */
         Offre offre = form.creerOffre( request );
+        
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
         request.setAttribute( ATT_OFFRE, offre );
