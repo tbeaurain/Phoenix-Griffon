@@ -1,5 +1,4 @@
 package Controllers.Admin;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -124,7 +123,8 @@ public class ConnectionBDD {
 		String codePostal = entreprise.getCodePostalSiege();
 		String tel = entreprise.getTelephoneSiege();
 
-		String sql =  "INSERT INTO entreprise (nom, siret, code_ape, adresse_siege, ville_siege, code_postal_siege, telephone_siege) "
+		String sql =  "INSERT INTO entreprise (nom, siret, code_ape, adresse_siege, ville_siege,"
+				+ " code_postal_siege, telephone_siege) "
 				+ "VALUES ('"+ nom +"','" + siret +"','" + codeApe +"','" + adresseSiege + 
 				"','" + villeSiege +"','"+ codePostal +"','"+ tel +"');" ;
 		try (Connection conn = this.connection();
@@ -169,7 +169,7 @@ public class ConnectionBDD {
 		return entreprise;
 	}
 
-	public Offre offre(int idOffre, Utilisateur  utilisateur){
+	public Offre offre(int idOffre, Utilisateur utilisateur){
 		String titre = null;
 		String description = null;
 		Date miseEnLigne = null;
@@ -242,31 +242,48 @@ public class ConnectionBDD {
 			System.out.println(e.getMessage());
 		}
 
-
 		StatutUtilisateur statutUtilisateur= new StatutUtilisateur (libelle);
 		return statutUtilisateur;
+	}
+
+	public void updateUtilisateur(int id, String mdp, Date DateDeNaissance, String nom, String prenom ){
+		String sql = "UPDATE utilisateur "
+				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
+				+ "WHERE id = ? ;";
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setString(1, prenom);
+			pstmt.setString(2, nom);
+			pstmt.setDate(3, (java.sql.Date) DateDeNaissance);
+			pstmt.setString(4, mdp);
+			pstmt.setInt(5, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public static void main(String[] args){
 
 		ConnectionBDD bdd = new ConnectionBDD();
 
-		StatutUtilisateur statutUtilisateur = new StatutUtilisateur("prof");
-
-
 		Utilisateur util = new Utilisateur();
 		util.setId(1);
 
-		int years = 1995 + 1900; 
+		int years = 1995;
 		int month = 10;
 		int jour = 15;
 
 		Date dateDeNaissance = new Date (years, month, jour);;
 		java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
 
-		Offre offre = new Offre(util, "titre", "description", null, "dates", "contact", "lieu");
-		
-		bdd.addOffre(offre);
+		StatutUtilisateur statut = new StatutUtilisateur("eleve");
+		//	Utilisateur utilisateur = new Utilisateur(statut, "thibaut", "beaurain", date_sql, "tibo", "mdp");
+
+
+		bdd.updateUtilisateur(8, "tibo1", date_sql, "nom", "prenom");
 
 		System.out.println("fini");
 	}

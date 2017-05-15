@@ -56,7 +56,7 @@ public class FormOffre extends HttpServlet {
         
         
         Utilisateur utilisateur = new Utilisateur ();
-        utilisateur.setId(1);
+        utilisateur.setId(8);
         
         offre.setUtilisateur(utilisateur);
         
