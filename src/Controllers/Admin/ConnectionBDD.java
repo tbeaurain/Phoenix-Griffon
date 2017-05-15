@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 import org.phoenixgriffon.JobIsep.*;
@@ -32,15 +33,16 @@ public class ConnectionBDD {
 	}
 
 	public void addUtilisateur(Utilisateur utilisateur){
+
 		StatutUtilisateur statutUtilisateur = utilisateur.getStatutUtilisateur();
 		String prenom = utilisateur.getPrenom();
 		String nom = utilisateur.getNom();
 		Date dateDeNaisssance = (Date) utilisateur.getDateNaissance() ;
 		String identifiant = utilisateur.getIdentifiant();
 		String mdp = utilisateur.getMotdepasse();
-		
+
 		int idStatutUtilisateur = IdStatutUtilisateur(statutUtilisateur.getLibelle());
-		
+
 		if ( idStatutUtilisateur == 0){
 			addStatutUtilisateur(statutUtilisateur);
 			idStatutUtilisateur = IdStatutUtilisateur(statutUtilisateur.getLibelle());
@@ -133,6 +135,70 @@ public class ConnectionBDD {
 		}
 	}
 
+	public Entreprise entreprise(int id){
+		String nom = null;
+		String siret = null;
+		String codeApe = null;
+		String adresseSiege = null;
+		String villeSiege = null;
+		String codePostalSiege = null;
+		String telephoneSiege = null;
+
+		String sql = "SELECT * FROM entreprise where ID ='" + id +"';";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+
+			while (rs.next()) {
+				nom = rs.getString("nom");
+				siret = rs.getString("siret");
+				codeApe = rs.getString("code_ape");
+				adresseSiege = rs.getString("adresse_siege");
+				villeSiege = rs.getString("ville_siege");
+				codePostalSiege = rs.getString("code_postal_siege");
+				telephoneSiege = rs.getString("telephone_siege");
+
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		Entreprise entreprise= new Entreprise (nom, siret, codeApe, adresseSiege, 
+				villeSiege, codePostalSiege, telephoneSiege);
+		return entreprise;
+	}
+	
+	public Offre offre(int idOffre, Utilisateur  utilisateur){
+		String titre = null;
+		String description = null;
+		Date miseEnLigne = null;
+		String dates = null;
+		String contact = null;
+		String lieu = null;
+
+		String sql = "SELECT * FROM offre where ID ='" + idOffre +"';";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+
+			while (rs.next()) {
+				titre = rs.getString("titre");
+				description = rs.getString("description");
+				miseEnLigne = rs.getDate("miseEnLigne");
+				dates = rs.getString("dates");
+				contact = rs.getString("contact");
+				lieu = rs.getString("lieu");
+
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		
+		Offre offre= new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
+		return offre;
+	}
+
 
 	public static void main(String[] args){
 
@@ -140,21 +206,18 @@ public class ConnectionBDD {
 
 		StatutUtilisateur statutUtilisateur = new StatutUtilisateur("prof");
 
-		
+
 		int years = 1995 + 1900; 
 		int month = 10;
 		int jour = 15;
-		
+
 		Date dateDeNaissance = new Date (years, month, jour);;
-		 java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
-		
-		Utilisateur utilisateur = new Utilisateur(statutUtilisateur, "prenom2", "nom2",  date_sql, "identifiant2", "motdepasse2");
+		java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
 
-		Entreprise entreprise = new Entreprise("nom", "siret", "codeApe", "adresseSiege", "villeSiege",
-				"codePo" , "telephon");
+		Entreprise en = bdd.entreprise(1);
 
-		bdd.addUtilisateur(utilisateur);
-		
+		System.out.println(en.getCodePostalSiege());
+
 		System.out.println("fini");
 	}
 
