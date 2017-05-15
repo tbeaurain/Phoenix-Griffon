@@ -102,7 +102,7 @@ public class ConnectionBDD {
 		Utilisateur utilisateur = offre.getUtilisateur();
 		int idUtilisateur = utilisateur.getId();
 
-		String sql ="INSERT INTO offre (titre, description, dates, contact, utilisateur) "
+		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -206,7 +206,10 @@ public class ConnectionBDD {
 
 		StatutUtilisateur statutUtilisateur = new StatutUtilisateur("prof");
 
-
+		
+		Utilisateur util = new Utilisateur();
+		util.setId(1);
+		
 		int years = 1995 + 1900; 
 		int month = 10;
 		int jour = 15;
@@ -214,9 +217,8 @@ public class ConnectionBDD {
 		Date dateDeNaissance = new Date (years, month, jour);;
 		java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
 
-		Entreprise en = bdd.entreprise(1);
-
-		System.out.println(en.getCodePostalSiege());
+		Offre offre = new Offre(util, "titre", "description", date_sql, "date", "contact", "lieu");
+		bdd.addOffre(offre);
 
 		System.out.println("fini");
 	}
