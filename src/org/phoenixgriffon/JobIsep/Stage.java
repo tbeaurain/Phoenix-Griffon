@@ -18,7 +18,7 @@ public class Stage implements java.io.Serializable {
 	private String nomService;
 	private String telephoneStandardLieu;
 	private String nomContactConvention;
-	private int adresseContactConvention;
+	private String adresseContactConvention;
 	private String codePostalContactConvention;
 	private String villeContactConvention;
 	private String telContactConvention;
@@ -27,7 +27,7 @@ public class Stage implements java.io.Serializable {
 	private String mailMaitreStage;
 	private String fonctionMaitreStage;
 	private String mailContactConvention;
-	private int remuneration;
+	private double remuneration;
 	private Date dateDebut;
 	private Date dateFin;
 	private String description;
@@ -37,12 +37,11 @@ public class Stage implements java.io.Serializable {
 	public Stage() {
 	}
 
-	public Stage(Date dateCreation, String adresseLieu, String villeLieu, String codePostalLieu, String nomService,
-			String telephoneStandardLieu, String nomContactConvention, int adresseContactConvention,
+	public Stage(String adresseLieu, String villeLieu, String codePostalLieu, String nomService,
+			String telephoneStandardLieu, String nomContactConvention, String adresseContactConvention,
 			String codePostalContactConvention, String villeContactConvention, String telContactConvention,
 			String nomMaitreStage, String telephoneMaitreStage, String mailMaitreStage, String fonctionMaitreStage,
-			String mailContactConvention, int remuneration, Date dateDebut, Date dateFin, String description) {
-		this.dateCreation = dateCreation;
+			String mailContactConvention, double remuneration, Date dateDebut, Date dateFin, String description) {
 		this.adresseLieu = adresseLieu;
 		this.villeLieu = villeLieu;
 		this.codePostalLieu = codePostalLieu;
@@ -65,10 +64,10 @@ public class Stage implements java.io.Serializable {
 	}
 
 	public Stage(Date dateCreation, String adresseLieu, String villeLieu, String codePostalLieu, String nomService,
-			String telephoneStandardLieu, String nomContactConvention, int adresseContactConvention,
+			String telephoneStandardLieu, String nomContactConvention, String adresseContactConvention,
 			String codePostalContactConvention, String villeContactConvention, String telContactConvention,
 			String nomMaitreStage, String telephoneMaitreStage, String mailMaitreStage, String fonctionMaitreStage,
-			String mailContactConvention, int remuneration, Date dateDebut, Date dateFin, String description,
+			String mailContactConvention, double remuneration, Date dateDebut, Date dateFin, String description,
 			Set<EffectueStage> effectueStages, Set<ValideStage> valideStages) {
 		this.dateCreation = dateCreation;
 		this.adresseLieu = adresseLieu;
@@ -158,11 +157,11 @@ public class Stage implements java.io.Serializable {
 		this.nomContactConvention = nomContactConvention;
 	}
 
-	public int getAdresseContactConvention() {
+	public String getAdresseContactConvention() {
 		return this.adresseContactConvention;
 	}
 
-	public void setAdresseContactConvention(int adresseContactConvention) {
+	public void setAdresseContactConvention(String adresseContactConvention) {
 		this.adresseContactConvention = adresseContactConvention;
 	}
 
@@ -230,11 +229,11 @@ public class Stage implements java.io.Serializable {
 		this.mailContactConvention = mailContactConvention;
 	}
 
-	public int getRemuneration() {
+	public double getRemuneration() {
 		return this.remuneration;
 	}
 
-	public void setRemuneration(int remuneration) {
+	public void setRemuneration(double remuneration) {
 		this.remuneration = remuneration;
 	}
 

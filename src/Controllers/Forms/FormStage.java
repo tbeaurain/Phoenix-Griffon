@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FormStage
  */
-@WebServlet("/FormStage")
+@WebServlet(name="/FormStage", urlPatterns={"/FormStage"})
 public class FormStage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
+	public static final String ATT_STAGE = "stage";
+    public static final String ATT_FORM   = "form";
+	
+	public static final String VUE_SUCCES = "/WEB-INF/Eleves/OffresProposees.jsp";
+	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionStage.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,8 +31,8 @@ public class FormStage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		/* À la réception d'une requête GET, simple affichage du formulaire */
+        this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
 	}
 
 	/**
