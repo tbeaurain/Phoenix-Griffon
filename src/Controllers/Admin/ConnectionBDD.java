@@ -18,13 +18,14 @@ public class ConnectionBDD {
 			System.out.println(e);
 		}
 
-		String url = "jdbc:mysql://localhost:8889/jobisep";
+		String url = "jdbc:mysql://localhost:3306/jobisep";
 		String utilisateur = "root";
-		String motDePasse = "root";
+		String motDePasse = "";
 		Connection connexion = null;
 
 		try {
 			connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
+			System.out.println("ok");
 		} catch ( SQLException e ) {
 			System.out.println(e);
 		} 
@@ -283,7 +284,7 @@ public class ConnectionBDD {
 		//	Utilisateur utilisateur = new Utilisateur(statut, "thibaut", "beaurain", date_sql, "tibo", "mdp");
 
 
-		bdd.updateUtilisateur(8, "tibo1", date_sql, "nom", "prenom");
+		bdd.addStatutUtilisateur(statut);
 
 		System.out.println("fini");
 	}
