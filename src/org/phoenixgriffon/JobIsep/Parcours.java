@@ -7,13 +7,13 @@ package org.phoenixgriffon.JobIsep;
 public class Parcours implements java.io.Serializable {
 
 	private Integer id;
-	private Utilisateur utilisateur;
 	private String libelle;
+	private Utilisateur utilisateur;
 
 	public Parcours() {
 	}
 
-	public Parcours(Utilisateur utilisateur, String libelle) {
+	public Parcours(String libelle, Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 		this.libelle = libelle;
 	}

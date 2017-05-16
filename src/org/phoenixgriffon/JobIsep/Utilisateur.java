@@ -11,12 +11,12 @@ import java.util.Set;
 public class Utilisateur implements java.io.Serializable {
 
 	private Integer id;
-	private StatutUtilisateur statutUtilisateur;
 	private String prenom;
 	private String nom;
 	private Date dateNaissance;
 	private String identifiant;
 	private String motdepasse;
+	private StatutUtilisateur statutUtilisateur;
 	private Set<Offre> offres = new HashSet<Offre>(0);
 	private Set<EffectueStage> effectueStages = new HashSet<EffectueStage>(0);
 	private Set<Parcours> parcourses = new HashSet<Parcours>(0);

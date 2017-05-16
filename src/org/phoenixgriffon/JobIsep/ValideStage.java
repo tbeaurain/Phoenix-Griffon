@@ -7,15 +7,15 @@ package org.phoenixgriffon.JobIsep;
 public class ValideStage implements java.io.Serializable {
 
 	private Integer id;
-	private Stage stage;
 	private Utilisateur utilisateur;
+	private Stage stage;
 
 	public ValideStage() {
 	}
 
-	public ValideStage(Stage stage, Utilisateur utilisateur) {
-		this.stage = stage;
+	public ValideStage(Utilisateur utilisateur, Stage stage) {
 		this.utilisateur = utilisateur;
+		this.stage = stage;
 	}
 
 	public Integer getId() {
