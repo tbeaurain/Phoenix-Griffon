@@ -31,6 +31,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">Proposer une offre de stage</h1>
                         
+                         <jsp:include page="/WEB-INF/Forms/FormOffre.jsp"/>
 	                </div>
                 </div>
                 <!-- /.row -->
