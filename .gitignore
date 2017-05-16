@@ -9,6 +9,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+WebContent/WEB-INF/lib
 
 # External tool builders
 .externalToolBuilders/
@@ -47,3 +48,7 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+/build/
+
+.classpath
+.jar
