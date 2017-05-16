@@ -49,3 +49,6 @@ WebContent/WEB-INF/lib
 .scala_dependencies
 .worksheet
 /build/
+
+.classpath
+.jar
