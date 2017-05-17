@@ -6,7 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
+import org.phoenixgriffon.JobIsep.*;
+
+import Controllers.Admin.ConnectionBDD;
 
 
 /**
@@ -24,6 +28,7 @@ public class Connexion extends HttpServlet {
      */
     public Connexion() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -37,20 +42,47 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String ReceivedLogin=request.getParameter("login");
-		//String ReceivedPWD=request.getParameter("password");
+		HttpSession s=request.getSession( true );
+		if(s.isNew())
+		{
+			Controllers.Admin.ConnectionBDD db = new Controllers.Admin.ConnectionBDD();
+			Utilisateur util = new Utilisateur();
+			boolean logged;
+			try {
+				logged = db.login(request.getParameter("login"),request.getParameter("password"),util);
+				
+				if(logged)
+				{
+					System.out.println(util.getStatutUtilisateur().getLibelle());
+					s.setAttribute("utilisateur", util);
+					if(util.getStatutUtilisateur().getLibelle().equals("admin")){
+						this.getServletContext().getRequestDispatcher( SERVLET_ADMIN ).forward( request, response );
+					}
+					else if(util.getStatutUtilisateur().getLibelle().equals("eleve")){
+						this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
+					}
+				}
+				else{
+					RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Connexion.html");
+					dispatcher.include(request, response);
+				}
+			}
+			catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+		}
+		/*else
+		{
+			String statut = ((Utilisateur) s.getAttribute("utilisateur")).getStatutUtilisateur().getLibelle();
+			if(statut.equals("admin")){
+				this.getServletContext().getRequestDispatcher( SERVLET_ADMIN ).forward( request, response );
+			}
+			else if(statut.equals("eleve")){
+				this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
+			}
+		}*/
 		
-		//redirecting to the appropriate page
-		if(ReceivedLogin.equals("admin")){
-			this.getServletContext().getRequestDispatcher( SERVLET_ADMIN ).forward( request, response );
-		}
-		else if(ReceivedLogin.equals("eleve")){
-			this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
-		}
-		else{
-			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Connexion.html");
-			dispatcher.include(request, response);
-		}
 	}
 
 }
