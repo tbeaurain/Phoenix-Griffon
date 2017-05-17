@@ -9,12 +9,12 @@ import java.util.Date;
 public class Offre implements java.io.Serializable {
 
 	private Integer id;
-	private Utilisateur utilisateur;
 	private String titre;
 	private String description;
 	private Date miseEnLigne;
 	private String dates;
 	private String contact;
+	private Utilisateur utilisateur;
 	private String lieu;
 
 	public Offre() {

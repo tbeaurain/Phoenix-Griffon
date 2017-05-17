@@ -7,15 +7,15 @@ package org.phoenixgriffon.JobIsep;
 public class EffectueStage implements java.io.Serializable {
 
 	private Integer id;
-	private Stage stage;
-	private Utilisateur utilisateur;
+	private Utilisateur id_utilisateur;
+	private Stage id_stage;
 
 	public EffectueStage() {
 	}
 
 	public EffectueStage(Stage stage, Utilisateur utilisateur) {
-		this.stage = stage;
-		this.utilisateur = utilisateur;
+		this.id_utilisateur = utilisateur;
+		this.id_stage = stage;
 	}
 
 	public Integer getId() {
@@ -26,20 +26,19 @@ public class EffectueStage implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Stage getStage() {
-		return this.stage;
+	public Utilisateur getId_utilisateur() {
+		return id_utilisateur;
 	}
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
+	public void setId_utilisateur(Utilisateur id_utilisateur) {
+		this.id_utilisateur = id_utilisateur;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
+	public Stage getId_stage() {
+		return id_stage;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setId_stage(Stage id_stage) {
+		this.id_stage = id_stage;
 	}
-
 }

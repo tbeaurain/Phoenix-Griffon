@@ -32,15 +32,17 @@
 	                <div class="row">
 	                    <div class="col-lg-12">
 	                        <h1 class="page-header">Recherche d'offre de stage</h1>
-	                        <% if(request.getAttribute("liste_offres")!=null){
-	                        	ArrayList<Offre> liste = (ArrayList<Offre>) request.getAttribute("liste_offres");
-	                        	out.print(liste.get(0).getTitre());
-	                        	}%>
 	                    </div>
 	                    <!-- /.col-lg-12 -->
 	                </div>
 	                <jsp:include page="/WEB-INF/Forms/FormRecherche.jsp"/>   
 	            </div>
+	            <% if(request.getAttribute("liste_offres")!=null){
+	               	ArrayList<Offre> liste = (ArrayList<Offre>) request.getAttribute("liste_offres");
+	     	      	for(Offre offre : liste){
+		            	out.print("<div class=\"col-md-1\"></div><div class=\"col-md-8\"><div class=\"panel panel-info\"><div class=\"panel-heading\"><h4>" + offre.getTitre() + "</h4></div><div class=\"panel-body\"><div class=\"row\"><div class=\"col-lg-12\">" + offre.getDescription() + "</div></div></div></div></div><hr style=\"clear:both;\">");
+	               	}
+	           	} %>
 	            <!-- /.container-fluid -->
 	        </div>
 	        <!-- /#page-wrapper -->
