@@ -36,6 +36,8 @@ public class RechercheOffre_BDD {
 				Offre offre = new Offre();
 				offre.setTitre(rs.getString("titre"));
 				offre.setDescription(rs.getString("description"));
+				offre.setId(rs.getInt("id"));
+				offre.setLieu(rs.getString("lieu"));
 				//TODO changer les classes JAVA POJO pour pouvoir 
 				liste.add(offre);
 				System.out.println(rs.getString("titre") + " " + rs.getString("description"));

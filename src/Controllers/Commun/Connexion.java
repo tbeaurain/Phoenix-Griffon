@@ -22,6 +22,7 @@ public class Connexion extends HttpServlet {
 	
 	public static final String SERVLET_ADMIN = "/AccueilAdmin";
 	public static final String SERVLET_ELEVE = "/AccueilEleve";
+	public static final String ECHEC = "/Connexion.html";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -63,6 +64,7 @@ public class Connexion extends HttpServlet {
 					}
 				}
 				else{
+					System.out.println("passage par le else");
 					RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Connexion.html");
 					dispatcher.include(request, response);
 				}

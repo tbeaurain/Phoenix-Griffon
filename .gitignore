@@ -54,3 +54,4 @@ WebContent/WEB-INF/lib
 
 *.jar
 /build/classes/*
+/build/
