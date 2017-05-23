@@ -31,7 +31,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">Ma convention de stage</h1>
                         
-                         <jsp:include page="/WEB-INF/Forms/FormStage.jsp"/>
+                         <!--<jsp:include page="/WEB-INF/Forms/FormStage.jsp"/>-->
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>   
