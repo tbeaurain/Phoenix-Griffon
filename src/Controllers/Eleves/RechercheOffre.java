@@ -1,11 +1,17 @@
 package Controllers.Eleves;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.phoenixgriffon.JobIsep.Offre;
+
+import Model.Commun.RechercheOffre_BDD;
 
 /**
  * Servlet implementation class RechercheOffre
@@ -27,6 +33,9 @@ public class RechercheOffre extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Offre> liste_offres = null;
+		liste_offres = RechercheOffre_BDD.listeOffres();
+		request.setAttribute("liste_offres", liste_offres);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}
 

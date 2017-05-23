@@ -152,8 +152,7 @@ public class ConnectionBDD {
 		String description = offre.getDescription();
 		String date = offre.getDates();
 		String contact = offre.getContact();
-		Utilisateur utilisateur = offre.getUtilisateur();
-		int idUtilisateur = utilisateur.getId();
+		Integer idUtilisateur = offre.getId_utilisateur();
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
@@ -247,7 +246,7 @@ public class ConnectionBDD {
 		}
 
 
-		Offre offre= new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
+		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
 	// The higher the number of iterations the more 

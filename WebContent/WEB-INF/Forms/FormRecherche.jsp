@@ -19,12 +19,8 @@
 	                            		</div>
                             		</c:if>
                                     <form role="form" action="FormRecherche" method="POST">
-                                    		<div class="alert alert-info alert-dismissable">
-                                				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                				<i>Les champs marqués d'un astérisque sont obligatoires.</i>
-                            				</div>
 	                                        <div class="form-group<c:if test="${form.erreurs['titre']!=null}" var="maVariable" scope="session"> has-error</c:if>">
-	                                            <label>Titre*</label>
+	                                            <label>Titre / mot dans la description</label>
 	                                            <input id="titre" name="titre" class="form-control" value="<c:out value="${offre.titre}"/>">
 	                                            <p class="help-block">${form.erreurs['titre']}</p>
 	                                        </div>
@@ -42,30 +38,3 @@
                 </div>
                 <!-- /.col-lg-6 -->
             </div>
-            <c:if test="${form.resultat!=null}" var="maVariable" scope="session">
-	            <div class="row">
-	            	<!-- Colonne vide pour centrer le formulaire sur les grands écrans -->
-	            	<div class="col-md-1">
-	        		</div>
-	        		<!-- /.col-lg-6 -->
-	                <div class="col-md-8">
-	                    <div class="panel panel-info">
-	                        <div class="panel-heading">
-	                            <h4>Offre n°1</h4>
-	                        </div>
-	                        <div class="panel-body">
-	                            <div class="row">
-	                                <div class="col-lg-12">
-	                                	contenu
-	                                </div>
-	                                <!-- /.col-lg-6 -->
-	                            </div>
-	                            <!-- /.row -->
-	                        </div>
-	                        <!-- /.panel-body -->
-	                    </div>
-	                    <!-- /.panel -->
-	                </div>
-	                <!-- /.col-lg-6 -->
-	            </div>
-	        </c:if>
