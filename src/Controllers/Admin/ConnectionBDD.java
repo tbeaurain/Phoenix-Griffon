@@ -32,7 +32,6 @@ public class ConnectionBDD {
 
 		try {
 			connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
-			System.out.println("ok");
 		} catch ( SQLException e ) {
 			System.out.println(e);
 		} 
@@ -61,6 +60,51 @@ public class ConnectionBDD {
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addStage(Stage stage){
+		String adresseLieu = stage.getAdresseLieu();
+		String villeLieu = stage.getVilleLieu();
+		String codePostalLieu = stage.getCodePostalLieu();
+		String nomService = stage.getNomService();
+		String telephoneStandardLieu = stage.getTelephoneStandardLieu();
+		String nomContactConvention = stage.getNomContactConvention();
+		String adresseContactConvention = stage.getAdresseContactConvention();
+		String codePostalContactConvention = stage.getCodePostalContactConvention();
+		String villeContactConvention = stage.getVilleContactConvention();
+		String telContactConvention = stage.getTelContactConvention();
+		String nomMaitreStage = stage.getNomMaitreStage();
+		String telephoneMaitreStage = stage.getTelephoneMaitreStage();
+		String mailMaitreStage = stage.getMailMaitreStage();
+		String fonctionMaitreStage = stage.getFonctionMaitreStage();
+		String mailContactConvention = stage.getMailContactConvention();
+		Double remuneration = stage.getRemuneration();
+		Date dateDebut = stage.getDateDebut();
+		Date dateFin = stage.getDateFin();
+		String description = stage.getDescription();
+
+
+		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
+				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
+				+ "code_postal_contact_convention,ville_contact_convention,tel_contact_convention,nom_maitre_stage,"
+				+ "telephone_maitre_stage,mail_maitre_stage,fonction_maitre_stage,mail_contact_convention,"
+				+ "remuneration,date_debut,date_fin,description) "
+				+ "VALUES ('" + adresseLieu + "','" + villeLieu + "','" + codePostalLieu + "','" +
+				nomService + "','" + telephoneStandardLieu + "','" +
+				nomContactConvention + "','" + adresseContactConvention + "','" + codePostalContactConvention +
+				"','" +villeContactConvention+ "','" +telContactConvention+ "','" +nomMaitreStage +
+				"','" +telephoneMaitreStage+ "','" +mailMaitreStage+ "','" +fonctionMaitreStage+ "','" +
+				mailContactConvention+ "','" +remuneration+ "','" +dateDebut+ "','" +
+				dateFin+ "','" +description + "')" ;
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
 			pstmt.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -151,12 +195,10 @@ public class ConnectionBDD {
 		String villeSiege = null;
 		String codePostalSiege = null;
 		String telephoneSiege = null;
-
 		String sql = "SELECT * FROM entreprise where ID ='" + id +"';";
 
 		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
 				ResultSet rs    = stmt.executeQuery(sql)){
-
 			while (rs.next()) {
 				nom = rs.getString("nom");
 				siret = rs.getString("siret");
@@ -165,7 +207,6 @@ public class ConnectionBDD {
 				villeSiege = rs.getString("ville_siege");
 				codePostalSiege = rs.getString("code_postal_siege");
 				telephoneSiege = rs.getString("telephone_siege");
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -206,46 +247,46 @@ public class ConnectionBDD {
 		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
-	 // The higher the number of iterations the more 
-    // expensive computing the hash is for us and
-    // also for an attacker.
-    private static final int iterations = 20*1000;
-    private static final int saltLen = 32;
-    private static final int desiredKeyLen = 256;
+	// The higher the number of iterations the more 
+	// expensive computing the hash is for us and
+	// also for an attacker.
+	private static final int iterations = 20*1000;
+	private static final int saltLen = 32;
+	private static final int desiredKeyLen = 256;
 
-    /** Computes a salted PBKDF2 hash of given plaintext password
+	/** Computes a salted PBKDF2 hash of given plaintext password
         suitable for storing in a database. 
         Empty passwords are not supported. */
-    public static String getSaltedHash(String password) throws Exception {
-        byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
-        // store the salt with the password
-        return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
-    }
+	public static String getSaltedHash(String password) throws Exception {
+		byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
+		// store the salt with the password
+		return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
+	}
 
-    /** Checks whether given plaintext password corresponds 
+	/** Checks whether given plaintext password corresponds 
         to a stored salted hash of the password. */
-    public static boolean check(String password, String stored) throws Exception{
-        String[] saltAndPass = stored.split("\\$");
-        if (saltAndPass.length != 2) {
-            throw new IllegalStateException(
-                "The stored password have the form 'salt$hash'");
-        }
-        String hashOfInput = hash(password, Base64.decodeBase64(saltAndPass[0]));
-        return hashOfInput.equals(saltAndPass[1]);
-    }
+	public static boolean check(String password, String stored) throws Exception{
+		String[] saltAndPass = stored.split("\\$");
+		if (saltAndPass.length != 2) {
+			throw new IllegalStateException(
+					"The stored password have the form 'salt$hash'");
+		}
+		String hashOfInput = hash(password, Base64.decodeBase64(saltAndPass[0]));
+		return hashOfInput.equals(saltAndPass[1]);
+	}
 
-    // using PBKDF2 from Sun, an alternative is https://github.com/wg/scrypt
-    // cf. http://www.unlimitednovelty.com/2012/03/dont-use-bcrypt.html
-    private static String hash(String password, byte[] salt) throws Exception {
-        if (password == null || password.length() == 0)
-            throw new IllegalArgumentException("Empty passwords are not supported.");
-        SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-        SecretKey key = f.generateSecret(new PBEKeySpec(
-            password.toCharArray(), salt, iterations, desiredKeyLen)
-        );
-        return Base64.encodeBase64String(key.getEncoded());
-    }
-    
+	// using PBKDF2 from Sun, an alternative is https://github.com/wg/scrypt
+	// cf. http://www.unlimitednovelty.com/2012/03/dont-use-bcrypt.html
+	private static String hash(String password, byte[] salt) throws Exception {
+		if (password == null || password.length() == 0)
+			throw new IllegalArgumentException("Empty passwords are not supported.");
+		SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+		SecretKey key = f.generateSecret(new PBEKeySpec(
+				password.toCharArray(), salt, iterations, desiredKeyLen)
+				);
+		return Base64.encodeBase64String(key.getEncoded());
+	}
+
 	public boolean login(String identifiant, String mdp, Utilisateur renvoye) throws Exception{
 		System.out.println("passage sur la fonction de login "+identifiant+" - "+mdp);
 		int idStatutUtilisateur;
@@ -267,18 +308,18 @@ public class ConnectionBDD {
 			}
 			else
 			{
-				
+
 				rs.next();
 				prenom = rs.getString("prenom");
 				nom = rs.getString("nom");
 				dateNaissance = rs.getDate("date_naissance");
 				idStatutUtilisateur = rs.getInt("id_statut");
 				hashedPass = rs.getString("motdepasse");
-				System.out.println("tu es connecté en tant que "+prenom+" "+nom);
+				System.out.println("tu es connectï¿½ en tant que "+prenom+" "+nom);
 				if(true || check(mdp, hashedPass))
 				{
 					StatutUtilisateur statutUtilisateur = statutUtilisateur(idStatutUtilisateur);
-					
+
 					renvoye.setStatutUtilisateur(statutUtilisateur);
 					renvoye.setPrenom(prenom);
 					renvoye.setNom(nom);
@@ -296,7 +337,7 @@ public class ConnectionBDD {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		
+
 	}
 
 	public StatutUtilisateur statutUtilisateur(int id){
@@ -335,6 +376,25 @@ public class ConnectionBDD {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public void updateUtilisateur(Utilisateur utilisateur){
+		String sql = "UPDATE utilisateur "
+				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
+				+ "WHERE id = ? ;";
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setString(1, utilisateur.getPrenom());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setDate(3, (java.sql.Date) utilisateur.getDateNaissance());
+			pstmt.setString(4, utilisateur.getIdentifiant());
+			pstmt.setInt(5, utilisateur.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	public static void main(String[] args){
 
@@ -347,14 +407,16 @@ public class ConnectionBDD {
 		int month = 10;
 		int jour = 15;
 
-		Date dateDeNaissance = new Date (years, month, jour);;
-		java.sql.Date date_sql = new java.sql.Date(dateDeNaissance.getTime());
+		Date dateDebut = new Date (years, month, jour);
+		Date dateFin = new Date (years, month, jour);
 
-		StatutUtilisateur statut = new StatutUtilisateur("eleve");
-		//	Utilisateur utilisateur = new Utilisateur(statut, "thibaut", "beaurain", date_sql, "tibo", "mdp");
+		Stage stage = new Stage("adresseLieu", "villeLieu", "codlLieu", "nomService",
+				"telephone",  "nomContactConvention",  "adtion",
+				"codePos",  "villeContactConvention",  "telCo",
+				"nomMaitreStage",  "telephon",  "mailMaitreStage",  "fonctionMaitreStage",
+				"mailContactConvention",  123456,  dateDebut, dateDebut, "String description");
 
-
-		bdd.addStatutUtilisateur(statut);
+		bdd.addStage(stage);
 
 		System.out.println("fini");
 	}

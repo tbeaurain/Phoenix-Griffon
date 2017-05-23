@@ -7,27 +7,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.phoenixgriffon.JobIsep.Stage;
+import org.phoenixgriffon.JobIsep.Utilisateur;
 
 import Controllers.Admin.ConnectionBDD;
-import Controllers.Forms.FormsCheckers.FormStageChecker;
-
+import Controllers.Forms.FormsCheckers.FormModificationUtilisateurChecker;
 
 /**
- * Servlet implementation class FormStage
+ * Servlet implementation class FormModificationUtilisateur
  */
-@WebServlet(name="/FormStage", urlPatterns={"/FormStage"})
-public class FormStage extends HttpServlet {
+@WebServlet(name="/FormModificationUtilisateur", urlPatterns={"/FormModificationUtilisateur"})
+public class FormModificationUtilisateur extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	
-	
-	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionStage.jsp";
-	
-	public static final String ATT_Stage = "stage";
+	public static final String ATT_UTILISATEUR = "utilisateur";
     public static final String ATT_FORM   = "form";
+	
+	public static final String VUE_SUCCES = "/WEB-INF/Eleves/ProfilEleve.jsp";
+	public static final String VUE_FORM   = "/WEB-INF/Eleves/ModifierProfilEleve.jsp";
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormStage() {
+    public FormModificationUtilisateur() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +37,7 @@ public class FormStage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* À la réception d'une requête GET, simple affichage du formulaire */
         this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
 	}
 
@@ -43,27 +45,29 @@ public class FormStage extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ConnectionBDD bdd = new ConnectionBDD();
-		FormStageChecker form = new FormStageChecker();
-		
-		Stage stage = form.creerStage(request);
-		
-		bdd.addStage(stage);
-		
-		System.out.println(stage.getDescription());
-		 /* Ajout du bean et de l'objet métier à l'objet requête */
-        request.setAttribute( ATT_Stage, stage );
+		/* Préparation de l'objet formulaire */
+        FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
+
+        /* Traitement de la requête et récupération du bean en résultant */
+        Utilisateur utilisateur = form.updateUtilisateur( request );
+        
+        ConnectionBDD bdd = new ConnectionBDD();
+        
+        //bdd.updateUtilisateur(utilisateur);  TODO
+        
+        
+
+        /* Ajout du bean et de l'objet métier à l'objet requête */
+        request.setAttribute( ATT_UTILISATEUR, utilisateur );
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
-           // this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
+            this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
         } else {
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */
             this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
         }
-        
 	}
 
 }

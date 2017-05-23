@@ -1,6 +1,7 @@
 package org.phoenixgriffon.JobIsep;
 // Generated 2 mai 2017 15:53:06 by Hibernate Tools 5.2.1.Final
 
+import org.phoenixgriffon.JobIsep.*;
 import java.util.Date;
 
 /**
@@ -14,15 +15,15 @@ public class Offre implements java.io.Serializable {
 	private Date miseEnLigne;
 	private String dates;
 	private String contact;
-	private Integer id_utilisateur;
+	private Utilisateur utilisateur;
 	private String lieu;
 
 	public Offre() {
 	}
 
-	public Offre(int utilisateur, String titre, String description, Date miseEnLigne, String dates,
+	public Offre(Utilisateur utilisateur, String titre, String description, Date miseEnLigne, String dates,
 			String contact, String lieu) {
-		this.id_utilisateur = utilisateur;
+		this.utilisateur = utilisateur;
 		this.titre = titre;
 		this.description = description;
 		this.miseEnLigne = miseEnLigne;
@@ -39,12 +40,13 @@ public class Offre implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getId_utilisateur() {
-		return this.id_utilisateur;
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;
 	}
+	
 
-	public void setUtilisateur(Integer utilisateur) {
-		this.id_utilisateur = utilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	public String getTitre() {

@@ -38,11 +38,15 @@ public class Connexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request,response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
+		
 		HttpSession s=request.getSession( true );
 		if(s.isNew())
 		{
