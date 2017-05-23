@@ -47,11 +47,17 @@ public class FormModificationUtilisateur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
         FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
-
+        
+        ConnectionBDD bdd = new ConnectionBDD();
+        
+        Utilisateur moi = new Utilisateur("eleve", "moi", "moi", nateNaissance, "moi", "moi");
+        
         /* Traitement de la requête et récupération du bean en résultant */
         Utilisateur utilisateur = form.updateUtilisateur( request );
         
-        ConnectionBDD bdd = new ConnectionBDD();
+        
+        
+        
         
         //bdd.updateUtilisateur(utilisateur);  TODO
         

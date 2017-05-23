@@ -25,17 +25,17 @@
                             				</div>
 	                                        <div class="form-group<c:if test="${form.erreurs['motdepasse']!=null}" var="maVariable" scope="session"> has-error</c:if>">
 	                                            <label>Ancien mot de passe</label>
-	                                            <input id="motdepasse" name="motdepasse" class="form-control" value="<c:out value="${offre.prenom}"/>">
+	                                            <input type="password" id="motdepasse" name="motdepasse" class="form-control">
 	                                            <p class="help-block">${form.erreurs['motdepasse']}</p>
 	                                        </div>
 	                                        <div class="form-group<c:if test="${form.erreurs['nouveau_motdepasse']!=null}" var="maVariable" scope="session"> has-error</c:if>">
 	                                            <label>Nouveau mot de passe</label>
-	                                            <input id="nouveau_motdepasse" name="nouveau_motdepasse" class="form-control" value="<c:out value="${offre.prenom}"/>">
+	                                            <input type="password" id="nouveau_motdepasse" name="nouveau_motdepasse" class="form-control">
 	                                            <p class="help-block">${form.erreurs['nouveau_motdepasse']}</p>
 	                                        </div>
 	                                        <div class="form-group<c:if test="${form.erreurs['confirmation_motdepasse']!=null}" var="maVariable" scope="session"> has-error</c:if>">
 	                                            <label>Confirmation du nouveau mot de passe</label>
-	                                            <input id="confirmation_motdepasse" name="confirmation_motdepasse" class="form-control" value="<c:out value="${offre.nom}"/>">
+	                                            <input type="password" id="confirmation_motdepasse" name="confirmation_motdepasse" class="form-control" >
 	                                            <p class="help-block">${form.erreurs['confirmation_motdepasse']}</p>
 	                                        </div>   
 	                                    <button type="submit" class="btn btn-primary">Envoyer</button>

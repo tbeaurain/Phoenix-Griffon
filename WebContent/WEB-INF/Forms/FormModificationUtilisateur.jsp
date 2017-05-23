@@ -41,14 +41,12 @@
 	                                            <p class="help-block">${form.erreurs['nom']}</p>
 	                                        </div>
 	                                        <div class="form-group<c:if test="${form.erreurs['dateNaissance']!=null}" var="maVariable" scope="session"> has-error</c:if>">
-	                                            <label>Date de naissance (DD/MM/YYYY)</label>
+	                                            <label>Date de naissance (jj/mm/aaaa)</label>
 	                                            <div class='input-group date'>
-	                                            	
-	                                            	<input id="dateNaissance" name="dateNaissance" class="form-control" value="<c:out value="${utilisateur.dateNaissance}"/>">
-	                                            	<div class="input-group-addon">
-         												<i class="fa fa-calendar">
-         												</i>
-        										</div>
+	                                            	<input type="date" id="dateNaissance" name="dateNaissance" class="form-control" value="<c:out value="${utilisateur.dateNaissance}"/>">
+                    								<div class="input-group-addon">
+         												<i class="fa fa-calendar"></i>
+        											</div>
                     							</div>
 	                                            <p class="help-block">${form.erreurs['dateNaissance']}</p>
 	                                        </div>   

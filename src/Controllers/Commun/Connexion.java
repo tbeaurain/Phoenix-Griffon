@@ -60,6 +60,7 @@ public class Connexion extends HttpServlet {
 				{
 					System.out.println(util.getStatutUtilisateur().getLibelle());
 					s.setAttribute("utilisateur", util);
+					System.out.println("Passe par la boucle if : "+util.getStatutUtilisateur().getLibelle());
 					if(util.getStatutUtilisateur().getLibelle().equals("admin")){
 						this.getServletContext().getRequestDispatcher( SERVLET_ADMIN ).forward( request, response );
 					}
@@ -74,6 +75,7 @@ public class Connexion extends HttpServlet {
 				}
 			}
 			catch (Exception e) {
+					System.out.println("On est dans l'exception.");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 			}
