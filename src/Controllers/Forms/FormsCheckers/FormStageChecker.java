@@ -39,8 +39,8 @@ public class FormStageChecker{
 
 
 
-	private String              resultat;
-	private Map<String, String> erreurs         = new HashMap<String, String>();
+	private String resultat;
+	private Map<String, String> erreurs = new HashMap<String, String>();
 
 	public Map<String, String> getErreurs() {
 		return erreurs;
@@ -73,28 +73,11 @@ public class FormStageChecker{
 		String rem =getValeurChamp( request, CHAMP_REMUNERATION );
 		if (rem == null) rem = "0"; 
 		double remuneration = Double.parseDouble(rem);
-		System.out.println(remuneration);
 
-
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-
-		Date dateDebut = null;
-		Date dateFin = null;
-		if ( getValeurChamp( request, CHAMP_DATE_DEBUT ) != null){
-			try {
-				dateDebut = sdf.parse(getValeurChamp( request, CHAMP_DATE_DEBUT ));
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-		}
-		if ( getValeurChamp( request, CHAMP_DATE_FIN ) != null){
-			try {
-				dateFin = sdf.parse(getValeurChamp( request, CHAMP_DATE_FIN ));
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-		}
-
+		Date dateDebut = validDate(getValeurChamp( request, CHAMP_DATE_DEBUT ));
+		Date dateFin = validDate(getValeurChamp( request, CHAMP_DATE_DEBUT ));
+		
+		
 		String description = getValeurChamp( request, CHAMP_DESCRIPTION );
 
 		/*Création de bean Offre*/
@@ -341,6 +324,18 @@ public class FormStageChecker{
 	 * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
 	 * sinon.
 	 */
+	public Date validDate(String dateString) {
+    	Date dt = null;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            dt = df.parse(dateString);
+            return dt;
+        } catch (Exception e) {
+            return dt;
+        }
+       
+    }
+	
 	private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
 		if ( valeur == null || valeur.trim().length() == 0 ) {

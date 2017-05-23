@@ -19,7 +19,6 @@ import Controllers.Forms.FormsCheckers.FormStageChecker;
 @WebServlet(name="/FormStage", urlPatterns={"/FormStage"})
 public class FormStage extends HttpServlet {
 	
-	
 	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionStage.jsp";
 	
 	public static final String ATT_Stage = "stage";
@@ -51,7 +50,6 @@ public class FormStage extends HttpServlet {
 		
 		bdd.addStage(stage);
 		
-		System.out.println(stage.getDescription());
 		 /* Ajout du bean et de l'objet métier à l'objet requête */
         request.setAttribute( ATT_Stage, stage );
         request.setAttribute( ATT_FORM, form );

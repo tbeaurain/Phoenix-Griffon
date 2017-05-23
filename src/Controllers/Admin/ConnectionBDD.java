@@ -87,8 +87,10 @@ public class ConnectionBDD {
 		Date dateDebut = stage.getDateDebut();
 		Date dateFin = stage.getDateFin();
 		String description = stage.getDescription();
-
-
+		
+		java.sql.Date sqlDateDebut = new java.sql.Date(dateDebut.getTime());
+		java.sql.Date sqlDateFin = new java.sql.Date(dateFin.getTime());
+		
 		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
 				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
 				+ "code_postal_contact_convention,ville_contact_convention,tel_contact_convention,nom_maitre_stage,"
@@ -99,8 +101,8 @@ public class ConnectionBDD {
 				nomContactConvention + "','" + adresseContactConvention + "','" + codePostalContactConvention +
 				"','" +villeContactConvention+ "','" +telContactConvention+ "','" +nomMaitreStage +
 				"','" +telephoneMaitreStage+ "','" +mailMaitreStage+ "','" +fonctionMaitreStage+ "','" +
-				mailContactConvention+ "','" +remuneration+ "','" +dateDebut+ "','" +
-				dateFin+ "','" +description + "')" ;
+				mailContactConvention+ "','" +remuneration+ "','" +sqlDateDebut+ "','" +
+				sqlDateFin+ "','" +description + "')" ;
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
