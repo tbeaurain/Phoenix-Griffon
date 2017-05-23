@@ -74,6 +74,8 @@
 								Voir mon profil</a></li>
 						<li><a href="ModifierProfilEleve"><i
 								class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
+						<li><a href="ModifierMotdepasseEleve"><i
+								class="fa fa-key fa-fw"></i> Modifier mon mot de passe</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 				<li><a href="Deconnexion"><i class="fa fa-sign-out fa-fw"></i>
 						Se déconnecter</a></li>

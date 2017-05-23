@@ -275,7 +275,7 @@ public class ConnectionBDD {
 				dateNaissance = rs.getDate("date_naissance");
 				idStatutUtilisateur = rs.getInt("id_statut");
 				hashedPass = rs.getString("motdepasse");
-				System.out.println("tu es connecté en tant que "+prenom+" "+nom);
+				System.out.println("tu es connectï¿½ en tant que "+prenom+" "+nom);
 				if(true || check(mdp, hashedPass))
 				{
 					StatutUtilisateur statutUtilisateur = statutUtilisateur(idStatutUtilisateur);
@@ -331,6 +331,25 @@ public class ConnectionBDD {
 			pstmt.setDate(3, (java.sql.Date) DateDeNaissance);
 			pstmt.setString(4, mdp);
 			pstmt.setInt(5, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void updateUtilisateur(Utilisateur utilisateur){
+		String sql = "UPDATE utilisateur "
+				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
+				+ "WHERE id = ? ;";
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setString(1, utilisateur.getPrenom());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setDate(3, (java.sql.Date) utilisateur.getDateNaissance());
+			pstmt.setString(4, utilisateur.getIdentifiant());
+			pstmt.setInt(5, utilisateur.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

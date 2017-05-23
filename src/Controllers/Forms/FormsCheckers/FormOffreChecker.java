@@ -23,7 +23,6 @@ public class FormOffreChecker{
     private static final String CHAMP_CONTACT        = "contact";
     private static final String CHAMP_LIEU           = "lieu";
        
-
     private String              resultat;
     private Map<String, String> erreurs         = new HashMap<String, String>();
 
@@ -94,7 +93,7 @@ public class FormOffreChecker{
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de la création de l'offre de stage. Elle sera visible par les autres utilisateurs lorsqu'un administrateur l'aura validée.";
         } else {
-            resultat = "Échec de la création de l'offre. Veuillez Compléter correctement les champs et réssayer.";
+            resultat = "Échec de la création de l'offre. Veuillez compléter correctement les champs du formulaire et réssayer.";
         }
 
         return offre;
