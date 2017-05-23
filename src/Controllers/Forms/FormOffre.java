@@ -53,8 +53,6 @@ public class FormOffre extends HttpServlet {
         /* Traitement de la requête et récupération du bean en résultant */
         Offre offre = form.creerOffre( request );
         
-        
-        
         Utilisateur utilisateur = new Utilisateur ();
         utilisateur.setId(1);
         

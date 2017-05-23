@@ -83,12 +83,7 @@ public class FormOffreChecker{
         }
         offre.setContact( contact );
         
-        /* Appel des fonctions rejoutants les valeurs indépendantes du formulaire, ici : 
-         * 		>date de création de l'offre
-         * 		>utilisateur ayant créé l'offre
-         */
-        //offre.setUtilisateur( getUtilisateur() );
-        
+     
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de la création de l'offre de stage. Elle sera visible par les autres utilisateurs lorsqu'un administrateur l'aura validée.";
@@ -164,12 +159,4 @@ public class FormOffreChecker{
             return valeur;
         }
     }
-    
-    /*
-     * Ajout de la fonction de récupération de l'utilisateur atuel
-     */
-    /*private Date getUtilisateur(){
-    	
-    }*/
-     
 }
