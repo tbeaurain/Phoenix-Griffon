@@ -87,8 +87,10 @@ public class ConnectionBDD {
 		Date dateDebut = stage.getDateDebut();
 		Date dateFin = stage.getDateFin();
 		String description = stage.getDescription();
-
-
+		
+		java.sql.Date sqlDateDebut = new java.sql.Date(dateDebut.getTime());
+		java.sql.Date sqlDateFin = new java.sql.Date(dateFin.getTime());
+		
 		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
 				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
 				+ "code_postal_contact_convention,ville_contact_convention,tel_contact_convention,nom_maitre_stage,"
@@ -99,8 +101,8 @@ public class ConnectionBDD {
 				nomContactConvention + "','" + adresseContactConvention + "','" + codePostalContactConvention +
 				"','" +villeContactConvention+ "','" +telContactConvention+ "','" +nomMaitreStage +
 				"','" +telephoneMaitreStage+ "','" +mailMaitreStage+ "','" +fonctionMaitreStage+ "','" +
-				mailContactConvention+ "','" +remuneration+ "','" +dateDebut+ "','" +
-				dateFin+ "','" +description + "')" ;
+				mailContactConvention+ "','" +remuneration+ "','" +sqlDateDebut+ "','" +
+				sqlDateFin+ "','" +description + "')" ;
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -150,8 +152,7 @@ public class ConnectionBDD {
 		String description = offre.getDescription();
 		String date = offre.getDates();
 		String contact = offre.getContact();
-		Utilisateur utilisateur = offre.getUtilisateur();
-		int idUtilisateur = utilisateur.getId();
+		Integer idUtilisateur = offre.getId_utilisateur();
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
@@ -245,7 +246,7 @@ public class ConnectionBDD {
 		}
 
 
-		Offre offre= new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
+		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
 	// The higher the number of iterations the more 

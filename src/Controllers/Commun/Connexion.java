@@ -54,6 +54,8 @@ public class Connexion extends HttpServlet {
 			Utilisateur util = new Utilisateur();
 			boolean logged;
 			try {
+				System.out.println("login : " + request.getParameter("login"));
+				System.out.println(request.getParameter("password"));
 				logged = db.login(request.getParameter("login"),request.getParameter("password"),util);
 				
 				if(logged)

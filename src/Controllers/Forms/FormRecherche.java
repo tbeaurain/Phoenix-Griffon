@@ -44,8 +44,10 @@ public class FormRecherche extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String recherche = request.getParameter("titre");
-		System.out.println(recherche);
-		ArrayList<Offre> liste_offres = RechercheOffre_BDD.rechercheOffre(recherche);
+		System.out.println("mot tapé : " + recherche);
+		ArrayList<Offre> liste_offres = null;
+		
+		liste_offres = RechercheOffre_BDD.rechercheOffre(recherche);
 		request.setAttribute("liste_offres", liste_offres);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}
