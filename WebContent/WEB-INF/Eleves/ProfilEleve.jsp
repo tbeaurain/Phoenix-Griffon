@@ -30,6 +30,13 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Mon profil</h1>
+                        <p>ID : ${utilisateur.id}</p>
+                        <p>Prénom : ${utilisateur.prenom}</p>
+                        <p>Nom : ${utilisateur.nom} </p>
+                        <p>Date de naissance : ${utilisateur.dateNaissance} </p>
+                        <p>Identifiant : ${utilisateur.identifiant} </p>
+                        <p>Mot de passe : ${utilisateur.motdepasse} </p>
+                        <p>Statut utilisateur : ${utilisateur.statutUtilisateur.libelle}  </p>              
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>   

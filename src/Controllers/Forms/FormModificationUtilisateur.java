@@ -53,22 +53,13 @@ public class FormModificationUtilisateur extends HttpServlet {
         ConnectionBDD bdd = new ConnectionBDD();
         //Juste pour la création d'un utilisateur en attendant qu'il soit stocké dans la session
         //-------------------------------------------------------------------------------------
-        StatutUtilisateur statut = new StatutUtilisateur("eleve");
-        String dateString = "1995-11-20";
-        Date dt = null;
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            dt = df.parse(dateString);
-        } catch (Exception e) {
-        }
-        Utilisateur moi = new Utilisateur(statut, "moi", "moi", dt, "moi", "moi");
-        moi.setId(1);
+        Utilisateur moi2 = bdd.getUtilisateur(1);
         //-------------------------------------------------------------------------------------
         
         /* Préparation de l'objet formulaire */
         FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
         /* Traitement de la requête et récupération du bean en résultant */
-        Utilisateur utilisateur = form.updateUtilisateur( request, moi );
+        Utilisateur utilisateur = form.updateUtilisateur( request, moi2 );
         
         
 

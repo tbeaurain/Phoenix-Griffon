@@ -341,6 +341,28 @@ public class ConnectionBDD {
 		}
 
 	}
+	
+	public Utilisateur getUtilisateur(int id){
+		Utilisateur usr = new Utilisateur();	
+		String sql="SELECT * FROM utilisateur WHERE ID = ? ";
+		try {
+				Connection conn=this.connection();
+				PreparedStatement pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				usr.setId(id);
+				usr.setPrenom(rs.getString("prenom"));
+				usr.setNom(rs.getString("nom"));
+				usr.setDateNaissance(rs.getDate("date_naissance"));
+				usr.setIdentifiant(rs.getString("identifiant"));
+				usr.setMotdepasse(rs.getString("motdepasse"));
+				usr.setStatutUtilisateur(statutUtilisateur(rs.getInt("id_statut")));	
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return usr;
+	}
 
 	public StatutUtilisateur statutUtilisateur(int id){
 		String libelle = " ";
