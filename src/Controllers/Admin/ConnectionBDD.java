@@ -152,7 +152,7 @@ public class ConnectionBDD {
 		String description = offre.getDescription();
 		String date = offre.getDates();
 		String contact = offre.getContact();
-		Integer idUtilisateur = offre.getId_utilisateur();
+		Integer idUtilisateur = offre.getUtilisateur().getId();
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
@@ -246,7 +246,7 @@ public class ConnectionBDD {
 		}
 
 
-		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
+		Offre offre = new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
 	// The higher the number of iterations the more 
@@ -367,10 +367,13 @@ public class ConnectionBDD {
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+			int year = DateDeNaissance.getYear();
+			int month = DateDeNaissance.getMonth();
+			int day = DateDeNaissance.getDay();
+			java.sql.Date date_naissance = new java.sql.Date(year, month, day);
 			pstmt.setString(1, prenom);
 			pstmt.setString(2, nom);
-			pstmt.setDate(3, (java.sql.Date) DateDeNaissance);
+			pstmt.setDate(3,date_naissance);
 			pstmt.setString(4, mdp);
 			pstmt.setInt(5, id);
 			pstmt.executeUpdate();
@@ -386,10 +389,13 @@ public class ConnectionBDD {
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+			int year = utilisateur.getDateNaissance().getYear();
+			int month = utilisateur.getDateNaissance().getMonth();
+			int day = utilisateur.getDateNaissance().getDay();
+			java.sql.Date date_naissance = new java.sql.Date(year, month, day);
 			pstmt.setString(1, utilisateur.getPrenom());
 			pstmt.setString(2, utilisateur.getNom());
-			pstmt.setDate(3, (java.sql.Date) utilisateur.getDateNaissance());
+			pstmt.setDate(3, date_naissance);
 			pstmt.setString(4, utilisateur.getIdentifiant());
 			pstmt.setInt(5, utilisateur.getId());
 			pstmt.executeUpdate();

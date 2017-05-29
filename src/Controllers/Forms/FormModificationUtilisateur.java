@@ -54,9 +54,9 @@ public class FormModificationUtilisateur extends HttpServlet {
         //Juste pour la création d'un utilisateur en attendant qu'il soit stocké dans la session
         //-------------------------------------------------------------------------------------
         StatutUtilisateur statut = new StatutUtilisateur("eleve");
-        String dateString = "20/11/1995";
+        String dateString = "1995-11-20";
         Date dt = null;
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
             dt = df.parse(dateString);
         } catch (Exception e) {
@@ -69,7 +69,6 @@ public class FormModificationUtilisateur extends HttpServlet {
         FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
         /* Traitement de la requête et récupération du bean en résultant */
         Utilisateur utilisateur = form.updateUtilisateur( request, moi );
-        
         
         
 

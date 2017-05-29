@@ -64,14 +64,17 @@ public class FormModificationUtilisateurChecker{
         }
         utilisateur.setNom( nom );
         
-        try {
-            validationDateNaissance( dateNaissance );
-        } catch ( Exception e ) {
-            setErreur( CHAMP_DATENAISSANCE, e.getMessage() );
+        if(dateNaissance!=null){
+        	System.out.println("date de naisance non nulle. Essai de validation");
+	        try {
+	            validationDateNaissance( dateNaissance );
+	        } catch ( Exception e ) {
+	            setErreur( CHAMP_DATENAISSANCE, e.getMessage() );
+	        }
+	        	Date dt = validDate(dateNaissance);
+	        	System.out.println("Date récupérée finalement : "+dt);
+	        	utilisateur.setDateNaissance(dt);
         }
-        Date dt = validDate(dateNaissance);
-        utilisateur.setDateNaissance(dt);
-
         /* Appel des fonctions rejoutants les valeurs indépendantes du formulaire, ici : 
          * 		>date de création de l'offre
          * 		>utilisateur ayant créé l'offre
@@ -111,9 +114,9 @@ public class FormModificationUtilisateurChecker{
     private void validationDateNaissance( String dateNaissance ) throws Exception {
     	if ( dateNaissance != null ) {
             if ( dateNaissance.length() != 10 ) {
-                throw new Exception( "La date de naissance doit contenir exactement 10 caractères : DD/MM/YYYY." );
+                throw new Exception( "La date de naissance doit contenir exactement 10 caractères : YYYY-MM-DD." );
             }else if(!isValidDate(dateNaissance)){
-            	throw new Exception( "Impossible de traiter la date entrée, merci de bien la rentrer au format : DD/MM/YYYY." );
+            	throw new Exception( "Impossible de traiter la date entrée, merci de bien la rentrer au format : YYYY-MM-DD." );
             }
         }
     }
@@ -125,7 +128,7 @@ public class FormModificationUtilisateurChecker{
      * @return
      */
     public Boolean isValidDate(String dateString) {
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
             df.parse(dateString);
             return true;
@@ -144,7 +147,7 @@ public class FormModificationUtilisateurChecker{
      */
     public Date validDate(String dateString) {
     	Date dt = null;
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         try {
             dt = df.parse(dateString);
             return dt;
