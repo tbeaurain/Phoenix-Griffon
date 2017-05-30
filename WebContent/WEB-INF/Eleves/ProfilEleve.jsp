@@ -29,6 +29,7 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
+<<<<<<< HEAD
                     <% if(request.getAttribute("utilisateurID")!=null){
 		               	Utilisateur user = (Utilisateur) request.getAttribute("utilisateurID");
 		               	int Session = 2;
@@ -46,6 +47,18 @@
 		               	out.print("<div class=\"col-lg-12\"><h2>Date de naissance : " + user.getDateNaissance() + "</h2></div>");
 		               	out.print("</div></div></div></div><hr style=\"clear:both;\">");
 		               } %>
+=======
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Mon profil</h1>
+                        <p>ID : ${utilisateur.id}</p>
+                        <p>Prénom : ${utilisateur.prenom}</p>
+                        <p>Nom : ${utilisateur.nom} </p>
+                        <p>Date de naissance : ${utilisateur.dateNaissance} </p>
+                        <p>Identifiant : ${utilisateur.identifiant} </p>
+                        <p>Mot de passe : ${utilisateur.motdepasse} </p>
+                        <p>Statut utilisateur : ${utilisateur.statutUtilisateur.libelle}  </p>              
+                    </div>
+>>>>>>> 36b4810c26f26f7837e3c4d5c20778bbac804816
                     <!-- /.col-lg-12 -->
                 </div>   
             </div>

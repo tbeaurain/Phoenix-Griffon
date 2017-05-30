@@ -27,7 +27,7 @@ public class ConnectionBDD {
 
 		String url = "jdbc:mysql://localhost:3306/jobisep";
 		String utilisateur = "root";
-		String motDePasse = "root";
+		String motDePasse = "";
 		Connection connexion = null;
 
 		try {
@@ -87,8 +87,10 @@ public class ConnectionBDD {
 		Date dateDebut = stage.getDateDebut();
 		Date dateFin = stage.getDateFin();
 		String description = stage.getDescription();
-
-
+		
+		java.sql.Date sqlDateDebut = new java.sql.Date(dateDebut.getTime());
+		java.sql.Date sqlDateFin = new java.sql.Date(dateFin.getTime());
+		
 		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
 				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
 				+ "code_postal_contact_convention,ville_contact_convention,tel_contact_convention,nom_maitre_stage,"
@@ -99,8 +101,8 @@ public class ConnectionBDD {
 				nomContactConvention + "','" + adresseContactConvention + "','" + codePostalContactConvention +
 				"','" +villeContactConvention+ "','" +telContactConvention+ "','" +nomMaitreStage +
 				"','" +telephoneMaitreStage+ "','" +mailMaitreStage+ "','" +fonctionMaitreStage+ "','" +
-				mailContactConvention+ "','" +remuneration+ "','" +dateDebut+ "','" +
-				dateFin+ "','" +description + "')" ;
+				mailContactConvention+ "','" +remuneration+ "','" +sqlDateDebut+ "','" +
+				sqlDateFin+ "','" +description + "')" ;
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -150,7 +152,11 @@ public class ConnectionBDD {
 		String description = offre.getDescription();
 		String date = offre.getDates();
 		String contact = offre.getContact();
+<<<<<<< HEAD
 		Integer idUtilisateur = offre.getIdUtilisateur();
+=======
+		Integer idUtilisateur = offre.getUtilisateur().getId();
+>>>>>>> 36b4810c26f26f7837e3c4d5c20778bbac804816
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
@@ -244,7 +250,7 @@ public class ConnectionBDD {
 		}
 
 
-		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
+		Offre offre = new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
 	// The higher the number of iterations the more 
@@ -339,6 +345,28 @@ public class ConnectionBDD {
 		}
 
 	}
+	
+	public Utilisateur getUtilisateur(int id){
+		Utilisateur usr = new Utilisateur();	
+		String sql="SELECT * FROM utilisateur WHERE ID = ? ";
+		try {
+				Connection conn=this.connection();
+				PreparedStatement pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				usr.setId(id);
+				usr.setPrenom(rs.getString("prenom"));
+				usr.setNom(rs.getString("nom"));
+				usr.setDateNaissance(rs.getDate("date_naissance"));
+				usr.setIdentifiant(rs.getString("identifiant"));
+				usr.setMotdepasse(rs.getString("motdepasse"));
+				usr.setStatutUtilisateur(statutUtilisateur(rs.getInt("id_statut")));	
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return usr;
+	}
 
 	public StatutUtilisateur statutUtilisateur(int id){
 		String libelle = " ";
@@ -365,10 +393,13 @@ public class ConnectionBDD {
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+			int year = DateDeNaissance.getYear();
+			int month = DateDeNaissance.getMonth();
+			int day = DateDeNaissance.getDay();
+			java.sql.Date date_naissance = new java.sql.Date(year, month, day);
 			pstmt.setString(1, prenom);
 			pstmt.setString(2, nom);
-			pstmt.setDate(3, (java.sql.Date) DateDeNaissance);
+			pstmt.setDate(3,date_naissance);
 			pstmt.setString(4, mdp);
 			pstmt.setInt(5, id);
 			pstmt.executeUpdate();
@@ -384,10 +415,13 @@ public class ConnectionBDD {
 
 		try (Connection conn = this.connection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+			int year = utilisateur.getDateNaissance().getYear();
+			int month = utilisateur.getDateNaissance().getMonth();
+			int day = utilisateur.getDateNaissance().getDay();
+			java.sql.Date date_naissance = new java.sql.Date(year, month, day);
 			pstmt.setString(1, utilisateur.getPrenom());
 			pstmt.setString(2, utilisateur.getNom());
-			pstmt.setDate(3, (java.sql.Date) utilisateur.getDateNaissance());
+			pstmt.setDate(3, date_naissance);
 			pstmt.setString(4, utilisateur.getIdentifiant());
 			pstmt.setInt(5, utilisateur.getId());
 			pstmt.executeUpdate();

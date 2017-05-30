@@ -1,6 +1,9 @@
 package Controllers.Forms;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,7 @@ import org.phoenixgriffon.JobIsep.Utilisateur;
 
 import Controllers.Admin.ConnectionBDD;
 import Controllers.Forms.FormsCheckers.FormModificationUtilisateurChecker;
+import org.phoenixgriffon.JobIsep.StatutUtilisateur;;
 
 /**
  * Servlet implementation class FormModificationUtilisateur
@@ -45,15 +49,17 @@ public class FormModificationUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Préparation de l'objet formulaire */
-        FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
-
-        /* Traitement de la requête et récupération du bean en résultant */
-        Utilisateur utilisateur = form.updateUtilisateur( request );
         
         ConnectionBDD bdd = new ConnectionBDD();
+        //Juste pour la création d'un utilisateur en attendant qu'il soit stocké dans la session
+        //-------------------------------------------------------------------------------------
+        Utilisateur moi2 = bdd.getUtilisateur(1);
+        //-------------------------------------------------------------------------------------
         
-        //bdd.updateUtilisateur(utilisateur);  TODO
+        /* Préparation de l'objet formulaire */
+        FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
+        /* Traitement de la requête et récupération du bean en résultant */
+        Utilisateur utilisateur = form.updateUtilisateur( request, moi2 );
         
         
 
@@ -62,6 +68,7 @@ public class FormModificationUtilisateur extends HttpServlet {
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
+        	bdd.updateUtilisateur(utilisateur);
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
             this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
         } else {
