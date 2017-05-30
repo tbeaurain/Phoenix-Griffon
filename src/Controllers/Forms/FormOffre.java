@@ -6,8 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 import java.sql.*;
 import org.phoenixgriffon.JobIsep.*;
 
@@ -56,12 +54,9 @@ public class FormOffre extends HttpServlet {
         Utilisateur utilisateur = new Utilisateur ();
         utilisateur.setId(1);
         
-        offre.setUtilisateur(utilisateur.getId());
+        offre.setIdUtilisateur(utilisateur.getId());
         
         ConnectionBDD bdd = new ConnectionBDD();
-        
-        bdd.addOffre(offre);
-        
         
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
@@ -70,6 +65,7 @@ public class FormOffre extends HttpServlet {
 
         if ( form.getErreurs().isEmpty() ) {
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
+            bdd.addOffre(offre);
             this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
         } else {
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */

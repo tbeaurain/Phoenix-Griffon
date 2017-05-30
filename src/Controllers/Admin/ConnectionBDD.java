@@ -150,7 +150,7 @@ public class ConnectionBDD {
 		String description = offre.getDescription();
 		String date = offre.getDates();
 		String contact = offre.getContact();
-		Integer idUtilisateur = offre.getId_utilisateur();
+		Integer idUtilisateur = offre.getIdUtilisateur();
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;

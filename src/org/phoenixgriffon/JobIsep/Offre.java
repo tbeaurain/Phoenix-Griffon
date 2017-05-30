@@ -15,15 +15,15 @@ public class Offre implements java.io.Serializable {
 	private Date miseEnLigne;
 	private String dates;
 	private String contact;
-	private Utilisateur utilisateur;
+	private Integer idUtilisateur;
 	private String lieu;
 
 	public Offre() {
 	}
 
-	public Offre(Utilisateur utilisateur, String titre, String description, Date miseEnLigne, String dates,
+	public Offre(Integer utilisateur, String titre, String description, Date miseEnLigne, String dates,
 			String contact, String lieu) {
-		this.utilisateur = utilisateur;
+		this.idUtilisateur = utilisateur;
 		this.titre = titre;
 		this.description = description;
 		this.miseEnLigne = miseEnLigne;
@@ -40,13 +40,13 @@ public class Offre implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
+	public Integer getIdUtilisateur() {
+		return this.idUtilisateur;
 	}
 	
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setIdUtilisateur(Integer utilisateur) {
+		this.idUtilisateur = utilisateur;
 	}
 
 	public String getTitre() {

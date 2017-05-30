@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.phoenixgriffon.JobIsep.Utilisateur;
+
+import Model.Commun.Utilisateur_BDD;
+
 /**
  * Servlet implementation class ProfilEleve
  */
@@ -28,6 +32,9 @@ public class ProfilEleve extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		Utilisateur user = Utilisateur_BDD.affichageUtilisateur(id);
+		request.setAttribute("utilisateurID", user);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}
 
@@ -35,7 +42,7 @@ public class ProfilEleve extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO On va rajouter dans le post la recherche d'un utilisateur
 		doGet(request, response);
 	}
 

@@ -36,7 +36,7 @@ public class AffichageOffre extends HttpServlet {
 		String id = request.getParameter("id");
 		System.out.println("on arrive sur le get, id = " + id);
 		Offre offre = AffichageOffre_BDD.afficheOffre(id);
-		Utilisateur user = AffichageOffre_BDD.afficheUtilisateur(offre.getId_utilisateur());
+		Utilisateur user = AffichageOffre_BDD.afficheUtilisateur(offre.getIdUtilisateur());
 		request.setAttribute("offre", offre);
 		request.setAttribute("utilisateur", user);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
