@@ -10,6 +10,7 @@ import java.sql.*;
 import org.phoenixgriffon.JobIsep.*;
 
 import Controllers.Admin.ConnectionBDD;
+import Controllers.DAO.*;
 import Controllers.Forms.FormsCheckers.FormOffreChecker;
 
 /**
@@ -51,13 +52,13 @@ public class FormOffre extends HttpServlet {
         /* Traitement de la requête et récupération du bean en résultant */
         Offre offre = form.creerOffre( request );
         
-        Utilisateur utilisateur = new Utilisateur ();
-        utilisateur.setId(1);
+        DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
         
-        offre.setIdUtilisateur(utilisateur.getId());
+        Utilisateur utilisateur = bddUtilisateur.find(1);
+
+        offre.setUtilisateur(utilisateur);
         
-        ConnectionBDD bdd = new ConnectionBDD();
-        
+    	DAO<Offre> bddOffre = new OffreDAO();
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
         request.setAttribute( ATT_OFFRE, offre );
@@ -65,7 +66,7 @@ public class FormOffre extends HttpServlet {
 
         if ( form.getErreurs().isEmpty() ) {
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
-            bdd.addOffre(offre);
+        	bddOffre.create(offre);
             this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
         } else {
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */
