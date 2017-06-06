@@ -1,5 +1,6 @@
 package Controllers.DAO;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +11,9 @@ import org.phoenixgriffon.JobIsep.Offre;
 import org.phoenixgriffon.JobIsep.Utilisateur;
 
 public class OffreDAO extends DAO<Offre> {
-
+	
+	public Connection connect = ConnectionSQL.getInstance();
+	
 	public Offre find(int id) {
 		Offre obj = new Offre();
 		String sql = "select * from offre WHERE id = " + id;

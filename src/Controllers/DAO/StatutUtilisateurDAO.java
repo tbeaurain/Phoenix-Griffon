@@ -1,5 +1,6 @@
 package Controllers.DAO;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +8,9 @@ import java.util.ArrayList;
 import org.phoenixgriffon.JobIsep.StatutUtilisateur;
 
 public class StatutUtilisateurDAO extends DAO <StatutUtilisateur>{
-
+	
+	public Connection connect = ConnectionSQL.getInstance();
+	
 	public StatutUtilisateur find(int id) {
 		StatutUtilisateur obj = new StatutUtilisateur();
 		String sql = "select * from statut_utilisateur WHERE id = " + id;

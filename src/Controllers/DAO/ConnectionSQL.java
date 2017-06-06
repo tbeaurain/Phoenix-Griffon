@@ -18,6 +18,11 @@ public class ConnectionSQL {
 	private static Connection connect;
 
 	public static Connection getInstance(){
+		try {
+			Class.forName( "com.mysql.jdbc.Driver" );
+		} catch ( ClassNotFoundException e ) {
+			System.out.println(e);
+		}
 		if(connect == null){
 			try {
 				connect = DriverManager.getConnection(url, user, passwd);
@@ -31,18 +36,7 @@ public class ConnectionSQL {
 
 		DAO<Utilisateur> test = new UtilisateurDAO();
 		
-		StatutUtilisateur admin = new StatutUtilisateur("eleve");
-		admin.setId(1);
-		
 		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
-		
-		Utilisateur users = new Utilisateur(admin, "beauté", "trop", dateNaissance, "bonne",
-				"je taime");
-		
-		users.setId(1);
-		
-		Offre offre = new Offre (users, "titre", "desci", dateNaissance, "date", "contact", "lieu");
-		
 		
 		System.out.println(test.find(1).getNom());
 	}

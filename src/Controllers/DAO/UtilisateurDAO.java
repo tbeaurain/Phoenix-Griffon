@@ -1,5 +1,6 @@
 package Controllers.DAO;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,9 @@ import java.util.ArrayList;
 import org.phoenixgriffon.JobIsep.*;
 
 public class UtilisateurDAO extends DAO <Utilisateur>{
-
+	
+	public Connection connect = ConnectionSQL.getInstance();
+	
 	public Utilisateur find(int id) {
 		Utilisateur obj = new Utilisateur();
 		String sql = "select * from utilisateur WHERE id = " + id;

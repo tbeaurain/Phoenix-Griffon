@@ -27,7 +27,7 @@ public class ConnectionBDD {
 
 		String url = "jdbc:mysql://localhost:3306/jobisep";
 		String utilisateur = "root";
-		String motDePasse = "";
+		String motDePasse = "root";
 		Connection connexion = null;
 
 		try {
