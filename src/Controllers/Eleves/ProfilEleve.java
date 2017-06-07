@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.phoenixgriffon.JobIsep.*;
 
+import Controllers.DAO.DAO;
+import Controllers.DAO.UtilisateurDAO;
+
 /**
  * Servlet implementation class ProfilEleve
  */
@@ -35,8 +38,9 @@ public class ProfilEleve extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		Utilisateur user = Utilisateur_BDD.affichageUtilisateur(id);
+		DAO<Utilisateur> utilisateurBDD = new UtilisateurDAO();
+		int id = Integer.parseInt(request.getParameter("id"));
+		Utilisateur user = utilisateurBDD.find(id);
 		request.setAttribute("utilisateurID", user);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}

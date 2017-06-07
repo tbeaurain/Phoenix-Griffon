@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.phoenixgriffon.JobIsep.Offre;
 import org.phoenixgriffon.JobIsep.Utilisateur;
 
+import Controllers.DAO.DAO;
+import Controllers.DAO.OffreDAO;
 import Model.Commun.AffichageOffre_BDD;
 
 /**
@@ -33,10 +35,13 @@ public class AffichageOffre extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
-		System.out.println("on arrive sur le get, id = " + id);
-		Offre offre = AffichageOffre_BDD.afficheOffre(id);
-		Utilisateur user = AffichageOffre_BDD.afficheUtilisateur(offre.getIdUtilisateur());
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		DAO<Offre> offreBDD = new OffreDAO();
+		
+		Offre offre = offreBDD.find(id);
+		Utilisateur user = offre.getUtilisateur();
+		
 		request.setAttribute("offre", offre);
 		request.setAttribute("utilisateur", user);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );

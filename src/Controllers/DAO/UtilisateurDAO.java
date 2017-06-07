@@ -53,8 +53,6 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		return obj;
 	}
 
-	@SuppressWarnings("deprecation")
-	@Override
 	public Utilisateur update(Utilisateur obj) {
 		String sql = "UPDATE utilisateur "
 				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
@@ -77,13 +75,11 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		return obj;
 	}
 
-	@Override
 	public void delete(Utilisateur obj) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public ArrayList<Utilisateur> recherche(String name) {
 		// TODO Auto-generated method stub
 		return null;

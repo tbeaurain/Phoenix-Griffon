@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.phoenixgriffon.JobIsep.Offre;
-import org.phoenixgriffon.JobIsep.StatutUtilisateur;
-import org.phoenixgriffon.JobIsep.Utilisateur;
 
 public class ConnectionSQL {
 
@@ -34,10 +32,12 @@ public class ConnectionSQL {
 	}	
 	public static void main(String[] args){
 
-		DAO<Utilisateur> test = new UtilisateurDAO();
+		DAO<Offre> test = new OffreDAO();
 		
 		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
 		
-		System.out.println(test.find(1).getNom());
+		for (int i = 1; i<6; i++){
+			System.out.println(test.find(i).getTitre());
+		}
 	}
 }
