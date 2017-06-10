@@ -28,10 +28,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Ecrire un message</h1>
+                        <h1 class="page-header">Envoyer un mail</h1>
                     </div>
-                    <!-- /.col-lg-12 -->
-                </div>   
+                </div>
+                
+                
+                <jsp:include page="/WEB-INF/Forms/FormOffre.jsp"/>   
             </div>
             <!-- /.container-fluid -->
         </div>

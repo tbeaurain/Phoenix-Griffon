@@ -53,16 +53,8 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope fa-fw"></i> Messageries<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="EcrireMessageAdmin">Envoyer un message</a>
-                                </li>
-                                <li>
-                                    <a href="BoiteReceptionAdmin">Boite de reception</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="EcrireMessageAdmin"><i class="fa fa-envelope fa-fw"></i>
+                            Envoyer un message</a>
                         </li>
                         <li class="active">
                             <a href="ProfilAdmin"><i class="fa fa-user fa-fw"></i> Mon profil</a>
