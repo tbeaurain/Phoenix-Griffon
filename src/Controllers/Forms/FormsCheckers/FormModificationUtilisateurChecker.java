@@ -83,9 +83,10 @@ public class FormModificationUtilisateurChecker{
         
 
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de la création de l'offre de stage. Elle sera visible par les autres utilisateurs lorsqu'un administrateur l'aura validée.";
+            resultat = "Succès de la modification des informations du profil.";
         } else {
-            resultat = "Échec de la création de l'offre. Veuillez compléter correctement les champs du formulaire et réssayer.";
+            resultat = "Échec de la modification des information du profil."
+            		+ "Veuillez compléter les champs du formulaire correctement et réessayer.";
         }
 
         return utilisateur;

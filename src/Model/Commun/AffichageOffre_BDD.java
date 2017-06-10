@@ -32,7 +32,7 @@ public class AffichageOffre_BDD {
 			
 			//Etape 5: (parcours du ResultSet)
 			while(rs.next()){
-				offre = new Offre(rs.getInt("id_utilisateur_propose"), rs.getString("titre"), rs.getString("description"), rs.getDate("mise_en_ligne"), rs.getString("dates"), rs.getString("contact"), rs.getString("lieu"));
+				//offre = new Offre(rs.getInt("id_utilisateur_propose"), rs.getString("titre"), rs.getString("description"), rs.getDate("mise_en_ligne"), rs.getString("dates"), rs.getString("contact"), rs.getString("lieu"));
 				System.out.println("==================================\n"
 						+ "On r�cup�re l'offre :\n" + rs.getString("titre") + " " + rs.getString("description") +
 						"\n==================================");

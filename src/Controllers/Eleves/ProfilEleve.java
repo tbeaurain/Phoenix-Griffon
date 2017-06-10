@@ -41,7 +41,7 @@ public class ProfilEleve extends HttpServlet {
 		DAO<Utilisateur> utilisateurBDD = new UtilisateurDAO();
 		int id = Integer.parseInt(request.getParameter("id"));
 		Utilisateur user = utilisateurBDD.find(id);
-		request.setAttribute("utilisateurID", user);
+		request.setAttribute(ATT_UTILISATEUR, user);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}
 
