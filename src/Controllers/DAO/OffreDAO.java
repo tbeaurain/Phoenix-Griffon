@@ -38,7 +38,7 @@ public class OffreDAO extends DAO<Offre> {
 	@Override
 	public Offre create(Offre obj) {
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose, lieu) "
-				+ "VALUES (?,?,?,?,?)" ;
+				+ "VALUES (?,?,?,?,?,?)" ;
 		try {
 			PreparedStatement pstmt = this.connect.prepareStatement(sql);
 			pstmt.setString(1, obj.getTitre());
