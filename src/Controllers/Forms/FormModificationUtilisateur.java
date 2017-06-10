@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.phoenixgriffon.JobIsep.Utilisateur;
 
-import Controllers.Admin.ConnectionBDD;
 import Controllers.DAO.DAO;
 import Controllers.DAO.UtilisateurDAO;
 import Controllers.Forms.FormsCheckers.FormModificationUtilisateurChecker;
@@ -52,14 +51,14 @@ public class FormModificationUtilisateur extends HttpServlet {
         DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
         //Juste pour la création d'un utilisateur en attendant qu'il soit stocké dans la session
         //-------------------------------------------------------------------------------------
-        Utilisateur moi2 = bddUtilisateur.find(1);
+        Utilisateur usr = bddUtilisateur.find(1);
  
         //-------------------------------------------------------------------------------------
         
         /* Préparation de l'objet formulaire */
         FormModificationUtilisateurChecker form = new FormModificationUtilisateurChecker();
         /* Traitement de la requête et récupération du bean en résultant */
-        Utilisateur utilisateur = form.updateUtilisateur( request, moi2 );
+        Utilisateur utilisateur = form.updateUtilisateur( request, usr );
         
         
 
@@ -69,6 +68,8 @@ public class FormModificationUtilisateur extends HttpServlet {
 
         if ( form.getErreurs().isEmpty() ) {
         	bddUtilisateur.update(utilisateur);
+        	// On rerécupère les infos de l'utilisateur depuis la BDD de manière à avoir la date correctement formatée
+        	request.setAttribute( ATT_UTILISATEUR, bddUtilisateur.find(utilisateur.getId()));
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
             this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
         } else {

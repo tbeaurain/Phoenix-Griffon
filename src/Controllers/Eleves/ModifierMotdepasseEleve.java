@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.phoenixgriffon.JobIsep.Utilisateur;
+
+import Controllers.DAO.DAO;
+import Controllers.DAO.UtilisateurDAO;
+
 /**
  * Servlet implementation class ModifierMotdepasseEleve
  */
@@ -15,6 +20,7 @@ public class ModifierMotdepasseEleve extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	public static final String VUE_SUCCES = "/WEB-INF/Eleves/ModifierMotdepasseEleve.jsp";
+	public static final String ATT_UTILISATEUR 	= "utilisateur";
        
     /**
      * @see HttpServlet#HttpServlet()
