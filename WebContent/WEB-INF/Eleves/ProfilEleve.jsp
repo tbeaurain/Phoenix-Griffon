@@ -30,6 +30,25 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Mon profil</h1>
+                    </div>
+                </div>
+                <c:if test="${form.resultat!=null}" var="maVariable" scope="session">
+	                <div class="row">
+	                	<div class="col-lg-1">
+	                	</div>
+	                	<div class="col-lg-10">
+	                		
+		                    	<div class="alert alert-warning alert-dismissable">
+		                        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                            ${form.resultat}
+		                        </div>
+		                </div>
+		                <!-- /.col -->
+	                </div>
+	                <!-- /.row -->
+                </c:if>
+                <div class="row">
+                    <div class="col-lg-12">
                         <p>ID : ${utilisateur.id}</p>
                         <p>Prénom : ${utilisateur.prenom}</p>
                         <p>Nom : ${utilisateur.nom} </p>
