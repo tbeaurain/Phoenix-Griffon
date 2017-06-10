@@ -28,7 +28,8 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                	<div class="col-lg-1"></div>
+                    <div class="col-lg-8">
                         <h1 class="page-header">Mon profil</h1>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
 	                <div class="row">
 	                	<div class="col-lg-1">
 	                	</div>
-	                	<div class="col-lg-10">
+	                	<div class="col-lg-8">
 	                		
 		                    	<div class="alert alert-warning alert-dismissable">
 		                        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -48,16 +49,43 @@
 	                <!-- /.row -->
                 </c:if>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <p>ID : ${utilisateur.id}</p>
-                        <p>Prénom : ${utilisateur.prenom}</p>
-                        <p>Nom : ${utilisateur.nom} </p>
-                        <p>Date de naissance : ${utilisateur.dateNaissance} </p>
-                        <p>Identifiant : ${utilisateur.identifiant} </p>
-                        <p>Mot de passe : ${utilisateur.motdepasse} </p>
-                        <p>Statut utilisateur : ${utilisateur.statutUtilisateur.libelle}  </p>              
+                    <div class="col-lg-1">
                     </div>
-                    <!-- /.col-lg-12 -->
+                    	<div class="col-lg-8">
+                        <div class="panel panel-primary">
+                        	<div class="panel-heading">
+                                Informations générales sur mon profil
+                            </div>
+                            <div class="panel-body">
+                            	<div class="table-responsive">
+	                                <table class="table table-bordered">
+	                                    <tbody>
+	                                    	<tr>
+	                                            <th>Nom</th>
+	                                            <td>${utilisateur.nom}</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <th>Prénom</th>
+	                                            <td>${utilisateur.prenom}</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <th>Date de naissance</th>
+	                                            <td>${utilisateur.dateNaissance}</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <th>Identifiant</th>
+	                                            <td>${utilisateur.identifiant}</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <th>Statut utilisateur</th>
+	                                            <td>${utilisateur.statutUtilisateur.libelle}</td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>   
             </div>
             <!-- /.container-fluid -->
