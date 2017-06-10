@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import org.phoenixgriffon.JobIsep.Offre;
 import org.phoenixgriffon.JobIsep.Stage;
+import org.phoenixgriffon.JobIsep.Utilisateur;
 
 public class ConnectionSQL {
 
@@ -35,8 +36,8 @@ public class ConnectionSQL {
 
 		DAO<Offre> test = new OffreDAO();
 		DAO<Stage> stage = new StageDAO();
+		DAO<Utilisateur> utilisateur = new UtilisateurDAO();
 		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
-		
 		
 		Stage toto = new Stage();
 		toto.setDateDebut(dateNaissance);
@@ -49,9 +50,6 @@ public class ConnectionSQL {
 			"mailContactConvention", 1234, dateNaissance,  dateNaissance, " description");
 		
 		
-		stage.create(toto);
-		
-		//System.out.println(stage.find(7).getDescription());
 		
 	}
 }

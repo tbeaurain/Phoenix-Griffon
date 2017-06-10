@@ -1,6 +1,5 @@
 package Controllers.Forms.FormsCheckers;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -327,10 +326,8 @@ public class FormStageChecker{
 	public Date validDate(String dateString) {
     	Date dt = null;
         SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
-        System.out.println("dans le passage 1" + dateString);
         try {
             dt = df.parse(dateString);
-            System.out.println("dans le passage 2" + dt);
             return dt;
             
         } catch (Exception e) {

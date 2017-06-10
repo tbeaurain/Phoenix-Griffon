@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.phoenixgriffon.JobIsep.Stage;
 
-import Controllers.Admin.ConnectionBDD;
 import Controllers.DAO.DAO;
 import Controllers.DAO.StageDAO;
 import Controllers.Forms.FormsCheckers.FormStageChecker;
@@ -21,6 +20,7 @@ import Controllers.Forms.FormsCheckers.FormStageChecker;
 @WebServlet(name="/FormStage", urlPatterns={"/FormStage"})
 public class FormStage extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionStage.jsp";
 	public static final String VUE_SUCCES = "/WEB-INF/Eleves/StagesProposses.jsp";
 
