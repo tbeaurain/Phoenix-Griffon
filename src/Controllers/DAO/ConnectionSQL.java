@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.phoenixgriffon.JobIsep.Offre;
+import org.phoenixgriffon.JobIsep.Stage;
 
 public class ConnectionSQL {
 
@@ -33,11 +34,24 @@ public class ConnectionSQL {
 	public static void main(String[] args){
 
 		DAO<Offre> test = new OffreDAO();
-		
+		DAO<Stage> stage = new StageDAO();
 		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
 		
-		for (int i = 1; i<6; i++){
-			System.out.println(test.find(i).getTitre());
-		}
+		
+		Stage toto = new Stage();
+		toto.setDateDebut(dateNaissance);
+		toto.setDateFin(dateNaissance);
+		
+		toto = new Stage ("adresseLieu", "villeLieu", " codePosta", " nomService",
+			"telephon", " nomContactConvention", " adresseContactConvention",
+			"codePos", "villeContactConvention", "telC",
+			"nomMaitreStage", "teleph", "mailMaitreStage", "fonctionMaitreStage",
+			"mailContactConvention", 1234, dateNaissance,  dateNaissance, " description");
+		
+		
+		stage.create(toto);
+		
+		//System.out.println(stage.find(7).getDescription());
+		
 	}
 }

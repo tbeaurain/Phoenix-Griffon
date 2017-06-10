@@ -326,11 +326,21 @@ public class FormStageChecker{
 	 */
 	public Date validDate(String dateString) {
     	Date dt = null;
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+        System.out.println("dans le passage 1" + dateString);
         try {
             dt = df.parse(dateString);
+            System.out.println("dans le passage 2" + dt);
             return dt;
+            
         } catch (Exception e) {
+        	try{
+        		  df = new SimpleDateFormat("yyyy-mm-dd");
+        		  dt = df.parse(dateString);
+        	}
+        	catch (Exception et) {
+        		return dt;
+        	}
             return dt;
         }
        

@@ -23,12 +23,12 @@ public class RechercheOffre_BDD {
 		try{
 			//Etape 1: chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
-			//Etape 2: récupération de la connexion
+			//Etape 2: rï¿½cupï¿½ration de la connexion
 			cn = DriverManager.getConnection(url, login, passwd);
-			//Etape 3: création d'un statement
+			//Etape 3: crï¿½ation d'un statement
 			st = cn.createStatement();
 			String sql = "SELECT * FROM offre;";
-			//Etape 4: execution de la requête
+			//Etape 4: execution de la requï¿½te
 			rs = st.executeQuery(sql);
 			
 			Boolean hasRows = false;
@@ -54,7 +54,7 @@ public class RechercheOffre_BDD {
 			e.printStackTrace();
 		} finally {
 			try{
-				//Etape 5: libérer ressources de la mémoire
+				//Etape 5: libï¿½rer ressources de la mï¿½moire
 				cn.close();
 				st.close();
 			} catch(SQLException e){
@@ -78,12 +78,12 @@ public class RechercheOffre_BDD {
 		try{
 			//Etape 1: chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
-			//Etape 2: récupération de la connexion
+			//Etape 2: rï¿½cupï¿½ration de la connexion
 			cn = DriverManager.getConnection(url, login, passwd);
-			//Etape 3: création d'un statement
+			//Etape 3: crï¿½ation d'un statement
 			st = cn.createStatement();
 			String sql = "SELECT * FROM offre where titre LIKE '%" + recherche + "%' OR description LIKE'%" + recherche + "%'OR lieu LIKE'%" + recherche + "%';";
-			//Etape 4: execution de la requête
+			//Etape 4: execution de la requï¿½te
 			rs = st.executeQuery(sql);
 			
 			//Etape 5: (parcours du ResultSet)
@@ -103,7 +103,7 @@ public class RechercheOffre_BDD {
 			e.printStackTrace();
 		} finally {
 			try{
-				//Etape 5: libérer ressources de la mémoire
+				//Etape 5: libï¿½rer ressources de la mï¿½moire
 				cn.close();
 				st.close();
 			} catch(SQLException e){
