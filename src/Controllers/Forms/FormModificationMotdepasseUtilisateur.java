@@ -60,16 +60,15 @@ public class FormModificationMotdepasseUtilisateur extends HttpServlet {
         /* Traitement de la requête et récupération du bean en résultant */
         Utilisateur utilisateur = form.updateUtilisateur( request, usr );
         
-        
+        System.out.println("Nouveau mot de passe : "+utilisateur.getMotdepasse());
 
         /* Ajout du bean et de l'objet métier à l'objet requête */
         //request.setAttribute( ATT_UTILISATEUR, utilisateur );
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
-        	bddUtilisateur.update(utilisateur);
-        	// On rerécupère les infos de l'utilisateur depuis la BDD de manière à avoir la date correctement formatée
-        	request.setAttribute( ATT_UTILISATEUR, bddUtilisateur.find(utilisateur.getId()));
+        	UtilisateurDAO bddu = new UtilisateurDAO();
+        	bddu.updateMotdepasse(utilisateur);
             /* Si aucune erreur, alors affichage de la fiche récapitulative */
             this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
         } else {
