@@ -70,7 +70,7 @@
 				<li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>
 						Profil<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="ProfilEleve"><i class="fa fa-user fa-fw"></i>
+						<li><a href="ProfilEleve?id=<%String sessionUserID = "1"; out.print(sessionUserID); %>"><i class="fa fa-user fa-fw"></i>
 								Voir mon profil</a></li>
 						<li><a href="ModifierProfilEleve"><i
 								class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>

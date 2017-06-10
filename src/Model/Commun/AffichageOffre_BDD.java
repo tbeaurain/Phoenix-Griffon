@@ -22,19 +22,19 @@ public class AffichageOffre_BDD {
 		try{
 			//Etape 1: chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
-			//Etape 2: récupération de la connexion
+			//Etape 2: rï¿½cupï¿½ration de la connexion
 			cn = DriverManager.getConnection(url, login, passwd);
-			//Etape 3: création d'un statement
+			//Etape 3: crï¿½ation d'un statement
 			st = cn.createStatement();
 			String sql = "SELECT * FROM offre where id='" + id + "';";
-			//Etape 4: execution de la requête
+			//Etape 4: execution de la requï¿½te
 			rs = st.executeQuery(sql);
 			
 			//Etape 5: (parcours du ResultSet)
 			while(rs.next()){
 				offre = new Offre(rs.getInt("id_utilisateur_propose"), rs.getString("titre"), rs.getString("description"), rs.getDate("mise_en_ligne"), rs.getString("dates"), rs.getString("contact"), rs.getString("lieu"));
 				System.out.println("==================================\n"
-						+ "On récupère l'offre :\n" + rs.getString("titre") + " " + rs.getString("description") +
+						+ "On rï¿½cupï¿½re l'offre :\n" + rs.getString("titre") + " " + rs.getString("description") +
 						"\n==================================");
 			}
 		} catch(SQLException e){
@@ -43,7 +43,7 @@ public class AffichageOffre_BDD {
 			e.printStackTrace();
 		} finally {
 			try{
-				//Etape 5: libérer ressources de la mémoire
+				//Etape 5: libï¿½rer ressources de la mï¿½moire
 				cn.close();
 				st.close();
 			} catch(SQLException e){
@@ -67,12 +67,12 @@ public class AffichageOffre_BDD {
 		try{
 			//Etape 1: chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
-			//Etape 2: récupération de la connexion
+			//Etape 2: rï¿½cupï¿½ration de la connexion
 			cn = DriverManager.getConnection(url, login, passwd);
-			//Etape 3: création d'un statement
+			//Etape 3: crï¿½ation d'un statement
 			st = cn.createStatement();
 			String sql = "SELECT * FROM utilisateur where id='" + id + "';";
-			//Etape 4: execution de la requête
+			//Etape 4: execution de la requï¿½te
 			rs = st.executeQuery(sql);
 			
 			//Etape 5: (parcours du ResultSet)
@@ -82,7 +82,7 @@ public class AffichageOffre_BDD {
 				user.setPrenom(rs.getString("prenom"));
 				user.setNom(rs.getString("nom"));
 				System.out.println("==================================\n"
-						+ "On récupère l'utilisateur :\n" + rs.getString("prenom") + " " + rs.getString("nom") +
+						+ "On rï¿½cupï¿½re l'utilisateur :\n" + rs.getString("prenom") + " " + rs.getString("nom") +
 						"\n==================================");
 			}
 		} catch(SQLException e){
@@ -91,7 +91,7 @@ public class AffichageOffre_BDD {
 			e.printStackTrace();
 		} finally {
 			try{
-				//Etape 5: libérer ressources de la mémoire
+				//Etape 5: libï¿½rer ressources de la mï¿½moire
 				cn.close();
 				st.close();
 			} catch(SQLException e){

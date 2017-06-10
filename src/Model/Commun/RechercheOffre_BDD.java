@@ -82,7 +82,7 @@ public class RechercheOffre_BDD {
 			cn = DriverManager.getConnection(url, login, passwd);
 			//Etape 3: création d'un statement
 			st = cn.createStatement();
-			String sql = "SELECT * FROM offre where titre LIKE '%" + recherche + "%' OR description LIKE'%" + recherche + "%';";
+			String sql = "SELECT * FROM offre where titre LIKE '%" + recherche + "%' OR description LIKE'%" + recherche + "%'OR lieu LIKE'%" + recherche + "%';";
 			//Etape 4: execution de la requête
 			rs = st.executeQuery(sql);
 			

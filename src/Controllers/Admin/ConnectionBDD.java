@@ -27,7 +27,7 @@ public class ConnectionBDD {
 
 		String url = "jdbc:mysql://localhost:3306/jobisep";
 		String utilisateur = "root";
-		String motDePasse = "";
+		String motDePasse = "root";
 		Connection connexion = null;
 
 		try {
@@ -152,7 +152,7 @@ public class ConnectionBDD {
 		String description = offre.getDescription();
 		String date = offre.getDates();
 		String contact = offre.getContact();
-		Integer idUtilisateur = offre.getUtilisateur().getId();
+		Integer idUtilisateur = offre.;
 
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
 				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
@@ -246,7 +246,7 @@ public class ConnectionBDD {
 		}
 
 
-		Offre offre = new Offre (utilisateur, titre, description, miseEnLigne, dates, contact, lieu);
+		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
 		return offre;
 	}
 	// The higher the number of iterations the more 

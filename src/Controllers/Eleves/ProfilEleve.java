@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.phoenixgriffon.JobIsep.StatutUtilisateur;
-import org.phoenixgriffon.JobIsep.Utilisateur;
+import org.phoenixgriffon.JobIsep.*;
 
-import Controllers.Admin.ConnectionBDD;
+import Controllers.DAO.DAO;
+import Controllers.DAO.UtilisateurDAO;
 
 /**
  * Servlet implementation class ProfilEleve
@@ -38,10 +38,10 @@ public class ProfilEleve extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Juste pour la création d'un utilisateur en attendant qu'il soit stocké dans la session
-        ConnectionBDD bdd = new ConnectionBDD();
-        Utilisateur utilisateur_courant = bdd.getUtilisateur(1);
-        request.setAttribute( ATT_UTILISATEUR, utilisateur_courant );
+		DAO<Utilisateur> utilisateurBDD = new UtilisateurDAO();
+		int id = Integer.parseInt(request.getParameter("id"));
+		Utilisateur user = utilisateurBDD.find(id);
+		request.setAttribute("utilisateurID", user);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}
 
@@ -49,7 +49,7 @@ public class ProfilEleve extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO On va rajouter dans le post la recherche d'un utilisateur
 		doGet(request, response);
 	}
 

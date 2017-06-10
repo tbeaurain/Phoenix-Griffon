@@ -6,12 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-import java.sql.*;
 import org.phoenixgriffon.JobIsep.*;
 
-import Controllers.Admin.ConnectionBDD;
+import Controllers.DAO.DAO;
+import Controllers.DAO.OffreDAO;
+import Controllers.DAO.UtilisateurDAO;
 import Controllers.Forms.FormsCheckers.FormOffreChecker;
 
 /**
@@ -20,27 +19,27 @@ import Controllers.Forms.FormsCheckers.FormOffreChecker;
 @WebServlet(name="/FormOffre", urlPatterns={"/FormOffre"})
 public class FormOffre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final String ATT_OFFRE = "offre";
-    public static final String ATT_FORM   = "form";
-	
+	public static final String ATT_FORM   = "form";
+
 	public static final String VUE_SUCCES = "/WEB-INF/Eleves/OffresProposees.jsp";
 	public static final String VUE_FORM   = "/WEB-INF/Eleves/PropositionOffre.jsp";
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FormOffre() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public FormOffre() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* À la réception d'une requête GET, simple affichage du formulaire */
-        this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
 	}
 
 	/**
@@ -48,33 +47,31 @@ public class FormOffre extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Préparation de l'objet formulaire */
-        FormOffreChecker form = new FormOffreChecker();
+		FormOffreChecker form = new FormOffreChecker();
 
-        /* Traitement de la requête et récupération du bean en résultant */
-        Offre offre = form.creerOffre( request );
-        
-        Utilisateur utilisateur = new Utilisateur ();
-        utilisateur.setId(1);
-        
-        offre.setUtilisateur(utilisateur.getId());
-        
-        ConnectionBDD bdd = new ConnectionBDD();
-        
-        bdd.addOffre(offre);
-        
-        
+		/* Traitement de la requête et récupération du bean en résultant */
+		Offre offre = form.creerOffre( request );
 
-        /* Ajout du bean et de l'objet métier à l'objet requête */
-        request.setAttribute( ATT_OFFRE, offre );
-        request.setAttribute( ATT_FORM, form );
+		
+		
+		DAO<Offre> bddOffre = new OffreDAO();   
+		DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
+		
+		Utilisateur users = bddUtilisateur.find(1);
+		offre.setUtilisateur(users);
 
-        if ( form.getErreurs().isEmpty() ) {
-            /* Si aucune erreur, alors affichage de la fiche récapitulative */
-            this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
-        } else {
-            /* Sinon, ré-affichage du formulaire de création avec les erreurs */
-            this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
-        }
+		/* Ajout du bean et de l'objet métier à l'objet requête */
+		request.setAttribute( ATT_OFFRE, offre );
+		request.setAttribute( ATT_FORM, form );
+
+		if ( form.getErreurs().isEmpty() ) {
+			/* Si aucune erreur, alors affichage de la fiche récapitulative */
+				bddOffre.create(offre);
+			this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
+		} else {
+			/* Sinon, ré-affichage du formulaire de création avec les erreurs */
+			this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
+		}
 	}
 
 }

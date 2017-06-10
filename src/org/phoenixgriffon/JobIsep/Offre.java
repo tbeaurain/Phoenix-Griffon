@@ -1,7 +1,6 @@
 package org.phoenixgriffon.JobIsep;
 // Generated 2 mai 2017 15:53:06 by Hibernate Tools 5.2.1.Final
 
-import org.phoenixgriffon.JobIsep.*;
 import java.util.Date;
 
 /**
