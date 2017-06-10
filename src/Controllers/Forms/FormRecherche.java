@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.phoenixgriffon.JobIsep.*;
 
-import Model.Commun.RechercheOffre_BDD;
+import Controllers.DAO.DAO;
+import Controllers.DAO.OffreDAO;
 /**
  * Servlet implementation class FormRecherche
  */
@@ -45,10 +46,9 @@ public class FormRecherche extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		String recherche = request.getParameter("titre");
-		System.out.println("mot tapé : " + recherche);
 		ArrayList<Offre> liste_offres = null;
-		
-		liste_offres = RechercheOffre_BDD.rechercheOffre(recherche);
+		DAO<Offre> bddOffre = new OffreDAO();
+		liste_offres =bddOffre.recherche(recherche);
 		request.setAttribute("liste_offres", liste_offres);
 		response.setCharacterEncoding("utf-8");
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );

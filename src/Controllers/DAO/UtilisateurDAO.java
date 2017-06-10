@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.phoenixgriffon.JobIsep.*;
@@ -81,8 +82,28 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 	}
 
 	public ArrayList<Utilisateur> recherche(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Utilisateur> liste = new ArrayList<Utilisateur>();
+		String sql = "SELECT * FROM utilisateur where prenom LIKE '%" + name + "%' OR nom LIKE '%" + name + 
+				"%' OR identifiant LIKE '%" + name + "%'";
+		try {
+			Statement st = this.connect.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()){
+				Utilisateur obj = new Utilisateur();
+				obj.setId(rs.getInt("id"));
+				obj.setNom(rs.getString("nom"));
+				obj.setPrenom(rs.getString("prenom"));
+				obj.setDateNaissance(rs.getDate("date_naissance"));
+				obj.setIdentifiant(rs.getString("identifiant"));
+				obj.setMotdepasse(rs.getString("motdepasse"));
+				StatutUtilisateur su =  new StatutUtilisateurDAO().find(rs.getInt("id_statut"));
+				obj.setStatutUtilisateur(su);
+				liste.add(obj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 

@@ -14,6 +14,8 @@ import org.phoenixgriffon.JobIsep.StatutUtilisateur;
 import org.phoenixgriffon.JobIsep.Utilisateur;
 
 import Controllers.Admin.ConnectionBDD;
+import Controllers.DAO.DAO;
+import Controllers.DAO.UtilisateurDAO;
 
 /**
  * Servlet implementation class ModifierProfilEleve
@@ -41,10 +43,10 @@ public class ModifierProfilEleve extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// création du Bean de l'utilisateur courant
-		ConnectionBDD bdd = new ConnectionBDD();
+		DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
         //Juste pour la création d'un utilisateur en attendant qu'il soit stocké dans la session
         //-------------------------------------------------------------------------------------
-        Utilisateur utilisateur_courant = bdd.getUtilisateur(1);
+        Utilisateur utilisateur_courant = bddUtilisateur.find(1);
         // Envoi à la JSP du bean de l'utilisateur courant permettant le préremplossage des champs du formulaire avec
         // les valeurs atuelles
         request.setAttribute( ATT_UTILISATEUR, utilisateur_courant );

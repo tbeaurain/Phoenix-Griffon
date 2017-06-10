@@ -13,7 +13,6 @@ import org.phoenixgriffon.JobIsep.Offre;
 
 import Controllers.DAO.DAO;
 import Controllers.DAO.OffreDAO;
-import Model.Commun.RechercheOffre_BDD;
 
 /**
  * Servlet implementation class RechercheOffre
