@@ -10,7 +10,7 @@
     <meta name="description" content="Mon profil">
     <meta name="author" content="Phoenix + Griffon">
 
-    <title>JobISEP - Mon profil</title>
+    <title>JobISEP - Modifier mon mot de passe</title>
 
     <!-- Bootstrap Core CSS -->
     <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>

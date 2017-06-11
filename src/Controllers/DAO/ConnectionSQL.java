@@ -14,7 +14,7 @@ public class ConnectionSQL {
 
 	private static String url = "jdbc:mysql://localhost:3306/jobisep";
 	private static String user = "root";
-	private static String passwd = "root";
+	private static String passwd = "";
 
 	private static Connection connect;
 

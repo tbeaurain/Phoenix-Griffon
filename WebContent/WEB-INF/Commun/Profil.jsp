@@ -23,7 +23,7 @@
     <div id="wrapper">
 
         <!-- Barre de navigation -->
-        </div>
+
         	<c:if test="${typeUtilisateur==1}" var="maVariable" scope="session">
         		<jsp:include page="/WEB-INF/Eleves/BarreNavigationEleve.jsp"/>
             </c:if>
