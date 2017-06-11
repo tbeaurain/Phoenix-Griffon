@@ -47,11 +47,6 @@ public class StageDAO extends DAO<Stage>{
 
 	@Override
 	public Stage create(Stage obj) {
-		
-		//java.sql.Date sqlDateDebut = new java.sql.Date(obj.getDateDebut().getTime());
-		//java.sql.Date sqlDateFin = new java.sql.Date(obj.getDateFin().getTime());
-		
-		System.out.println(" date  est  " + obj.getDateDebut()) ;
 		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
 				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
 				+ "code_postal_contact_convention,ville_contact_convention,tel_contact_convention,nom_maitre_stage,"
@@ -89,14 +84,53 @@ public class StageDAO extends DAO<Stage>{
 
 	@Override
 	public Stage update(Stage obj) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE stage SET "
+				+ "adresse_lieu = ? ,ville_lieu = ?,code_postal_lieu = ? ,nom_service = ?, "
+				+ "telephone_standard_lieu = ? ,nom_contact_convention = ? ,"
+				+ "adresse_contact_convention = ?,"
+				+ "code_postal_contact_convention = ? ,ville_contact_convention = ?,"
+				+ "tel_contact_convention = ?,nom_maitre_stage = ?,"
+				+ "telephone_maitre_stage = ?,mail_maitre_stage = ?,"
+				+ "fonction_maitre_stage = ?,mail_contact_convention = ?,"
+				+ "remuneration = ? ,date_debut = ?,date_fin = ? ,description = ? "
+				+ "WHERE id = ?" ;
+
+		try {
+			PreparedStatement pstmt = this.connect.prepareStatement(sql);
+			pstmt.setString(1, obj.getAdresseLieu());
+			pstmt.setString(2, obj.getVilleLieu());
+			pstmt.setString(3, obj.getCodePostalLieu());
+			pstmt.setString(4, obj.getNomService());
+			pstmt.setString(5, obj.getTelephoneStandardLieu());
+			pstmt.setString(6, obj.getNomContactConvention());
+			pstmt.setString(7, obj.getAdresseContactConvention());
+			pstmt.setString(8, obj.getCodePostalContactConvention());
+			pstmt.setString(9, obj.getVilleContactConvention());
+			pstmt.setString(10, obj.getTelContactConvention());
+			pstmt.setString(11, obj.getNomMaitreStage());
+			pstmt.setString(12, obj.getTelephoneMaitreStage());
+			pstmt.setString(13, obj.getMailMaitreStage());
+			pstmt.setString(14, obj.getFonctionMaitreStage());
+			pstmt.setString(15, obj.getMailContactConvention());
+			pstmt.setDouble(16, obj.getRemuneration());
+			pstmt.setDate(17, new java.sql.Date(obj.getDateDebut().getTime()));
+			pstmt.setDate(18, new java.sql.Date(obj.getDateFin().getTime()));
+			pstmt.setString(19, obj.getDescription());
+			pstmt.setInt(20, obj.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return obj;
 	}
 
 	@Override
 	public void delete(Stage obj) {
-		// TODO Auto-generated method stub
-		
+		try {
+			this.connect.createStatement().executeUpdate("DELETE FROM stage WHERE id = " + obj.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

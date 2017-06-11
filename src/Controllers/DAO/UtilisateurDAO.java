@@ -7,22 +7,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.*;
 
 public class UtilisateurDAO extends DAO <Utilisateur>{
-	
+
 	public Connection connect = ConnectionSQL.getInstance();
-	
+
 	public Utilisateur find(int id) {
 		Utilisateur obj = new Utilisateur();
 		String sql =  "select * from utilisateur where id = " + id;
 		try {
 			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
 			ResultSet rs  = pstmt.executeQuery();
-			
+
 			if(rs.first()){
 				obj.setId(id);
 				obj.setPrenom(rs.getString("prenom"));
@@ -39,7 +37,7 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		}
 		return obj;
 	}
-	
+
 	public Utilisateur create(Utilisateur obj) {
 		String sql = "INSERT INTO utilisateur (id_statut, prenom, nom, date_naissance, identifiant, motdepasse) "
 				+ "VALUES (?,?,?,?,?,?)";
@@ -79,7 +77,7 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		}
 		return obj;
 	}
-	
+
 	public Utilisateur updateMotdepasse(Utilisateur obj){
 		String sql = "UPDATE utilisateur "
 				+ "SET motdepasse = ? WHERE id = ? ;";
