@@ -30,7 +30,7 @@
             <c:if test="${typeUtilisateur==2}" var="maVariable" scope="session">
         		<jsp:include page="/WEB-INF/Admin/BarreNavigationAdmin.jsp"/>
             </c:if>
-
+ 
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
