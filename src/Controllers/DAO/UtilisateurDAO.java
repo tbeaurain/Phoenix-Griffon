@@ -75,6 +75,20 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		}
 		return obj;
 	}
+	
+	public Utilisateur updateMotdepasse(Utilisateur obj){
+		String sql = "UPDATE utilisateur "
+				+ "SET motdepasse = ? WHERE id = ? ;";
+		try {
+			PreparedStatement pstmt = this.connect.prepareStatement(sql);
+			pstmt.setString(1, obj.getMotdepasse());
+			pstmt.setInt(2, obj.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
 
 	public void delete(Utilisateur obj) {
 		// TODO Auto-generated method stub

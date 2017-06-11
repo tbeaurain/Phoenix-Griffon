@@ -19,6 +19,11 @@ public class StatutUtilisateur implements java.io.Serializable {
 	public StatutUtilisateur(String libelle) {
 		this.libelle = libelle;
 	}
+	
+	public StatutUtilisateur(Integer id,String libelle) {
+		this.id = id;
+		this.libelle = libelle;
+	}
 
 	public StatutUtilisateur(String libelle, Set<Utilisateur> utilisateurs) {
 		this.libelle = libelle;

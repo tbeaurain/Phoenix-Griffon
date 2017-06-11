@@ -22,7 +22,12 @@
     <div id="wrapper">
 
         <!-- Barre de navigation -->
-        <jsp:include page="/WEB-INF/Eleves/BarreNavigationEleve.jsp"/>
+        	<c:if test="${typeUtilisateur==1}" var="maVariable" scope="session">
+        		<jsp:include page="/WEB-INF/Eleves/BarreNavigationEleve.jsp"/>
+            </c:if>
+            <c:if test="${typeUtilisateur==2}" var="maVariable" scope="session">
+        		<jsp:include page="/WEB-INF/Admin/BarreNavigationAdmin.jsp"/>
+            </c:if>
 
         <!-- Page Content -->
         <div id="page-wrapper">
@@ -36,7 +41,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
                   
-                <jsp:include page="/WEB-INF/Forms/FormModificationMotdepasseUtilisateur.jsp"/>
+                <jsp:include page="/WEB-INF/Forms/FormModificationUtilisateur.jsp"/>
                  
             </div>
             <!-- /.container-fluid -->

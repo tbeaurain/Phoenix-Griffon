@@ -42,7 +42,6 @@ public class RechercheOffre extends HttpServlet {
 				liste_offres.add(offreBDD.find(i));
 			}
 		}
-		//liste_offres = RechercheOffre_BDD.listeOffres();
 		request.setAttribute("liste_offres", liste_offres);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}

@@ -21,7 +21,8 @@
                                     <form role="form" action="FormModificationMotdepasseUtilisateur" method="POST">
                                     		<div class="alert alert-info alert-dismissable">
                                 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                				<i>Si vous souhaitez changer votre mot de passe, saisissez votre ancien mot de passe, puis choisissez en un nouveau et confirmez le à l'identique.</i>
+                                				<i>Si vous souhaitez changer votre mot de passe, saisissez votre ancien mot de passe, puis choisissez en un nouveau et confirmez le à l'identique.
+                                				Le nouveau mot de passe doit contenir au moins 6 caractères.</i>
                             				</div>
 	                                        <div class="form-group<c:if test="${form.erreurs['motdepasse']!=null}" var="maVariable" scope="session"> has-error</c:if>">
 	                                            <label>Ancien mot de passe</label>

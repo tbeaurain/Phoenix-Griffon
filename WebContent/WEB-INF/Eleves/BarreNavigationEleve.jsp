@@ -9,17 +9,12 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="AccueilEleve">François Robard</a>
+		<a class="navbar-brand" href="AccueilEleve">${sessionScope.sessionUtilisateur.prenom} ${sessionScope.sessionUtilisateur.nom}</a>
 	</div>
 	<img src="<c:url value="/Images/LogoJobIsep2.png"/>"
 		class="nav navbar-top-links navbar-right"
 		style="width: 5em; height: 3em; padding-top: 1em; margin-right: 1em">
-
-
 	<!-- /.navbar-header -->
-
-
-
 	<!-- Barre de navigation------------------------------------------- -->
 	<div class="navbar-default sidebar" role="navigation">
 		<div class="sidebar-nav navbar-collapse">
@@ -37,23 +32,18 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><a href="AccueilEleve"><i class="fa fa-home fa-fw"></i>
-						Accueil</a></li>
+				<li><a href="AccueilEleve"><i class="fa fa-home fa-fw"></i>Accueil</a></li>
 				<li>
 					<!-- mettre class="active" si on veut que l'onglet soit d�pi� d�s le d�but-->
-					<a href="#"><i class="fa fa-newspaper-o fa-fw"></i> Offres de
-						stage<span class="fa arrow"></span></a>
+					<a href="#"><i class="fa fa-newspaper-o fa-fw"></i> Offres de stage<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="RechercheOffre"><i class="fa fa-search"></i>
-								Rechercher une offre</a></li>
-						<li><a href="OffresFavorites"><i
-								class="fa fa-heart fa-fw"></i> Mes offres favorites</a></li>
-						<li><a href="OffresProposees"><i
-								class="fa fa-list-ul fa-fw"></i> Mes offres Proposées</a></li>
-						<li><a href="PropositionOffre"><i
-								class="fa fa-plus-circle fa-fw"></i> Proposer une offre</a></li>
+						<li><a href="RechercheOffre"><i class="fa fa-search"></i>Rechercher une offre</a></li>
+						<li><a href="OffresFavorites"><i class="fa fa-heart fa-fw"></i> Mes offres favorites</a></li>
+						<li><a href="OffresProposees"><i class="fa fa-list-ul fa-fw"></i> Mes offres Proposées</a></li>
+						<li><a href="PropositionOffre"><i class="fa fa-plus-circle fa-fw"></i> Proposer une offre</a></li>
 					</ul> <!-- /.nav-second-level -->
 				</li>
+<<<<<<< HEAD
 				<li><a href="Convention"><i class="fa fa-edit fa-fw"></i>
 						Ma convention de stage</a></li>
 				<li><a href="Contacts"><i class="fa fa-users fa-fw"></i>
@@ -63,17 +53,24 @@
 
 				<li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>
 						Profil<span class="fa arrow"></span></a>
+=======
+				<li><a href="Convention"><i class="fa fa-edit fa-fw"></i>Ma convention de stage</a></li>
+				<li><a href="Contacts"><i class="fa fa-users fa-fw"></i>Chercher un contact</a></li>
+				<li><a href="#"><i class="fa fa-envelope fa-fw"></i>Messages<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="ProfilEleve?id=<%String sessionUserID = "1"; out.print(sessionUserID); %>"><i class="fa fa-user fa-fw"></i>
-								Voir mon profil</a></li>
-						<li><a href="ModifierProfilEleve"><i
-								class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
-						<li><a href="ModifierMotdepasseEleve"><i
-								class="fa fa-key fa-fw"></i> Modifier mon mot de passe</a></li>
-					</ul> <!-- /.nav-second-level --></li>
-				<li><a href="Deconnexion"><i class="fa fa-sign-out fa-fw"></i>
-						Se déconnecter</a></li>
-
+						<li><a href="EcrireMessageEleve"><i class="fa fa-pencil"></i>Ecrire un message</a></li>
+						<li><a href="BoiteReceptionEleve"><i class="fa fa-inbox fa-fw"></i> Boite de réception</a></li>
+					</ul>
+				</li>
+				<li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>Profil<span class="fa arrow"></span></a>
+>>>>>>> ef3fb4cad4a422505fb53215bcddf103348b99de
+					<ul class="nav nav-second-level">
+						<li><a href="Profil"><i class="fa fa-user fa-fw"></i>Voir mon profil</a></li>
+						<li><a href="ModifierProfil"><i class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
+						<li><a href="ModifierMotdepasse"><i class="fa fa-key fa-fw"></i> Modifier mon mot de passe</a></li>
+					</ul> <!-- /.nav-second-level -->
+				</li>
+				<li><a href="Deconnexion"><i class="fa fa-sign-out fa-fw"></i>Se déconnecter</a></li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
