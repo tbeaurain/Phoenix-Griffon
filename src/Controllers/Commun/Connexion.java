@@ -11,6 +11,8 @@ import javax.servlet.RequestDispatcher;
 import org.phoenixgriffon.JobIsep.*;
 
 import Controllers.Admin.ConnectionBDD;
+import Controllers.DAO.DAO;
+import Controllers.DAO.UtilisateurDAO;
 
 
 /**
@@ -22,7 +24,9 @@ public class Connexion extends HttpServlet {
 	
 	public static final String SERVLET_ADMIN = "/AccueilAdmin";
 	public static final String SERVLET_ELEVE = "/AccueilEleve";
-	public static final String ECHEC = "/Connexion.html";
+	public static final String ECHEC = "/Phoenix-Griffon/Connexion.html";
+	
+	public static final String ATT_SESSION_USER = "sessionUtilisateur";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,9 +48,30 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* TEST -----------------------------------------------------------------------------------*/
+		DAO<Utilisateur> utilisateurBDD = new UtilisateurDAO();
+		int id = 1;
+		Utilisateur user = utilisateurBDD.find(id);
+		HttpSession session = request.getSession();
+		session.setAttribute( ATT_SESSION_USER , user);
 		
-		this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
 		
+		if( session.getAttribute( ATT_SESSION_USER ) != null ){
+			Utilisateur usr = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
+		    int idStatutUtilisateur = usr.getStatutUtilisateur().getId();
+			if(idStatutUtilisateur==1){ // StatutUtilisateur = 1 : l'utilisateur est un élève
+				this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
+			}else if(idStatutUtilisateur==2){ // StatutUtilisateur = 2 : l'utilisateur est un administrateur (prof, ...)
+				this.getServletContext().getRequestDispatcher( SERVLET_ADMIN ).forward( request, response );
+			}
+		}else{
+			response.sendRedirect( ECHEC );
+		}
+		
+		
+		/* TEST -----------------------------------------------------------------------------------*/
+		
+		/*
 		HttpSession s=request.getSession( true );
 		if(s.isNew())
 		{
@@ -81,7 +106,7 @@ public class Connexion extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 			}
-		}
+		}*/
 		/*else
 		{
 			String statut = ((Utilisateur) s.getAttribute("utilisateur")).getStatutUtilisateur().getLibelle();

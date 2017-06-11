@@ -18,8 +18,7 @@ public class StatutUtilisateurDAO extends DAO <StatutUtilisateur>{
 			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
 			ResultSet rs  = pstmt.executeQuery();
 			if(rs.first())
-				obj = new StatutUtilisateur(rs.getString("libelle"));
-
+				obj = new StatutUtilisateur(rs.getInt("id"),rs.getString("libelle"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
