@@ -43,27 +43,11 @@
 						<li><a href="PropositionOffre"><i class="fa fa-plus-circle fa-fw"></i> Proposer une offre</a></li>
 					</ul> <!-- /.nav-second-level -->
 				</li>
-<<<<<<< HEAD
-				<li><a href="Convention"><i class="fa fa-edit fa-fw"></i>
-						Ma convention de stage</a></li>
-				<li><a href="Contacts"><i class="fa fa-users fa-fw"></i>
-						Chercher un contact</a></li>
-				<li><a href="EcrireMessageEleve"><i class="fa fa-envelope fa-fw"></i>
-						Envoyer un message</a></li>
-
-				<li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>
-						Profil<span class="fa arrow"></span></a>
-=======
 				<li><a href="Convention"><i class="fa fa-edit fa-fw"></i>Ma convention de stage</a></li>
 				<li><a href="Contacts"><i class="fa fa-users fa-fw"></i>Chercher un contact</a></li>
-				<li><a href="#"><i class="fa fa-envelope fa-fw"></i>Messages<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level">
-						<li><a href="EcrireMessageEleve"><i class="fa fa-pencil"></i>Ecrire un message</a></li>
-						<li><a href="BoiteReceptionEleve"><i class="fa fa-inbox fa-fw"></i> Boite de réception</a></li>
-					</ul>
-				</li>
+				<li><a href="EcrireMessageEleve"><i class="fa fa-envelope fa-fw"></i>Envoyer un message</a></li>
+
 				<li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>Profil<span class="fa arrow"></span></a>
->>>>>>> ef3fb4cad4a422505fb53215bcddf103348b99de
 					<ul class="nav nav-second-level">
 						<li><a href="Profil"><i class="fa fa-user fa-fw"></i>Voir mon profil</a></li>
 						<li><a href="ModifierProfil"><i class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
