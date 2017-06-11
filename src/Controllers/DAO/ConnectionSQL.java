@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.Offre;
 import org.phoenixgriffon.JobIsep.Stage;
@@ -13,8 +14,8 @@ public class ConnectionSQL {
 
 	private static String url = "jdbc:mysql://localhost:3306/jobisep";
 	private static String user = "root";
-	private static String passwd = "";
-	
+	private static String passwd = "root";
+
 	private static Connection connect;
 
 	public static Connection getInstance(){
@@ -38,18 +39,6 @@ public class ConnectionSQL {
 		DAO<Stage> stage = new StageDAO();
 		DAO<Utilisateur> utilisateur = new UtilisateurDAO();
 		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
-		
-		Stage toto = new Stage();
-		toto.setDateDebut(dateNaissance);
-		toto.setDateFin(dateNaissance);
-		
-		toto = new Stage ("adresseLieu", "villeLieu", " codePosta", " nomService",
-			"telephon", " nomContactConvention", " adresseContactConvention",
-			"codePos", "villeContactConvention", "telC",
-			"nomMaitreStage", "teleph", "mailMaitreStage", "fonctionMaitreStage",
-			"mailContactConvention", 1234, dateNaissance,  dateNaissance, " description");
-		
-		
-		
+
 	}
 }

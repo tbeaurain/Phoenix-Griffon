@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.Offre;
 
@@ -35,6 +37,29 @@ public class OffreDAO extends DAO<Offre> {
 		return obj;
 	}
 
+	public Set<Offre> findUtilisateur(int idUtilisateur){
+		Set<Offre> offres = new HashSet<Offre>(0);
+		String sql = "select * from offre WHERE id_utilisateur_propose = " + idUtilisateur;
+		try {
+			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			ResultSet rs  = pstmt.executeQuery();
+			while(rs.next()){
+				Offre obj = new Offre();
+				obj.setId(rs.getInt("id"));
+				obj.setTitre(rs.getString("titre"));
+				obj.setDescription(rs.getString("description"));
+				obj.setMiseEnLigne(rs.getDate("mise_En_Ligne"));
+				obj.setDates(rs.getString("dates"));
+				obj.setContact(rs.getString("contact"));
+				obj.setLieu(rs.getString("lieu"));
+				offres.add(obj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return offres;
+	}
+
 	@Override
 	public Offre create(Offre obj) {
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose, lieu) "
@@ -62,8 +87,11 @@ public class OffreDAO extends DAO<Offre> {
 
 	@Override
 	public void delete(Offre obj) {
-		// TODO Auto-generated method stub
-
+		try {
+			this.connect.createStatement().executeUpdate("DELETE FROM offre WHERE id = " + obj.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

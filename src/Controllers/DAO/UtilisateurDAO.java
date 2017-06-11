@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.*;
 
@@ -16,10 +18,11 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 	
 	public Utilisateur find(int id) {
 		Utilisateur obj = new Utilisateur();
-		String sql = "select * from utilisateur WHERE id = " + id;
+		String sql =  "select * from utilisateur where id = " + id;
 		try {
 			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
 			ResultSet rs  = pstmt.executeQuery();
+			
 			if(rs.first()){
 				obj.setId(id);
 				obj.setPrenom(rs.getString("prenom"));
@@ -29,6 +32,7 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 				obj.setMotdepasse(rs.getString("motdepasse"));
 				StatutUtilisateur su =  new StatutUtilisateurDAO().find(rs.getInt("id_statut"));
 				obj.setStatutUtilisateur(su);	
+				obj.setOffres(new OffreDAO().findUtilisateur(id));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,8 +95,11 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 	}
 
 	public void delete(Utilisateur obj) {
-		// TODO Auto-generated method stub
-
+		try {
+			this.connect.createStatement().executeUpdate("DELETE FROM utilisateur WHERE id = " + obj.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<Utilisateur> recherche(String name) {
