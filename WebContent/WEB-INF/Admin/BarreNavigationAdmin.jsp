@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="AccueilAdmin">KAZI-AOUL Zakia</a>
+		<a class="navbar-brand" href="AccueilAdmin">${sessionScope.sessionUtilisateur.prenom} ${sessionScope.sessionUtilisateur.nom}</a>
 	</div>
 	<img src="<c:url value="/Images/LogoJobIsep2.png"/>" class="nav navbar-top-links navbar-right" style="width: 5em; height: 3em; padding-top:1em;margin-right:1em">	
         <div class="navbar-default sidebar" role="navigation">
@@ -57,7 +57,7 @@
                         <li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>Profil<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="Profil"><i class="fa fa-user fa-fw"></i>Voir mon profil</a></li>
-								<li><a href="MoodifierProfilAdmin"><i class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
+								<li><a href="ModifierProfil"><i class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
 								<li><a href="ModifierMotdepasseAdmin"><i class="fa fa-key fa-fw"></i> Modifier mon mot de passe</a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
