@@ -40,5 +40,9 @@ public class ConnectionSQL {
 		DAO<Utilisateur> utilisateur = new UtilisateurDAO();
 		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
 
+		Stage st = new Stage ();
+		st = stage.find(7);
+		st.setId(24);
+		stage.update(st);
 	}
 }
