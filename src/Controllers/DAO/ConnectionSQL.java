@@ -1,14 +1,13 @@
 package Controllers.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Set;
 
-import org.phoenixgriffon.JobIsep.Offre;
+import org.phoenixgriffon.JobIsep.EffectueStage;
 import org.phoenixgriffon.JobIsep.Stage;
 import org.phoenixgriffon.JobIsep.Utilisateur;
+
 
 public class ConnectionSQL {
 
@@ -34,15 +33,15 @@ public class ConnectionSQL {
 		return connect;	
 	}	
 	public static void main(String[] args){
-
-		DAO<Offre> test = new OffreDAO();
-		DAO<Stage> stage = new StageDAO();
-		DAO<Utilisateur> utilisateur = new UtilisateurDAO();
-		Date dateNaissance = new Date (2017 - 1900, 1, 1 );
-
-		Stage st = new Stage ();
-		st = stage.find(7);
-		st.setId(24);
-		stage.update(st);
+		DAO<Utilisateur> uti = new UtilisateurDAO();
+		DAO<Stage> st = new StageDAO();
+		DAO<EffectueStage> es = new EffectueStageDAO();
+		
+		Utilisateur user = uti.find(1);
+		Stage stage = st.find(25);
+		EffectueStage efec = new EffectueStage(stage,user);
+		
+		es.create(efec);
+		
 	}
 }

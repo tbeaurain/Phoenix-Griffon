@@ -60,7 +60,6 @@ public class OffreDAO extends DAO<Offre> {
 		return offres;
 	}
 
-	@Override
 	public Offre create(Offre obj) {
 		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose, lieu) "
 				+ "VALUES (?,?,?,?,?,?)" ;
@@ -79,13 +78,11 @@ public class OffreDAO extends DAO<Offre> {
 		return obj;
 	}
 
-	@Override
 	public Offre update(Offre obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void delete(Offre obj) {
 		try {
 			this.connect.createStatement().executeUpdate("DELETE FROM offre WHERE id = " + obj.getId());
@@ -94,7 +91,6 @@ public class OffreDAO extends DAO<Offre> {
 		}
 	}
 
-	@Override
 	public ArrayList<Offre> recherche(String name) {
 		ArrayList<Offre> liste = new ArrayList<Offre>();
 		String sql = "SELECT * FROM offre where titre LIKE '%" + name + "%' OR description LIKE '%" + name + 

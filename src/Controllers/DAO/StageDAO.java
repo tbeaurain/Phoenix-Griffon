@@ -3,13 +3,11 @@ package Controllers.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import org.phoenixgriffon.JobIsep.Stage;
 
 public class StageDAO extends DAO<Stage>{
 
-	@Override
 	public Stage find(int id) {
 		Stage obj = new Stage();
 		String sql = "select * from stage WHERE id = " + id;
@@ -45,7 +43,21 @@ public class StageDAO extends DAO<Stage>{
 		return obj;
 	}
 
-	@Override
+	public Stage find(Stage obj) {
+		String sql = "select * from stage WHERE description = '" + obj.getDescription() +"'";
+		try {
+			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			ResultSet rs  = pstmt.executeQuery();
+			if(rs.first()){
+				obj.setId(rs.getInt("id"));
+				obj.setDateCreation(rs.getDate("date_creation"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
+
 	public Stage create(Stage obj) {
 		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
 				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
@@ -53,7 +65,6 @@ public class StageDAO extends DAO<Stage>{
 				+ "telephone_maitre_stage,mail_maitre_stage,fonction_maitre_stage,mail_contact_convention,"
 				+ "remuneration,date_debut,date_fin,description) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-
 		try {
 			PreparedStatement pstmt = this.connect.prepareStatement(sql);
 			pstmt.setString(1, obj.getAdresseLieu());
@@ -82,7 +93,6 @@ public class StageDAO extends DAO<Stage>{
 		return obj;
 	}
 
-	@Override
 	public Stage update(Stage obj) {
 		String sql = "UPDATE stage SET "
 				+ "adresse_lieu = ? ,ville_lieu = ?,code_postal_lieu = ? ,nom_service = ?, "
@@ -94,7 +104,6 @@ public class StageDAO extends DAO<Stage>{
 				+ "fonction_maitre_stage = ?,mail_contact_convention = ?,"
 				+ "remuneration = ? ,date_debut = ?,date_fin = ? ,description = ? "
 				+ "WHERE id = ?" ;
-
 		try {
 			PreparedStatement pstmt = this.connect.prepareStatement(sql);
 			pstmt.setString(1, obj.getAdresseLieu());
@@ -124,7 +133,6 @@ public class StageDAO extends DAO<Stage>{
 		return obj;
 	}
 
-	@Override
 	public void delete(Stage obj) {
 		try {
 			this.connect.createStatement().executeUpdate("DELETE FROM stage WHERE id = " + obj.getId());
@@ -132,11 +140,4 @@ public class StageDAO extends DAO<Stage>{
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public ArrayList<Stage> recherche(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

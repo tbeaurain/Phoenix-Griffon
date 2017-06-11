@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PropositionOffre extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String VUE_SUCCES = "/WEB-INF/Eleves/PropositionOffre.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/Admin/ProposerOffre.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()

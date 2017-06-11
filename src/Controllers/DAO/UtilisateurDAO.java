@@ -56,6 +56,7 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		return obj;
 	}
 
+	@SuppressWarnings("deprecation")
 	public Utilisateur update(Utilisateur obj) {
 		String sql = "UPDATE utilisateur "
 				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
@@ -124,6 +125,4 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		}
 		return liste;
 	}
-
-
 }
