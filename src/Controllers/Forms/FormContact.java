@@ -48,7 +48,7 @@ public class FormContact extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String recherche = request.getParameter("titre");
 		ArrayList<Utilisateur> liste_utilisateurs = null;
-		DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
+		UtilisateurDAO bddUtilisateur = new UtilisateurDAO();
 		liste_utilisateurs =bddUtilisateur.recherche(recherche);
 		request.setAttribute("liste_utilisateurs", liste_utilisateurs);
 		response.setCharacterEncoding("utf-8");

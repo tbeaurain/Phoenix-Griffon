@@ -47,7 +47,7 @@ public class FormRecherche extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String recherche = request.getParameter("titre");
 		ArrayList<Offre> liste_offres = null;
-		DAO<Offre> bddOffre = new OffreDAO();
+		OffreDAO bddOffre = new OffreDAO();
 		liste_offres =bddOffre.recherche(recherche);
 		request.setAttribute("liste_offres", liste_offres);
 		response.setCharacterEncoding("utf-8");
