@@ -58,7 +58,7 @@
 							<ul class="nav nav-second-level">
 								<li><a href="Profil"><i class="fa fa-user fa-fw"></i>Voir mon profil</a></li>
 								<li><a href="ModifierProfil"><i class="fa fa-pencil fa-fw"></i> Modifier mon profil</a></li>
-								<li><a href="ModifierMotdepasseAdmin"><i class="fa fa-key fa-fw"></i> Modifier mon mot de passe</a></li>
+								<li><a href="ModifierMotdepasse"><i class="fa fa-key fa-fw"></i> Modifier mon mot de passe</a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
                         <li class="active"><a href="Deconnexion"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a></li>

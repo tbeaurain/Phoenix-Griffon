@@ -50,7 +50,7 @@ public class Connexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* TEST -----------------------------------------------------------------------------------*/
 		DAO<Utilisateur> utilisateurBDD = new UtilisateurDAO();
-		int id = 2;
+		int id = 1;
 		Utilisateur user = utilisateurBDD.find(id);
 		HttpSession session = request.getSession();
 		session.setAttribute( ATT_SESSION_USER , user);
