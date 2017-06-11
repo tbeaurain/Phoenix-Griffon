@@ -44,69 +44,77 @@
                                 Ma convention de stage
                             </div>
                             <div class="panel-body">
-                            	<div class="table-responsive">
-	                                <table class="table table-bordered">
-	                                    <tbody>
-	                                    	<tr>
-	                                            <th>Description</th>
-	                                            <td>${stage.description}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Date de début du stage</th>
-	                                            <td>${stage.date_debut}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Date de fin du stage</th>
-	                                            <td>${stage.date_fin}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Adresse du stage</th>
-	                                            <td>${stage.adresse_lieu}, ${stage.code_postal_lieu} ${stage.ville_lieu}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Nom du service</th>
-	                                            <td>${stage.nom_service}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Nom du service</th>
-	                                            <td>${stage.nom_service}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Téléphone lieu du stage</th>
-	                                            <td>${stage.telephone_standard_lieu}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Contact pour la convention</th>
-	                                            <td>${stage.nom_contact_convention}, ${stage.mail_contact_convention}, ${stage.tel_contact_convention}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Adresse du contact pour la convention</th>
-	                                            <td>${stage.adresse_contact_convention}, ${stage.code_postal_contact_convention} ${stage.ville_contact_convention}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Nom du maitre de stage</th>
-	                                            <td>${stage.nom_maitre_stage}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Nom du maitre de stage</th>
-	                                            <td>${stage.nom_maitre_stage}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Fonction du maitre de stage</th>
-	                                            <td>${stage.fonction_maitre_stage}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Contact maitre du stage</th>
-	                                            <td>${stage.telephone_maitre_stage}, ${mail.telephone_maitre_stage}</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <th>Rémunération</th>
-	                                            <td>${stage.remuneration}</td>
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
-                            	</div>
-                            	<!-- /.table-responsive -->
+                            	<c:if test="${messageErreur!=''}" var="maVariable" scope="session">
+	                               	<div class="alert alert-danger alert-dismissable">
+	                               		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                               		${messageErreur}
+	                            	</div>
+                            	</c:if>
+                            	<c:if test="${erreur==false}" var="maVariable" scope="session">
+	                            	<div class="table-responsive">
+		                                <table class="table table-bordered">
+		                                    <tbody>
+		                                    	<tr>
+		                                            <th>Description</th>
+		                                            <td>${stage.description}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Date de début du stage</th>
+		                                            <td>${stage.date_debut}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Date de fin du stage</th>
+		                                            <td>${stage.date_fin}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Adresse du stage</th>
+		                                            <td>${stage.adresse_lieu}, ${stage.code_postal_lieu} ${stage.ville_lieu}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Nom du service</th>
+		                                            <td>${stage.nom_service}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Nom du service</th>
+		                                            <td>${stage.nom_service}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Téléphone lieu du stage</th>
+		                                            <td>${stage.telephone_standard_lieu}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Contact pour la convention</th>
+		                                            <td>${stage.nom_contact_convention}, ${stage.mail_contact_convention}, ${stage.tel_contact_convention}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Adresse du contact pour la convention</th>
+		                                            <td>${stage.adresse_contact_convention}, ${stage.code_postal_contact_convention} ${stage.ville_contact_convention}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Nom du maitre de stage</th>
+		                                            <td>${stage.nom_maitre_stage}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Nom du maitre de stage</th>
+		                                            <td>${stage.nom_maitre_stage}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Fonction du maitre de stage</th>
+		                                            <td>${stage.fonction_maitre_stage}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Contact maitre du stage</th>
+		                                            <td>${stage.telephone_maitre_stage}, ${mail.telephone_maitre_stage}</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <th>Rémunération</th>
+		                                            <td>${stage.remuneration}</td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+	                            	</div>
+	                            	<!-- /.table-responsive -->
+	                            </c:if>
                             </div>
                             <!-- /.panel-body -->
                         </div>
