@@ -33,7 +33,7 @@
                 </div>
                 
                 
-                <jsp:include page="/WEB-INF/Forms/FormOffre.jsp"/>   
+                <jsp:include page="/WEB-INF/Forms/FormEcrireMessage.jsp"/>   
             </div>
             <!-- /.container-fluid -->
         </div>
