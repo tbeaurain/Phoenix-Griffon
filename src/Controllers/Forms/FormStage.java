@@ -1,8 +1,9 @@
 package Controllers.Forms;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -134,6 +135,13 @@ public class FormStage extends HttpServlet {
 			request.setAttribute(ATT_ERROR_MESSAGE, messageErreur);
 			request.setAttribute(ATT_STAGE_VALIDE_FLAG, stageValideFlag);
 			
+			bddStage.create(stage);
+			stage = bddStage.find(stage);
+			EffectueStage effectueStage = new EffectueStage(stage, user);
+			EffectueStageBDD.create(effectueStage);
+			Set<EffectueStage> effectueStages = user.getEffectueStages();
+			effectueStages.add(effectueStage);
+			user.setEffectueStages(effectueStages);
 			
 			// On update les information sur l'utilisateur stockées dans la session
 			DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
