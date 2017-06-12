@@ -67,12 +67,6 @@ public class FormStage extends HttpServlet {
 		StageDAO bddStage = new StageDAO();
 		DAO<EffectueStage> EffectueStageBDD = new EffectueStageDAO();
 		
-		EffectueStage effectueStage = new EffectueStage(stage, user);
-		
-		stage = bddStage.find(stage);
-		EffectueStageBDD.create(effectueStage);
-		
-		
 		
 		/* Ajout du bean et de l'objet métier à l'objet requête */
 		request.setAttribute( ATT_Stage, stage );
@@ -81,9 +75,12 @@ public class FormStage extends HttpServlet {
 		if ( form.getErreurs().isEmpty() ) {
 			/* Si aucune erreur, alors :
 			 * affichage de la fiche récapitulative */
+			
 			bddStage.create(stage);
-			
-			
+			stage = bddStage.find(stage);
+			System.out.println("id    du stage  " + stage.getId());
+			EffectueStage effectueStage = new EffectueStage(stage, user);
+			EffectueStageBDD.create(effectueStage);
 			
 			this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 		} else {
