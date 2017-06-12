@@ -135,14 +135,6 @@ public class FormStage extends HttpServlet {
 			request.setAttribute(ATT_ERROR_MESSAGE, messageErreur);
 			request.setAttribute(ATT_STAGE_VALIDE_FLAG, stageValideFlag);
 			
-			bddStage.create(stage);
-			stage = bddStage.find(stage);
-			EffectueStage effectueStage = new EffectueStage(stage, user);
-			EffectueStageBDD.create(effectueStage);
-			Set<EffectueStage> effectueStages = user.getEffectueStages();
-			effectueStages.add(effectueStage);
-			user.setEffectueStages(effectueStages);
-			
 			// On update les information sur l'utilisateur stockées dans la session
 			DAO<Utilisateur> bddUtilisateur = new UtilisateurDAO();
 			session.setAttribute( ATT_SESSION_USER , bddUtilisateur.find(user.getId()));
