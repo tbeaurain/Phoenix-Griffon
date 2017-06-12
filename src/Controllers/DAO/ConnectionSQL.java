@@ -4,11 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.phoenixgriffon.JobIsep.EffectueStage;
-import org.phoenixgriffon.JobIsep.Stage;
-import org.phoenixgriffon.JobIsep.Utilisateur;
-
-
 public class ConnectionSQL {
 
 	private static String url = "jdbc:mysql://localhost:3306/jobisep";
@@ -32,16 +27,4 @@ public class ConnectionSQL {
 		}		
 		return connect;	
 	}	
-	public static void main(String[] args){
-		DAO<Utilisateur> uti = new UtilisateurDAO();
-		DAO<Stage> st = new StageDAO();
-		DAO<EffectueStage> es = new EffectueStageDAO();
-		
-		Utilisateur user = uti.find(1);
-		Stage stage = st.find(25);
-		EffectueStage efec = new EffectueStage(stage,user);
-		
-		es.create(efec);
-		
-	}
 }

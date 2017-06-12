@@ -31,6 +31,8 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 				StatutUtilisateur su =  new StatutUtilisateurDAO().find(rs.getInt("id_statut"));
 				obj.setStatutUtilisateur(su);	
 				obj.setOffres(new OffreDAO().findUtilisateur(id));
+				obj.setValideStages(new ValideStageDAO().findUtilisateur(id));
+				obj.setEffectueStages(new EffectueStageDAO().findUtilisateur(id));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
