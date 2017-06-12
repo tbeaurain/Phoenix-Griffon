@@ -1,6 +1,8 @@
 package Controllers.Forms;
 
 import java.io.IOException;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,9 +80,11 @@ public class FormStage extends HttpServlet {
 			
 			bddStage.create(stage);
 			stage = bddStage.find(stage);
-			System.out.println("id    du stage  " + stage.getId());
 			EffectueStage effectueStage = new EffectueStage(stage, user);
 			EffectueStageBDD.create(effectueStage);
+			Set<EffectueStage> effectueStages = user.getEffectueStages();
+			effectueStages.add(effectueStage);
+			user.setEffectueStages(effectueStages);
 			
 			this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 		} else {
