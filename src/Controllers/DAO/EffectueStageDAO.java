@@ -3,6 +3,8 @@ package Controllers.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.EffectueStage;
 
@@ -24,6 +26,23 @@ public class EffectueStageDAO extends DAO<EffectueStage>{
 			e.printStackTrace();
 		}
 		return obj;
+	}
+	
+	public Set<EffectueStage> findUtilisateur(int idUtilisateur){
+		Set<EffectueStage> Effstages = new HashSet<EffectueStage>(0);
+		String sql = "select * from effectue_stage WHERE id_utilisateur = " + idUtilisateur;
+		try {
+			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			ResultSet rs  = pstmt.executeQuery();
+			while(rs.next()){
+				EffectueStage obj = new EffectueStage();
+				obj.setId_stage(new StageDAO().find(rs.getInt("id_stage")));
+				Effstages.add(obj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Effstages;
 	}
 
 	public EffectueStage create(EffectueStage obj) {

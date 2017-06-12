@@ -3,6 +3,8 @@ package Controllers.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.ValideStage;
 
@@ -26,6 +28,23 @@ public class ValideStageDAO extends DAO<ValideStage>{
 		return obj;
 	}
 
+	public Set<ValideStage> findUtilisateur(int idUtilisateur){
+		Set<ValideStage> Effstages = new HashSet<ValideStage>(0);
+		String sql = "select * from valide_stage WHERE id_utilisateur = " + idUtilisateur;
+		try {
+			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			ResultSet rs  = pstmt.executeQuery();
+			while(rs.next()){
+				ValideStage obj = new ValideStage();
+				obj.setStage(new StageDAO().find(rs.getInt("id_stage")));
+				Effstages.add(obj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Effstages;
+	}
+	
 	public ValideStage create(ValideStage obj) {
 		String sql = "INSERT INTO ValideStage (id_utilisateur, id_stage) "
 				+ "VALUES (?,?)";
