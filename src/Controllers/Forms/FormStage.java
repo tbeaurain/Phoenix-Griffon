@@ -124,7 +124,6 @@ public class FormStage extends HttpServlet {
 					}
 					Stage stageValide = stagesValidesListe.get(0).getStage();
 					if(stageEffectue.getId()==stageValide.getId()){
-						stageValideFlag=true;
 						ValideStageDAO VSDAO = new ValideStageDAO();
 						VSDAO.delete(stagesValidesListe.get(0));
 					}

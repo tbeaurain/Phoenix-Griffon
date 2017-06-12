@@ -25,6 +25,11 @@
 									aria-hidden="true">&times;</button>
 								<i>Les champs marqués d'un astérisque sont obligatoires.</i>
 							</div>
+							<div class="alert alert-info alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-hidden="true">&times;</button>
+								<i>Modifier une convention validée entrainera une nouvelle demande de validation.</i>
+							</div>
 
 							<div
 								class="form-group<c:if test="${form.erreurs['description']!=null}" var="maVariable" scope="session"> has-error</c:if>">

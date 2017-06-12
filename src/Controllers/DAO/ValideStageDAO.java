@@ -12,7 +12,7 @@ public class ValideStageDAO extends DAO<ValideStage>{
 
 	public ValideStage find(int id) {
 		ValideStage obj = new ValideStage();
-		String sql =  "select * from ValideStage where id = " + id;
+		String sql =  "select * from valide_stage where id = " + id;
 		try {
 			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
 			ResultSet rs  = pstmt.executeQuery();
@@ -36,6 +36,7 @@ public class ValideStageDAO extends DAO<ValideStage>{
 			ResultSet rs  = pstmt.executeQuery();
 			while(rs.next()){
 				ValideStage obj = new ValideStage();
+				obj.setId(rs.getInt("id"));
 				obj.setStage(new StageDAO().find(rs.getInt("id_stage")));
 				Effstages.add(obj);
 			}
@@ -46,7 +47,7 @@ public class ValideStageDAO extends DAO<ValideStage>{
 	}
 	
 	public ValideStage create(ValideStage obj) {
-		String sql = "INSERT INTO ValideStage (id_utilisateur, id_stage) "
+		String sql = "INSERT INTO valide_stage (id_utilisateur, id_stage) "
 				+ "VALUES (?,?)";
 		try {
 			PreparedStatement pstmt = this.connect.prepareStatement(sql);
@@ -60,7 +61,7 @@ public class ValideStageDAO extends DAO<ValideStage>{
 	}
 
 	public ValideStage update(ValideStage obj) {
-		String sql = "UPDATE ValideStage "
+		String sql = "UPDATE valide_stage "
 				+ "SET id_utilisateur = ? , id_stage = ?"
 				+ "WHERE id = ? ";
 		try {
@@ -77,7 +78,7 @@ public class ValideStageDAO extends DAO<ValideStage>{
 
 	public void delete(ValideStage obj) {
 		try {
-			this.connect.createStatement().executeUpdate("DELETE FROM ValideStage WHERE id = " + obj.getId());
+			this.connect.createStatement().executeUpdate("DELETE FROM valide_stage WHERE id = " + obj.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
