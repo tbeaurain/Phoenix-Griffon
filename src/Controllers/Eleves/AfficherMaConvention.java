@@ -1,6 +1,7 @@
 package Controllers.Eleves;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.phoenixgriffon.JobIsep.EffectueStage;
 import org.phoenixgriffon.JobIsep.Stage;
 import org.phoenixgriffon.JobIsep.Utilisateur;
+import org.phoenixgriffon.JobIsep.ValideStage;
 
 import Controllers.DAO.StageDAO;
 import Controllers.DAO.DAO;
@@ -34,6 +36,8 @@ public class AfficherMaConvention extends HttpServlet {
     public static final String ATT_USER_TYPE = "typeUtilisateur"; // Variable qui servira à identifier le type d'utilisateur (élève ou admin) dans la BDD
     public static final String ATT_ERROR = "erreur";
     public static final String ATT_ERROR_MESSAGE = "messageErreur";
+    public static final String ATT_STAGE = "stage";
+    public static final String ATT_STAGE_VALIDE_FLAG = "stage_valide_flag";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,26 +53,41 @@ public class AfficherMaConvention extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
 		
+		ArrayList<EffectueStage> stagesEffectuesListe = new ArrayList<>(user.getEffectueStages());
+		ArrayList<ValideStage> stagesValidesListe = new ArrayList<>(user.getValideStages());
+		System.out.println(stagesEffectuesListe);
+		System.out.println(stagesValidesListe);
+		
+		boolean stageValideFlag= false;
 		boolean erreur = false;
 		String messageErreur = "";
-		
-		Set<EffectueStage> stages = user.getEffectueStages();
-		int stageNb = stages.size();
-		if(stageNb==0){
+		int stagesEffectuesNb = stagesEffectuesListe.size();
+		System.out.println("Nb stages effectués : "+stagesEffectuesNb);
+		int stagesValidesNb = stagesValidesListe.size();
+		System.out.println("Nb stages validés : "+stagesValidesNb);
+		if(stagesEffectuesNb==0){
 			erreur = true;
 			messageErreur = "Vous n'avez pas encore rempli de convention de stage.";
-		}else if(stageNb>=1){
-			if(stageNb>1){
+		}else{
+			if(stagesEffectuesNb>1){
 				messageErreur = "Il semble que vous ayez rempli plusieurs conventions de stage. Veuillez contacter un adminisrateur. Affichage de votre première convention de stage uniquement.";
 			}
-			Iterator<EffectueStage> iter = stages.iterator();
-			EffectueStage stageInfos = iter.next();
-			int idStage = stageInfos.getId_stage();
-			//DAO<Stage> stageDAO = new StageDAO();
-			//Stage stage = stageDAO.find(idStage);
+			Stage stageEffectue = stagesEffectuesListe.get(0).getId_stage();
+			System.out.println("id stage : "+stageEffectue.getId());
+			if(stagesValidesNb>0){
+				if(stagesValidesNb>1){
+					messageErreur = messageErreur+" Il semble que vous ayez plusieurs stages validés. Veuillez contacter un administrateur.";
+				}
+				Stage stageValide = stagesValidesListe.get(0).getStage();
+				if(stageEffectue.getId()==stageValide.getId()){
+					stageValideFlag=true;
+				}
+			}
+			request.setAttribute(ATT_STAGE, stageEffectue);
 		}
 		request.setAttribute(ATT_ERROR, erreur);
 		request.setAttribute(ATT_ERROR_MESSAGE, messageErreur);
+		request.setAttribute(ATT_STAGE_VALIDE_FLAG, stageValideFlag);
 		
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}

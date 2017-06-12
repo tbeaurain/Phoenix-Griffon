@@ -43,7 +43,7 @@
 						<li><a href="PropositionOffre"><i class="fa fa-plus-circle fa-fw"></i> Proposer une offre</a></li>
 					</ul> <!-- /.nav-second-level -->
 				</li>
-				<li><a href="#"><i class="fa fa-book fa-fw"></i>Ma convention de stage</a>
+				<li><a href="#"><i class="fa fa-book fa-fw"></i>Ma convention de stage<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level" >
 						<li><a href="Convention"><i class="fa fa-edit fa-fw"></i>Remplir/Modifier ma convention de stage</a>
 						<li><a href="AfficherMaConvention"><i class="fa fa-file-text fa-fw"></i>Afficher ma convention de stage</a>

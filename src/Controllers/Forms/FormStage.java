@@ -69,17 +69,22 @@ public class FormStage extends HttpServlet {
 		
 		EffectueStage effectueStage = new EffectueStage(stage, user);
 		
-		bddStage.create(stage);
 		stage = bddStage.find(stage);
-		
 		EffectueStageBDD.create(effectueStage);
+		
+		
 		
 		/* Ajout du bean et de l'objet métier à l'objet requête */
 		request.setAttribute( ATT_Stage, stage );
 		request.setAttribute( ATT_FORM, form );
 
 		if ( form.getErreurs().isEmpty() ) {
-			/* Si aucune erreur, alors affichage de la fiche récapitulative */
+			/* Si aucune erreur, alors :
+			 * affichage de la fiche récapitulative */
+			bddStage.create(stage);
+			
+			
+			
 			this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 		} else {
 			/* Sinon, ré-affichage du formulaire de création avec les erreurs */
