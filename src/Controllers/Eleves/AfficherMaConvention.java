@@ -63,7 +63,7 @@ public class AfficherMaConvention extends HttpServlet {
 			}
 			Iterator<EffectueStage> iter = stages.iterator();
 			EffectueStage stageInfos = iter.next();
-			//int idStage = stageInfos.getId_stage();
+			int idStage = stageInfos.getId_stage();
 			//DAO<Stage> stageDAO = new StageDAO();
 			//Stage stage = stageDAO.find(idStage);
 		}
