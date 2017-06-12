@@ -55,16 +55,12 @@ public class AfficherMaConvention extends HttpServlet {
 		
 		ArrayList<EffectueStage> stagesEffectuesListe = new ArrayList<>(user.getEffectueStages());
 		ArrayList<ValideStage> stagesValidesListe = new ArrayList<>(user.getValideStages());
-		System.out.println(stagesEffectuesListe);
-		System.out.println(stagesValidesListe);
 		
 		boolean stageValideFlag= false;
 		boolean erreur = false;
 		String messageErreur = "";
 		int stagesEffectuesNb = stagesEffectuesListe.size();
-		System.out.println("Nb stages effectués : "+stagesEffectuesNb);
 		int stagesValidesNb = stagesValidesListe.size();
-		System.out.println("Nb stages validés : "+stagesValidesNb);
 		if(stagesEffectuesNb==0){
 			erreur = true;
 			messageErreur = "Vous n'avez pas encore rempli de convention de stage.";
@@ -73,7 +69,6 @@ public class AfficherMaConvention extends HttpServlet {
 				messageErreur = "Il semble que vous ayez rempli plusieurs conventions de stage. Veuillez contacter un adminisrateur. Affichage de votre première convention de stage uniquement.";
 			}
 			Stage stageEffectue = stagesEffectuesListe.get(0).getId_stage();
-			System.out.println("id stage : "+stageEffectue.getId());
 			if(stagesValidesNb>0){
 				if(stagesValidesNb>1){
 					messageErreur = messageErreur+" Il semble que vous ayez plusieurs stages validés. Veuillez contacter un administrateur.";

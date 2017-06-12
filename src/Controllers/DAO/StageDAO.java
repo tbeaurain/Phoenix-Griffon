@@ -44,9 +44,35 @@ public class StageDAO extends DAO<Stage>{
 	}
 
 	public Stage find(Stage obj) {
-		String sql = "select * from stage WHERE description = '" + obj.getDescription() +"'";
+		String sql = "SELECT * FROM stage WHERE adresse_lieu = ? AND ville_lieu = ? "
+				+ "AND code_postal_lieu = ? AND nom_service = ? AND "
+				+ "telephone_standard_lieu = ? AND nom_contact_convention = ? AND adresse_contact_convention = ? "
+				+ "AND code_postal_contact_convention = ? AND ville_contact_convention = ? AND "
+				+ "tel_contact_convention = ? AND nom_maitre_stage = ? AND "
+				+ "telephone_maitre_stage = ? AND mail_maitre_stage = ? AND "
+				+ "fonction_maitre_stage = ? AND mail_contact_convention = ? AND "
+			+ "remuneration = ? AND date_debut = ? AND date_fin = ? AND description = ?";
 		try {
-			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			PreparedStatement pstmt = this.connect.prepareStatement(sql);
+			pstmt.setString(1, obj.getAdresseLieu());
+			pstmt.setString(2, obj.getVilleLieu());
+			pstmt.setString(3, obj.getCodePostalLieu());
+			pstmt.setString(4, obj.getNomService());
+			pstmt.setString(5, obj.getTelephoneStandardLieu());
+			pstmt.setString(6, obj.getNomContactConvention());
+			pstmt.setString(7, obj.getAdresseContactConvention());
+			pstmt.setString(8, obj.getCodePostalContactConvention());
+			pstmt.setString(9, obj.getVilleContactConvention());
+			pstmt.setString(10, obj.getTelContactConvention());
+			pstmt.setString(11, obj.getNomMaitreStage());
+			pstmt.setString(12, obj.getTelephoneMaitreStage());
+			pstmt.setString(13, obj.getMailMaitreStage());
+			pstmt.setString(14, obj.getFonctionMaitreStage());
+			pstmt.setString(15, obj.getMailContactConvention());
+			pstmt.setDouble(16, obj.getRemuneration());
+			pstmt.setDate(17, new java.sql.Date(obj.getDateDebut().getTime()));
+			pstmt.setDate(18, new java.sql.Date(obj.getDateFin().getTime()));
+			pstmt.setString(19, obj.getDescription());
 			ResultSet rs  = pstmt.executeQuery();
 			if(rs.first()){
 				obj.setId(rs.getInt("id"));
@@ -89,7 +115,7 @@ public class StageDAO extends DAO<Stage>{
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}		
 		return obj;
 	}
 

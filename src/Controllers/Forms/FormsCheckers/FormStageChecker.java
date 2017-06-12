@@ -213,7 +213,7 @@ public class FormStageChecker{
 		if ( erreurs.isEmpty() ) {
 			resultat = "Succès de la création du stage.";
 		} else {
-			resultat = "Échec de la création du stage. Veuillez Compléter correctement les champs et réssayer.";
+			resultat = "Échec de la création/modification du stage. Veuillez Compléter correctement les champs et réssayer.";
 		}
 
 		return stage;
