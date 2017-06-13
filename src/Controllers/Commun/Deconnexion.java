@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String VUE_SUCCESS = "/jobisep/Connexion.html";
+	public static final String VUE_SUCCESS = "/Phoenix-Griffon/Connexion.html";
        
     /**
      * @see HttpServlet#HttpServlet()

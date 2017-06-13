@@ -41,7 +41,6 @@
                         </li>
                         <li><a href="#"><i class="fa fa-list-alt fa-fw"></i>Les Offres<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="OffresAValider"><i class="fa fa-search"></i>Offres en attente de validation</a></li>
 								<li><a href="RechercheOffre"><i class="fa fa-search"></i>Rechercher une offre</a></li>
 								<li><a href="OffresProposees"><i class="fa fa-list-ul fa-fw"></i> Mes offres Proposées</a></li>
 								<li><a href="PropositionOffre"><i class="fa fa-plus-circle fa-fw"></i> Proposer une offre</a></li>
