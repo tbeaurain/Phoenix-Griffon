@@ -21,17 +21,7 @@
 			<ul class="nav" id="side-menu">
 
 				<!-- Barre de recherche-->
-				<li class="sidebar-search">
-					<div class="input-group custom-search-form">
-						<input type="text" class="form-control"
-							placeholder="Recherche rapide..."> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<i class="fa fa-search"></i>
-							</button>
-						</span>
-					</div> <!-- /input-group -->
-				</li>
+				
 				<li><a href="AccueilEleve"><i class="fa fa-home fa-fw"></i>Accueil</a></li>
 				<li>
 					<!-- mettre class="active" si on veut que l'onglet soit d�pi� d�s le d�but-->
