@@ -130,6 +130,7 @@
 					                                </tr>
 					                            </tbody>
 					                        </table>
+					                        <a href="SupprimerOffre?idOffre=${monOffre.id}"><button type="button" class="btn btn-danger">Supprimer l'offre</button></a>
 				                    	</div>
 				                   	</div>
 				                </div>
