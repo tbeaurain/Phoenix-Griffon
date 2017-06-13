@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import org.phoenixgriffon.JobIsep.StatutUtilisateur;
 
 public class StatutUtilisateurDAO extends DAO <StatutUtilisateur>{
-	
+
 	public Connection connect = ConnectionSQL.getInstance();
-	
+
 	public StatutUtilisateur find(int id) {
 		StatutUtilisateur obj = new StatutUtilisateur();
 		String sql = "select * from statut_utilisateur WHERE id = " + id;
 		try {
 			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
 			ResultSet rs  = pstmt.executeQuery();
-			if(rs.first())
-				obj = new StatutUtilisateur(rs.getInt("id"),rs.getString("libelle"));
+			if(rs.first()){
+				obj.setId(id);
+				obj.setLibelle(rs.getString("libelle"));
+				obj.setUtilisateurs(new UtilisateurDAO().findUtilisateur(id));;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

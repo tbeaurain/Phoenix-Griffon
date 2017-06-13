@@ -147,25 +147,6 @@ public class ConnectionBDD {
 		}
 	}
 
-	public void addOffre(Offre offre){
-		String titre = offre.getTitre();
-		String description = offre.getDescription();
-		String date = offre.getDates();
-		String contact = offre.getContact();
-		Integer idUtilisateur = offre.;
-
-		String sql ="INSERT INTO offre (titre, description, dates, contact, id_utilisateur_propose) "
-				+ "VALUES ('"+ titre + "','" + description +"','" + date + "','" + contact + "','" + idUtilisateur + "')" ;
-
-		try (Connection conn = this.connection();
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.executeUpdate();
-			conn.close();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
 	public void addEntreprise(Entreprise entreprise){
 
 		String nom = entreprise.getNom();
@@ -219,36 +200,6 @@ public class ConnectionBDD {
 		return entreprise;
 	}
 
-	public Offre offre(int idOffre, Utilisateur utilisateur){
-		String titre = null;
-		String description = null;
-		Date miseEnLigne = null;
-		String dates = null;
-		String contact = null;
-		String lieu = null;
-
-		String sql = "SELECT * FROM offre where ID ='" + idOffre +"';";
-
-		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
-				ResultSet rs    = stmt.executeQuery(sql)){
-
-			while (rs.next()) {
-				titre = rs.getString("titre");
-				description = rs.getString("description");
-				miseEnLigne = rs.getDate("miseEnLigne");
-				dates = rs.getString("dates");
-				contact = rs.getString("contact");
-				lieu = rs.getString("lieu");
-
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-
-
-		Offre offre = new Offre (utilisateur.getId(), titre, description, miseEnLigne, dates, contact, lieu);
-		return offre;
-	}
 	// The higher the number of iterations the more 
 	// expensive computing the hash is for us and
 	// also for an attacker.

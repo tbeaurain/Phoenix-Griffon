@@ -12,7 +12,6 @@ import org.phoenixgriffon.JobIsep.Utilisateur;
 
 import Controllers.DAO.DAO;
 import Controllers.DAO.OffreDAO;
-import Model.Commun.AffichageOffre_BDD;
 
 /**
  * Servlet implementation class AffichageOffre

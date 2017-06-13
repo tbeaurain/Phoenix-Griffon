@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.phoenixgriffon.JobIsep.*;
 
@@ -40,6 +42,27 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		return obj;
 	}
 
+	public Set<Utilisateur> findUtilisateur(int idStatut){
+		Set<Utilisateur> allUtilisateurStatus = new HashSet<Utilisateur>(0);
+		String sql = "select * from utilisateur WHERE id_statut = " + idStatut;
+		try {
+			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			ResultSet rs  = pstmt.executeQuery();
+			while(rs.next()){
+				Utilisateur obj = new Utilisateur();
+				obj.setPrenom(rs.getString("prenom"));
+				obj.setNom(rs.getString("nom"));
+				obj.setDateNaissance(rs.getDate("date_naissance"));
+				obj.setIdentifiant(rs.getString("identifiant"));
+				obj.setMotdepasse(rs.getString("motdepasse"));
+				allUtilisateurStatus.add(obj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allUtilisateurStatus;
+	}
+	
 	public Utilisateur create(Utilisateur obj) {
 		String sql = "INSERT INTO utilisateur (id_statut, prenom, nom, date_naissance, identifiant, motdepasse) "
 				+ "VALUES (?,?,?,?,?,?)";

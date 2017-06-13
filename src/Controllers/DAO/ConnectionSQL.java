@@ -8,7 +8,7 @@ public class ConnectionSQL {
 
 	private static String url = "jdbc:mysql://localhost:3306/jobisep";
 	private static String user = "root";
-	private static String passwd = "";
+	private static String passwd = "root";
 
 	private static Connection connect;
 
@@ -26,5 +26,10 @@ public class ConnectionSQL {
 			}
 		}		
 		return connect;	
-	}	
+	}
+	public static void main(String[] args){
+		UtilisateurDAO ut = new UtilisateurDAO();
+		StatutUtilisateurDAO st = new StatutUtilisateurDAO();
+		System.out.println(st.find(1).getUtilisateurs());
+	}
 }
