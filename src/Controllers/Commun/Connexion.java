@@ -49,7 +49,7 @@ public class Connexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UtilisateurDAO utilisateurBDD = new UtilisateurDAO();
-		/*StatutUtilisateurDAO statutUtilisateurBDD = new StatutUtilisateurDAO();
+		StatutUtilisateurDAO statutUtilisateurBDD = new StatutUtilisateurDAO();
 
 		Utilisateur user = new Utilisateur();
 		StatutUtilisateur statutUtilisateur = new StatutUtilisateur();
@@ -77,25 +77,19 @@ public class Connexion extends HttpServlet {
 				System.out.println("login invalide");
 				return;
 			} 
-		}*/
+		}
 		
-		//-----------TEST----------------------
-		Utilisateur user = utilisateurBDD.find(2);
-		//-----------------------------------
 		
 		if ( user.getId() != null) {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute( ATT_SESSION_USER , user);
 			
-			System.out.println("ok");
-			
 			if( session.getAttribute( ATT_SESSION_USER ) != null ){
 				Utilisateur usr = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
-				int idStatutUtilisateur = usr.getStatutUtilisateur().getId();
-				if(idStatutUtilisateur==1){ // StatutUtilisateur = 1 : l'utilisateur est un élève
+				if(usr.getStatutUtilisateur().getId()==1){ // StatutUtilisateur = 1 : l'utilisateur est un élève
 					this.getServletContext().getRequestDispatcher( SERVLET_ELEVE ).forward( request, response );
-				}else if(idStatutUtilisateur==2){ // StatutUtilisateur = 2 : l'utilisateur est un administrateur (prof, ...)
+				}else{ // StatutUtilisateur = 2 : l'utilisateur est un administrateur (prof, ...)
 					this.getServletContext().getRequestDispatcher( SERVLET_ADMIN ).forward( request, response );
 				}
 			}else{
