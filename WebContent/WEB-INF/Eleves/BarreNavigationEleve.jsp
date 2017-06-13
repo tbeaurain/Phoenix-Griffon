@@ -39,7 +39,7 @@
 					</ul>
 				</li>
 				<li><a href="Contacts"><i class="fa fa-users fa-fw"></i>Chercher un contact</a></li>
-				<li><a href="EcrireMessageEleve"><i class="fa fa-envelope fa-fw"></i>Envoyer un message</a></li>
+				<li><a href="EcrireMessage"><i class="fa fa-envelope fa-fw"></i>Envoyer un message</a></li>
 				<li><a href="#"><i class="fa fa fa-user fa-fw fa-fw"></i>Profil<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="Profil"><i class="fa fa-user fa-fw"></i>Voir mon profil</a></li>
