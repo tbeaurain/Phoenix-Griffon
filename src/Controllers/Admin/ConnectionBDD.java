@@ -1,0 +1,405 @@
+package Controllers.Admin;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import java.security.SecureRandom;
+import org.apache.tomcat.util.codec.binary.Base64;
+
+import org.phoenixgriffon.JobIsep.*;
+
+public class ConnectionBDD {
+
+	private Connection connection(){
+		try {
+			Class.forName( "com.mysql.jdbc.Driver" );
+		} catch ( ClassNotFoundException e ) {
+			System.out.println(e);
+		}
+
+		String url = "jdbc:mysql://localhost:3306/jobisep";
+		String utilisateur = "root";
+		String motDePasse = "";
+		Connection connexion = null;
+
+		try {
+			connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
+		} catch ( SQLException e ) {
+			System.out.println(e);
+		} 
+		return connexion;
+	}
+
+	public void addUtilisateur(Utilisateur utilisateur){
+
+		StatutUtilisateur statutUtilisateur = utilisateur.getStatutUtilisateur();
+		String prenom = utilisateur.getPrenom();
+		String nom = utilisateur.getNom();
+		Date dateDeNaisssance = (Date) utilisateur.getDateNaissance() ;
+		String identifiant = utilisateur.getIdentifiant();
+		String mdp = utilisateur.getMotdepasse();
+
+		int idStatutUtilisateur = IdStatutUtilisateur(statutUtilisateur.getLibelle());
+
+		if ( idStatutUtilisateur == 0){
+			addStatutUtilisateur(statutUtilisateur);
+			idStatutUtilisateur = IdStatutUtilisateur(statutUtilisateur.getLibelle());
+		}
+
+		String sql = "INSERT INTO utilisateur (id_statut, prenom, nom, date_naissance, identifiant, motdepasse) "
+				+ "VALUES ('"+ idStatutUtilisateur +"','" + prenom +"','" + nom + "','" + 
+				dateDeNaisssance +"','"+ identifiant +"','"+ mdp +"');" ;
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addStage(Stage stage){
+		String adresseLieu = stage.getAdresseLieu();
+		String villeLieu = stage.getVilleLieu();
+		String codePostalLieu = stage.getCodePostalLieu();
+		String nomService = stage.getNomService();
+		String telephoneStandardLieu = stage.getTelephoneStandardLieu();
+		String nomContactConvention = stage.getNomContactConvention();
+		String adresseContactConvention = stage.getAdresseContactConvention();
+		String codePostalContactConvention = stage.getCodePostalContactConvention();
+		String villeContactConvention = stage.getVilleContactConvention();
+		String telContactConvention = stage.getTelContactConvention();
+		String nomMaitreStage = stage.getNomMaitreStage();
+		String telephoneMaitreStage = stage.getTelephoneMaitreStage();
+		String mailMaitreStage = stage.getMailMaitreStage();
+		String fonctionMaitreStage = stage.getFonctionMaitreStage();
+		String mailContactConvention = stage.getMailContactConvention();
+		Double remuneration = stage.getRemuneration();
+		Date dateDebut = stage.getDateDebut();
+		Date dateFin = stage.getDateFin();
+		String description = stage.getDescription();
+		
+		java.sql.Date sqlDateDebut = new java.sql.Date(dateDebut.getTime());
+		java.sql.Date sqlDateFin = new java.sql.Date(dateFin.getTime());
+		
+		String sql = "INSERT INTO stage (adresse_lieu,ville_lieu,code_postal_lieu,nom_service, "
+				+ "telephone_standard_lieu,nom_contact_convention,adresse_contact_convention,"
+				+ "code_postal_contact_convention,ville_contact_convention,tel_contact_convention,nom_maitre_stage,"
+				+ "telephone_maitre_stage,mail_maitre_stage,fonction_maitre_stage,mail_contact_convention,"
+				+ "remuneration,date_debut,date_fin,description) "
+				+ "VALUES ('" + adresseLieu + "','" + villeLieu + "','" + codePostalLieu + "','" +
+				nomService + "','" + telephoneStandardLieu + "','" +
+				nomContactConvention + "','" + adresseContactConvention + "','" + codePostalContactConvention +
+				"','" +villeContactConvention+ "','" +telContactConvention+ "','" +nomMaitreStage +
+				"','" +telephoneMaitreStage+ "','" +mailMaitreStage+ "','" +fonctionMaitreStage+ "','" +
+				mailContactConvention+ "','" +remuneration+ "','" +sqlDateDebut+ "','" +
+				sqlDateFin+ "','" +description + "')" ;
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public int IdStatutUtilisateur(String libelle){
+		int id = 0;
+		String sql = "SELECT id FROM statut_utilisateur WHERE libelle = '" + libelle + "';" ;
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt  = conn.prepareStatement(sql)){
+
+			ResultSet rs  = pstmt.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("id"); 
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		return id;
+	}
+
+	public void addStatutUtilisateur(StatutUtilisateur statutUtilisateur){
+		String statut = statutUtilisateur.getLibelle();
+
+		String sql ="INSERT INTO statut_utilisateur (libelle) "
+				+ "VALUES ('"+ statut + "')" ;
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addEntreprise(Entreprise entreprise){
+
+		String nom = entreprise.getNom();
+		String siret = entreprise.getSiret();
+		String codeApe =  entreprise.getCodeApe();
+		String adresseSiege =entreprise.getAdresseSiege();
+		String villeSiege = entreprise.getVilleSiege();
+		String codePostal = entreprise.getCodePostalSiege();
+		String tel = entreprise.getTelephoneSiege();
+
+		String sql =  "INSERT INTO entreprise (nom, siret, code_ape, adresse_siege, ville_siege,"
+				+ " code_postal_siege, telephone_siege) "
+				+ "VALUES ('"+ nom +"','" + siret +"','" + codeApe +"','" + adresseSiege + 
+				"','" + villeSiege +"','"+ codePostal +"','"+ tel +"');" ;
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public Entreprise entreprise(int id){
+		String nom = null;
+		String siret = null;
+		String codeApe = null;
+		String adresseSiege = null;
+		String villeSiege = null;
+		String codePostalSiege = null;
+		String telephoneSiege = null;
+		String sql = "SELECT * FROM entreprise where ID ='" + id +"';";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+			while (rs.next()) {
+				nom = rs.getString("nom");
+				siret = rs.getString("siret");
+				codeApe = rs.getString("code_ape");
+				adresseSiege = rs.getString("adresse_siege");
+				villeSiege = rs.getString("ville_siege");
+				codePostalSiege = rs.getString("code_postal_siege");
+				telephoneSiege = rs.getString("telephone_siege");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		Entreprise entreprise= new Entreprise (nom, siret, codeApe, adresseSiege, 
+				villeSiege, codePostalSiege, telephoneSiege);
+		return entreprise;
+	}
+
+	// The higher the number of iterations the more 
+	// expensive computing the hash is for us and
+	// also for an attacker.
+	private static final int iterations = 20*1000;
+	private static final int saltLen = 32;
+	private static final int desiredKeyLen = 256;
+
+	/** Computes a salted PBKDF2 hash of given plaintext password
+        suitable for storing in a database. 
+        Empty passwords are not supported. */
+	public static String getSaltedHash(String password) throws Exception {
+		byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
+		// store the salt with the password
+		return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
+	}
+
+	/** Checks whether given plaintext password corresponds 
+        to a stored salted hash of the password. */
+	public static boolean check(String password, String stored) throws Exception{
+		String[] saltAndPass = stored.split("\\$");
+		if (saltAndPass.length != 2) {
+			throw new IllegalStateException(
+					"The stored password have the form 'salt$hash'");
+		}
+		String hashOfInput = hash(password, Base64.decodeBase64(saltAndPass[0]));
+		return hashOfInput.equals(saltAndPass[1]);
+	}
+
+	// using PBKDF2 from Sun, an alternative is https://github.com/wg/scrypt
+	// cf. http://www.unlimitednovelty.com/2012/03/dont-use-bcrypt.html
+	private static String hash(String password, byte[] salt) throws Exception {
+		if (password == null || password.length() == 0)
+			throw new IllegalArgumentException("Empty passwords are not supported.");
+		SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+		SecretKey key = f.generateSecret(new PBEKeySpec(
+				password.toCharArray(), salt, iterations, desiredKeyLen)
+				);
+		return Base64.encodeBase64String(key.getEncoded());
+	}
+
+	public boolean login(String identifiant, String mdp, Utilisateur renvoye) throws Exception{
+		System.out.println("passage sur la fonction de login "+identifiant+" - "+mdp);
+		int idStatutUtilisateur;
+		String prenom;
+		String nom;
+		String hashedPass;
+		Date dateNaissance;
+		String sql = "SELECT * FROM utilisateur WHERE "
+				+ "identifiant = '" + identifiant +"'";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+			rs.last();
+			int rows = rs.getRow();
+			rs.beforeFirst();
+			if(rows == 0)
+			{
+				return false;
+			}
+			else
+			{
+
+				rs.next();
+				prenom = rs.getString("prenom");
+				nom = rs.getString("nom");
+				dateNaissance = rs.getDate("date_naissance");
+				idStatutUtilisateur = rs.getInt("id_statut");
+				hashedPass = rs.getString("motdepasse");
+				System.out.println("tu es connect� en tant que "+prenom+" "+nom);
+				if(true || check(mdp, hashedPass))
+				{
+					StatutUtilisateur statutUtilisateur = statutUtilisateur(idStatutUtilisateur);
+
+					renvoye.setStatutUtilisateur(statutUtilisateur);
+					renvoye.setPrenom(prenom);
+					renvoye.setNom(nom);
+					renvoye.setDateNaissance(dateNaissance);
+					renvoye.setIdentifiant(identifiant);
+					renvoye.setMotdepasse(mdp);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+
+	}
+	
+	public Utilisateur getUtilisateur(int id){
+		Utilisateur usr = new Utilisateur();	
+		String sql="SELECT * FROM utilisateur WHERE ID = ? ";
+		try {
+				Connection conn=this.connection();
+				PreparedStatement pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				usr.setId(id);
+				usr.setPrenom(rs.getString("prenom"));
+				usr.setNom(rs.getString("nom"));
+				usr.setDateNaissance(rs.getDate("date_naissance"));
+				usr.setIdentifiant(rs.getString("identifiant"));
+				usr.setMotdepasse(rs.getString("motdepasse"));
+				usr.setStatutUtilisateur(statutUtilisateur(rs.getInt("id_statut")));	
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return usr;
+	}
+
+	public StatutUtilisateur statutUtilisateur(int id){
+		String libelle = " ";
+		String sql = "SELECT * FROM statut_utilisateur where id = '" + id +"';";
+
+		try (Connection conn = this.connection(); Statement stmt  = conn.createStatement();
+				ResultSet rs    = stmt.executeQuery(sql)){
+
+			while (rs.next()) {
+				libelle = rs.getString("libelle");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		StatutUtilisateur statutUtilisateur= new StatutUtilisateur (libelle);
+		return statutUtilisateur;
+	}
+
+	public void updateUtilisateur(int id, String mdp, Date DateDeNaissance, String nom, String prenom ){
+		String sql = "UPDATE utilisateur "
+				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
+				+ "WHERE id = ? ;";
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			int year = DateDeNaissance.getYear();
+			int month = DateDeNaissance.getMonth();
+			int day = DateDeNaissance.getDay();
+			java.sql.Date date_naissance = new java.sql.Date(year, month, day);
+			pstmt.setString(1, prenom);
+			pstmt.setString(2, nom);
+			pstmt.setDate(3,date_naissance);
+			pstmt.setString(4, mdp);
+			pstmt.setInt(5, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void updateUtilisateur(Utilisateur utilisateur){
+		String sql = "UPDATE utilisateur "
+				+ "SET prenom = ? , nom = ?, date_naissance = ?, motdepasse = ? "
+				+ "WHERE id = ? ;";
+
+		try (Connection conn = this.connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			int year = utilisateur.getDateNaissance().getYear();
+			int month = utilisateur.getDateNaissance().getMonth();
+			int day = utilisateur.getDateNaissance().getDay();
+			java.sql.Date date_naissance = new java.sql.Date(year, month, day);
+			pstmt.setString(1, utilisateur.getPrenom());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setDate(3, date_naissance);
+			pstmt.setString(4, utilisateur.getIdentifiant());
+			pstmt.setInt(5, utilisateur.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void main(String[] args){
+
+		ConnectionBDD bdd = new ConnectionBDD();
+
+		Utilisateur util = new Utilisateur();
+		util.setId(1);
+
+		int years = 1995;
+		int month = 10;
+		int jour = 15;
+
+		Date dateDebut = new Date (years, month, jour);
+		Date dateFin = new Date (years, month, jour);
+
+		Stage stage = new Stage("adresseLieu", "villeLieu", "codlLieu", "nomService",
+				"telephone",  "nomContactConvention",  "adtion",
+				"codePos",  "villeContactConvention",  "telCo",
+				"nomMaitreStage",  "telephon",  "mailMaitreStage",  "fonctionMaitreStage",
+				"mailContactConvention",  123456,  dateDebut, dateDebut, "String description");
+
+		bdd.addStage(stage);
+
+		System.out.println("fini");
+	}
+
+}
