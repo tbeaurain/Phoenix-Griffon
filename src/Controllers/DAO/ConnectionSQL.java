@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.phoenixgriffon.JobIsep.StatutUtilisateur;
-import org.phoenixgriffon.JobIsep.Utilisateur;
-
 public class ConnectionSQL {
 
 	private static String url = "jdbc:mysql://localhost:3306/jobisep";
@@ -29,15 +26,5 @@ public class ConnectionSQL {
 			}
 		}		
 		return connect;	
-	}
-	public static void main(String[] args){
-		UtilisateurDAO ut = new UtilisateurDAO();
-		Utilisateur u = new Utilisateur ();
-		u.setMotdepasse("testt");
-		u.setIdentifiant("identifiant123");
-		
-		
-		StatutUtilisateurDAO su = new StatutUtilisateurDAO();
-		
 	}
 }

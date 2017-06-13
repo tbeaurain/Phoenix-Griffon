@@ -42,7 +42,34 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		return obj;
 	}
 
-
+	public Utilisateur find(String prenom, String nom) {
+		Utilisateur obj = new Utilisateur();
+		String sql =  "select * from utilisateur where prenom = ? and nom = ?" ;
+		try {
+			PreparedStatement pstmt  = this.connect.prepareStatement(sql);
+			pstmt.setString(1, prenom);
+			pstmt.setString(2, nom);
+			ResultSet rs  = pstmt.executeQuery();
+			if(rs.first()){
+				int id = rs.getInt("id");
+				obj.setId(id);
+				obj.setPrenom(rs.getString("prenom"));
+				obj.setNom(rs.getString("nom"));
+				obj.setDateNaissance(rs.getDate("date_naissance"));
+				obj.setIdentifiant(rs.getString("identifiant"));
+				obj.setMotdepasse(rs.getString("motdepasse"));
+				StatutUtilisateur su =  new StatutUtilisateurDAO().find(rs.getInt("id_statut"));
+				obj.setStatutUtilisateur(su);	
+				obj.setOffres(new OffreDAO().findUtilisateur(id));
+				obj.setValideStages(new ValideStageDAO().findUtilisateur(id));
+				obj.setEffectueStages(new EffectueStageDAO().findUtilisateur(id));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
+	
 	public Utilisateur connexion(String Pseudo, String mdp) {
 		Utilisateur obj = new Utilisateur();
 		String sql =  "select * from utilisateur where identifiant = ? and motdepasse = ?" ;
