@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.phoenixgriffon.JobIsep.Utilisateur;
 
-import Controllers.DAO.DAO;
 import Controllers.DAO.UtilisateurDAO;
 
 /**
