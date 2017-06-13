@@ -15,10 +15,10 @@ import org.phoenixgriffon.JobIsep.Offre;
 public class FormOffreChecker{
 	private static final long serialVersionUID = 1L;
 	
-	private static final String CHAMP_UTILISATEUR    = "utilisateur"; // mettre l'utilisatieur qui créé l'action quand on aura des sessions
+	private static final String CHAMP_UTILISATEUR    = "utilisateur"; // mettre l'utilisatieur qui crï¿½ï¿½ l'action quand on aura des sessions
 	private static final String CHAMP_TITRE          = "titre";
     private static final String CHAMP_DESCRIPTION    = "description";
-    private static final String CHAMP_MISE_EN_LIGNE  = "mise_en_ligne"; // A récupérer par la date actuelle
+    private static final String CHAMP_MISE_EN_LIGNE  = "mise_en_ligne"; // A rï¿½cupï¿½rer par la date actuelle
     private static final String CHAMP_DATES          = "dates";
     private static final String CHAMP_CONTACT        = "contact";
     private static final String CHAMP_LIEU           = "lieu";
@@ -35,18 +35,18 @@ public class FormOffreChecker{
     }
 
     public Offre creerOffre( HttpServletRequest request ) {
-    	/*Récupération du contenu du formulaire*/
+    	/*Rï¿½cupï¿½ration du contenu du formulaire*/
         String titre = getValeurChamp( request, CHAMP_TITRE );
         String description = getValeurChamp( request, CHAMP_DESCRIPTION );
         String lieu = getValeurChamp( request, CHAMP_LIEU );
         String dates = getValeurChamp( request, CHAMP_DATES );
         String contact = getValeurChamp( request, CHAMP_CONTACT );
         
-        /*Création de bean Offre*/
+        /*Crï¿½ation de bean Offre*/
         Offre offre = new Offre();
         
-        /*Appel des fonctions de validation des données et ajout des données au bean
-         *	>Si une erreur est détectée lors de la vaidation, ajout du message d'erreur dans la variable "erreurs"
+        /*Appel des fonctions de validation des donnï¿½es et ajout des donnï¿½es au bean
+         *	>Si une erreur est dï¿½tectï¿½e lors de la vaidation, ajout du message d'erreur dans la variable "erreurs"
          */
         try {
             validationTitre( titre );
@@ -86,9 +86,9 @@ public class FormOffreChecker{
      
 
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de la création de l'offre de stage. Elle sera visible par les autres utilisateurs lorsqu'un administrateur l'aura validée.";
+            resultat = "SuccÃ¨s de la crÃ©ation de l'offre de stage. Elle sera visible par les autres utilisateurs lorsqu'un administrateur l'aura validÃ©e.";
         } else {
-            resultat = "Echec de la création de l'offre. Veuillez compléter correctement les champs du formulaire et réssayer.";
+            resultat = "Echec de la crÃ©ation de l'offre. Veuillez complÃ©ter correctement les champs du formulaire et rÃ©ssayer.";
         }
 
         return offre;
@@ -97,7 +97,7 @@ public class FormOffreChecker{
     private void validationTitre( String titre ) throws Exception {
         if ( titre != null ) {
             if ( titre.length() < 5 ) {
-                throw new Exception( "Le nom titre doit contenir au moins 5 caractères." );
+                throw new Exception( "Le nom titre doit contenir au moins 5 caractï¿½res." );
             }
         } else {
             throw new Exception( "Merci d'entrer un titre pour cette offre." );
@@ -107,7 +107,7 @@ public class FormOffreChecker{
     private void validationDescription( String description ) throws Exception {
     	if ( description != null ) {
             if ( description.length() < 10 ) {
-                throw new Exception( "La description doit contenir au moins 10 caractères." );
+                throw new Exception( "La description doit contenir au moins 10 caractï¿½res." );
             }
         } else {
             throw new Exception( "Merci d'entrer une descritpion." );
@@ -117,23 +117,23 @@ public class FormOffreChecker{
     private void validationLieu( String lieu ) throws Exception {
         if ( lieu != null ) {
             if ( lieu.length() < 2 ) {
-                throw new Exception( "Le lieu doit contenir au moins 2 caractères." );
+                throw new Exception( "Le lieu doit contenir au moins 2 caractï¿½res." );
             }
         } else {
-            throw new Exception( "Merci d'entrer un lieu de déroulement du stage." );
+            throw new Exception( "Merci d'entrer un lieu de dï¿½roulement du stage." );
         }
     }
 
     private void validationDates( String dates ) throws Exception {
     	if ( dates != null && dates.length() < 5 ) {
-            throw new Exception( "La description de la date doit contenir au moins 5 caractères." );
+            throw new Exception( "La description de la date doit contenir au moins 5 caractï¿½res." );
         }
     }
 
     private void validationContact( String contact ) throws Exception {
     	if ( contact != null ) {
             if ( contact.length() < 5 ) {
-                throw new Exception( "Le contact doit contenir au moins 5 caractères." );
+                throw new Exception( "Le contact doit contenir au moins 5 caractï¿½res." );
             }
         } else {
             throw new Exception( "Merci d'entrer un contact." );
@@ -141,14 +141,14 @@ public class FormOffreChecker{
     }
 
     /*
-     * Ajoute un message correspondant au champ spécifié Ã  la map des erreurs.
+     * Ajoute un message correspondant au champ spï¿½cifiï¿½ Ã  la map des erreurs.
      */
     private void setErreur( String champ, String message ) {
         erreurs.put( champ, message );
     }
 
     /*
-     * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
+     * Mï¿½thode utilitaire qui retourne null si un champ est vide, et son contenu
      * sinon.
      */
     private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
