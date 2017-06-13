@@ -86,6 +86,8 @@ public class Connexion extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute( ATT_SESSION_USER , user);
 			
+			System.out.println("ok");
+			
 			if( session.getAttribute( ATT_SESSION_USER ) != null ){
 				Utilisateur usr = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
 				int idStatutUtilisateur = usr.getStatutUtilisateur().getId();
