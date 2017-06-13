@@ -49,7 +49,7 @@ public class Connexion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UtilisateurDAO utilisateurBDD = new UtilisateurDAO();
-		StatutUtilisateurDAO statutUtilisateurBDD = new StatutUtilisateurDAO();
+		/*StatutUtilisateurDAO statutUtilisateurBDD = new StatutUtilisateurDAO();
 
 		Utilisateur user = new Utilisateur();
 		StatutUtilisateur statutUtilisateur = new StatutUtilisateur();
@@ -77,7 +77,11 @@ public class Connexion extends HttpServlet {
 				System.out.println("login invalide");
 				return;
 			} 
-		}
+		}*/
+		
+		//-----------TEST----------------------
+		Utilisateur user = utilisateurBDD.find(2);
+		//-----------------------------------
 		
 		if ( user.getId() != null) {
 			
