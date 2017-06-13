@@ -96,6 +96,7 @@ public class UtilisateurDAO extends DAO <Utilisateur>{
 		String sql = "INSERT INTO utilisateur (id_statut, prenom, nom, date_naissance, identifiant, motdepasse) "
 				+ "VALUES (?,?,?,?,?,?)";
 		try {
+			@SuppressWarnings("deprecation")
 			Date dateDeNaissance = new Date(0,0,0);
 			PreparedStatement pstmt = this.connect.prepareStatement(sql);
 			pstmt.setInt(1, obj.getStatutUtilisateur().getId());

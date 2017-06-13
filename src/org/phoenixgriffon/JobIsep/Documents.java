@@ -6,6 +6,10 @@ package org.phoenixgriffon.JobIsep;
  */
 public class Documents implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String chemin;
 	private String type;

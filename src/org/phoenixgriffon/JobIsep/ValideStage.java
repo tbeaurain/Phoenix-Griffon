@@ -6,6 +6,10 @@ package org.phoenixgriffon.JobIsep;
  */
 public class ValideStage implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Utilisateur utilisateur;
 	private Stage stage;

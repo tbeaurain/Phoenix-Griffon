@@ -6,6 +6,10 @@ package org.phoenixgriffon.JobIsep;
  */
 public class EffectueStage implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Utilisateur id_utilisateur;
 	private Stage id_stage;

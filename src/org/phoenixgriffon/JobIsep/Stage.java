@@ -10,6 +10,10 @@ import java.util.Set;
  */
 public class Stage implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Date dateCreation;
 	private String adresseLieu;

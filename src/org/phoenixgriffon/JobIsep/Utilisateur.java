@@ -23,7 +23,6 @@ public class Utilisateur implements java.io.Serializable {
 	private StatutUtilisateur statutUtilisateur;
 	private Set<Offre> offres = new HashSet<Offre>(0);
 	private Set<EffectueStage> effectueStages = new HashSet<EffectueStage>(0);
-	private Set<Parcours> parcourses = new HashSet<Parcours>(0);
 	private Set<ValideStage> valideStages = new HashSet<ValideStage>(0);
 
 	public Utilisateur() {
@@ -41,7 +40,7 @@ public class Utilisateur implements java.io.Serializable {
 
 	public Utilisateur(StatutUtilisateur statutUtilisateur, String prenom, String nom, Date dateNaissance,
 			String identifiant, String motdepasse, Set<Offre> offres, Set<EffectueStage> effectueStages,
-			Set<Parcours> parcourses, Set<ValideStage> valideStages) {
+			Set<ValideStage> valideStages) {
 		this.statutUtilisateur = statutUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
@@ -50,7 +49,6 @@ public class Utilisateur implements java.io.Serializable {
 		this.motdepasse = motdepasse;
 		this.offres = offres;
 		this.effectueStages = effectueStages;
-		this.parcourses = parcourses;
 		this.valideStages = valideStages;
 	}
 
@@ -124,14 +122,6 @@ public class Utilisateur implements java.io.Serializable {
 
 	public void setEffectueStages(Set<EffectueStage> effectueStages) {
 		this.effectueStages = effectueStages;
-	}
-
-	public Set<Parcours> getParcourses() {
-		return this.parcourses;
-	}
-
-	public void setParcourses(Set<Parcours> parcourses) {
-		this.parcourses = parcourses;
 	}
 
 	public Set<ValideStage> getValideStages() {
