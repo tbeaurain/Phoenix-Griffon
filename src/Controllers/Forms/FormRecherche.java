@@ -22,7 +22,7 @@ public class FormRecherche extends HttpServlet {
 	
 	public static final String ATT_RECHERCHE = "recherche";
 	
-	public static final String VUE_SUCCES = "/WEB-INF/Eleves/RechercheOffre.jsp";
+	public static final String VUE_SUCCES = "/WEB-INF/Commun/RechercheOffre.jsp";
     /**
      * @see HttpServlet#HttpServlet()
      */

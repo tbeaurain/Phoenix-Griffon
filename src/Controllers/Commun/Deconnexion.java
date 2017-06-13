@@ -2,7 +2,6 @@ package Controllers.Commun;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String VUE_SUCCESS = "/Phoenix-Griffon/Connexion.html";
+	public static final String VUE_SUCCESS = "/jobisep/Connexion.html";
        
     /**
      * @see HttpServlet#HttpServlet()
