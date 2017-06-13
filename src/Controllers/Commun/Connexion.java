@@ -24,7 +24,7 @@ public class Connexion extends HttpServlet {
 
 	public static final String SERVLET_ADMIN = "/AccueilAdmin";
 	public static final String SERVLET_ELEVE = "/AccueilEleve";
-	public static final String ECHEC = "/jobisep/Connexion.html";
+	public static final String ECHEC = "/Connexion.html";
 
 	public static final String ATT_SESSION_USER = "sessionUtilisateur";
 
