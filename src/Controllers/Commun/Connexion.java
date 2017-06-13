@@ -80,7 +80,7 @@ public class Connexion extends HttpServlet {
 		}*/
 		
 		//-----------TEST----------------------
-		Utilisateur user = utilisateurBDD.find(2);
+		Utilisateur user = utilisateurBDD.find(1);
 		//-----------------------------------
 		
 		if ( user.getId() != null) {
