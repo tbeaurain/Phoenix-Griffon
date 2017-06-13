@@ -24,7 +24,7 @@ public class Connexion extends HttpServlet {
 
 	public static final String SERVLET_ADMIN = "/AccueilAdmin";
 	public static final String SERVLET_ELEVE = "/AccueilEleve";
-	public static final String ECHEC = "/Phoenix-Griffon/Connexion.html";
+	public static final String ECHEC = "/jobisep/Connexion.html";
 
 	public static final String ATT_SESSION_USER = "sessionUtilisateur";
 
@@ -65,19 +65,17 @@ public class Connexion extends HttpServlet {
 			LDAPAccess access = new LDAPAccess();
 			try {
 				LDAPObject test = access.LDAPget(pseudo, mdp);
-				if (test == null){
-					System.out.println("login invalide");
-				}
-				else {
-					user.setIdentifiant(pseudo);
-					user.setMotdepasse(mdp);
-					statutUtilisateur = statutUtilisateurBDD.findConnexion(test.getType());
-					user.setStatutUtilisateur(statutUtilisateur);
-					user = utilisateurBDD.createNewUtilisateur(user);
-					user = utilisateurBDD.connexion(pseudo, mdp);
-				}
+				user.setIdentifiant(pseudo);
+				user.setMotdepasse(mdp);
+				statutUtilisateur = statutUtilisateurBDD.findConnexion(test.getType());
+				user.setStatutUtilisateur(statutUtilisateur);
+				user = utilisateurBDD.createNewUtilisateur(user);
+				user = utilisateurBDD.connexion(pseudo, mdp);
 			}
 			catch(Exception e) {
+				this.getServletContext().getRequestDispatcher( "/Connexion.html" ).forward( request, response );
+				System.out.println("login invalide");
+				return;
 			} 
 		}
 		
