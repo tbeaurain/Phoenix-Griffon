@@ -35,11 +35,11 @@
 	            <div class="container-fluid">
 	                <div class="row">
 	                    <div class="col-lg-12">
-	                        <h1 class="page-header">Recherche de contact</h1>
+	                        <h1 class="page-header">Recherche de convention par eleve</h1>
 	                    </div>
 	                    <!-- /.col-lg-12 -->
 	                </div>
-	             <jsp:include page="/WEB-INF/Forms/FormContact.jsp"/>   
+	             <jsp:include page="/WEB-INF/Forms/FormConventionParEleve.jsp"/>   
 	            </div>
 	            <% if(request.getAttribute("liste_utilisateurs")!=null){
 	            	
@@ -47,7 +47,7 @@
 		               	ArrayList<Utilisateur> liste = (ArrayList<Utilisateur>) request.getAttribute("liste_utilisateurs");
 		               	if(liste.size()!=0){
 			     	      	for(Utilisateur utilisateur : liste){
-			     	      		out.print("<div class=\"col-md-1\"></div><div class=\"col-md-8\"><div class=\"panel panel-info\"><div class=\"panel-heading\"><h4> Voici le contact : " + utilisateur.getNom() + " </h4></div><div class=\"panel-body\"><div class=\"row\"><div class=\"col-lg-12\"> Le nom du contact est " + utilisateur.getNom() + " et son prenom est " + utilisateur.getPrenom() +"<br><a href=\"ProfilEleve?id=" + utilisateur.getId() +"\">Voir le contact</a>" +  "</div></div></div></div></div><hr style=\"clear:both;\">");
+			     	      		out.print("<div class=\"col-md-1\"></div><div class=\"col-md-8\"><div class=\"panel panel-info\"><div class=\"panel-heading\"><h4> Voici le contact : " + utilisateur.getNom() + " </h4></div><div class=\"panel-body\"><div class=\"row\"><div class=\"col-lg-12\"> " + utilisateur.getPrenom() + " " + utilisateur.getNom() +"<br><a href=\"AfficherConvention?ideleve=" + utilisateur.getId() +"\">Voir la convention</a>" +  "</div></div></div></div></div><hr style=\"clear:both;\">");
 			               
 			               	}
 		               	}

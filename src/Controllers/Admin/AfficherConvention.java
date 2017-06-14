@@ -48,7 +48,8 @@ public class AfficherConvention extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int eleveID =Integer.parseInt(request.getParameter("ideleve"));
+		String param = request.getParameter("ideleve");
+		int eleveID =Integer.parseInt(param);
 		
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
