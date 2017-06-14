@@ -63,7 +63,7 @@
 	                            		</div>
                             		</c:if>
                             		<c:if test="${stage_valide_flag==false}" var="maVariable" scope="session">
-	                               		<a href="validerConvention?id=${stage.id}"><button type="button" class="btn btn-success">Valider la convention</button></a>
+	                               		<a href="validerConvention?id=${eleve.id}"><button type="button" class="btn btn-success">Valider la convention</button></a>
 	                               		<p></p>
 	                               		<p></p>
                             		</c:if>
