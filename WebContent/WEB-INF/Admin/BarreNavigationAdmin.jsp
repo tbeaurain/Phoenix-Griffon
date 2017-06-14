@@ -19,8 +19,7 @@
                         <li><a href="AccueilAdmin"><i class="fa fa-home fa-fw"></i> Accueil</a></li>
                         <li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Suivi des élèves<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="RechercheEleve"><i class="fa fa-search"></i>Rechercher un élève</a></li>
-								<li><a href="RechercheEleveSansStage"><i class="fa fa-search"></i>Elèves sans stage</a></li>
+                                <li><a href="RechercheEleveSansStage"><i class="fa fa-search"></i>Elèves sans stage</a></li>
                             </ul>
                         </li>
                         <li><a href="#"><i class="fa fa-list-alt fa-fw"></i>Conventions de stage<span class="fa arrow"></span></a>

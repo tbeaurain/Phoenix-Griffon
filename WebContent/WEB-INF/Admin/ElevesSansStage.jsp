@@ -12,7 +12,7 @@
 	    <meta name="description" content="Recherche de contact">
 	    <meta name="author" content="Phoenix + Griffon">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	    <title>JobISEP - Recherche de convention par élève</title>
+	    <title>JobISEP - Recherche de contact</title>
 
 	    <!-- Bootstrap Core CSS -->
 	    <jsp:include page="/WEB-INF/Commun/IncludeCSS.jsp"/>
@@ -35,11 +35,10 @@
 	            <div class="container-fluid">
 	                <div class="row">
 	                    <div class="col-lg-12">
-	                        <h1 class="page-header">Recherche de convention par eleve</h1>
+	                        <h1 class="page-header">Liste des élèves sans stage</h1>
 	                    </div>
 	                    <!-- /.col-lg-12 -->
 	                </div>
-	             <jsp:include page="/WEB-INF/Forms/FormConventionParEleve.jsp"/>   
 	            </div>
 	            <% if(request.getAttribute("liste_utilisateurs")!=null){
 	            	
@@ -47,7 +46,7 @@
 		               	ArrayList<Utilisateur> liste = (ArrayList<Utilisateur>) request.getAttribute("liste_utilisateurs");
 		               	if(liste.size()!=0){
 			     	      	for(Utilisateur utilisateur : liste){
-			     	      		out.print("<div class=\"col-md-1\"></div><div class=\"col-md-8\"><div class=\"panel panel-info\"><div class=\"panel-heading\"><h4>" + utilisateur.getPrenom() + " " + utilisateur.getNom() + " </h4></div><div class=\"panel-body\"><div class=\"row\"><div class=\"col-lg-12\"> <a href=\"AfficherConvention?ideleve=" + utilisateur.getId() +"\">Voir la convention</a>" +  "</div></div></div></div></div><hr style=\"clear:both;\">");
+			     	      		out.print("<div class=\"col-md-1\"></div><div class=\"col-md-8\"><div class=\"panel panel-info\"><div class=\"panel-heading\"><h4> Convention de " + utilisateur.getPrenom() + " " + utilisateur.getNom() + " </h4></div><div class=\"panel-body\"><div class=\"row\"><div class=\"col-lg-12\"> " +  "</div></div></div></div></div><hr style=\"clear:both;\">");
 			               
 			               	}
 		               	}
