@@ -36,7 +36,7 @@ public class ModifierMotdepasse extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);		
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
 	}

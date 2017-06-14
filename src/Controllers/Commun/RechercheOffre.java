@@ -43,8 +43,9 @@ public class RechercheOffre extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
+		System.out.println(typeUtilisateur);
 		
 		ArrayList<Offre> liste_offres = new ArrayList<>();
 
@@ -63,7 +64,7 @@ public class RechercheOffre extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );
+		doGet(request, response);
 	}
 
 }

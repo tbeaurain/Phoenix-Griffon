@@ -46,7 +46,7 @@ public class SupprimerOffre extends HttpServlet {
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
 		request.setAttribute(ATT_UTILISATEUR, user);
 		
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
 		
 		int idOffre = Integer.parseInt(request.getParameter("idOffre"));

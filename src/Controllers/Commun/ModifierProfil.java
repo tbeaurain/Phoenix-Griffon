@@ -43,7 +43,7 @@ public class ModifierProfil extends HttpServlet {
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
 		request.setAttribute(ATT_UTILISATEUR, user);
 		
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
 		
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );

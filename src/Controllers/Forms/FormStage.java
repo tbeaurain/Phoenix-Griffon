@@ -73,7 +73,7 @@ public class FormStage extends HttpServlet {
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
 		
 		// Récupération du type d'utilisateur (élève ou admin) et transmission à la JSP
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
 
 		/* Ajout du bean et de l'objet métier à l'objet requête */

@@ -44,7 +44,7 @@ public class Profil extends HttpServlet {
 		request.setAttribute(ATT_UTILISATEUR, user);
 		//request.setAttribute(ATT_SESSION_USER, user);
 		
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
 		
 		this.getServletContext().getRequestDispatcher( VUE_SUCCES ).forward( request, response );

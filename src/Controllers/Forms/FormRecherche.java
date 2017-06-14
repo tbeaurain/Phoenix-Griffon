@@ -51,7 +51,7 @@ public class FormRecherche extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Utilisateur user = (Utilisateur)session.getAttribute(ATT_SESSION_USER);
-		int typeUtilisateur = user.getId();
+		int typeUtilisateur = user.getStatutUtilisateur().getId();
 		request.setAttribute(ATT_USER_TYPE, typeUtilisateur);
 		request.setCharacterEncoding("utf-8");
 		String recherche = request.getParameter("titre");

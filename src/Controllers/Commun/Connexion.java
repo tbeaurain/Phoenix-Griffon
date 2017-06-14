@@ -79,6 +79,10 @@ public class Connexion extends HttpServlet {
 			} 
 		}
 		
+		//-----------TEST--------------------
+		//Utilisateur user = utilisateurBDD.find(1);
+		//-------------------------------
+		
 		if ( user.getId() != null) {
 			
 			HttpSession session = request.getSession();
