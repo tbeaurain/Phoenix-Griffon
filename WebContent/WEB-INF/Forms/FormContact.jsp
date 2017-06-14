@@ -20,8 +20,8 @@
                             		</c:if>
                                     <form role="form" action="FormContact" method="POST">
 	                                        <div class="form-group<c:if test="${form.erreurs['titre']!=null}" var="maVariable" scope="session"> has-error</c:if>">
-	                                            <label>Titre / mot dans la description</label>
-	                                            <input id="titre" name="titre" class="form-control" value="<c:out value="${utilisateur.titre}"/>">
+	                                            <label>Nom / Prénom</label>
+	                                            <input id="titre" name="titre" class="form-control" value="<c:out value="${utilisateur.nom	}"/>">
 	                                            <p class="help-block">${form.erreurs['titre']}</p>
 	                                        </div>
 	                                    <button type="submit" class="btn btn-primary">Envoyer</button>
